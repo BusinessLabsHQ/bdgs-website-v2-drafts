@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BD Growth Suite — Brilliant Directories Developers</title>
+<link rel="icon" type="image/png" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
+<link rel="shortcut icon" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
@@ -75,27 +77,10 @@ body {
   text-decoration: none;
   gap: 10px;
 }
-.bdgsownv2-logo-mark {
-  width: 36px;
+.bdgsownv2-logo-img {
   height: 36px;
-  background: var(--bdgs-gradient);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.5px;
-}
-.bdgsownv2-logo-text {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--bdgs-dark);
-  letter-spacing: -0.3px;
-}
-.bdgsownv2-logo-text span {
-  color: var(--bdgs-coral);
+  width: auto;
+  display: block;
 }
 
 .bdgsownv2-nav-links {
@@ -128,13 +113,22 @@ body {
   color: var(--bdgs-coral);
   text-decoration: none;
 }
+button.bdgsownv2-nav-link {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
 .bdgsownv2-nav-link svg {
   width: 12px;
   height: 12px;
   opacity: 0.5;
   transition: transform 0.2s;
 }
-.bdgsownv2-nav-item:hover .bdgsownv2-nav-link svg {
+.bdgsownv2-nav-item--has-dropdown:hover .bdgsownv2-nav-link svg,
+.bdgsownv2-nav-item--has-dropdown.is-open .bdgsownv2-nav-link svg {
   transform: rotate(180deg);
 }
 
@@ -178,7 +172,17 @@ body {
   transition: all 0.2s;
   pointer-events: none;
 }
-.bdgsownv2-nav-item:hover .bdgsownv2-dropdown {
+/* Invisible bridge above panel — spans the 8px gap + overlap so hover is never lost */
+.bdgsownv2-nav-item--has-dropdown .bdgsownv2-dropdown::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -16px;
+  height: 16px;
+}
+.bdgsownv2-nav-item--has-dropdown:hover .bdgsownv2-dropdown,
+.bdgsownv2-nav-item--has-dropdown.is-open .bdgsownv2-dropdown {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -728,21 +732,20 @@ body {
 <header class="bdgsownv2-header" id="bdgsHeader">
   <nav class="bdgsownv2-nav">
 
-    <!-- LOGO (click = home) -->
-    <a href="/" class="bdgsownv2-logo">
-      <div class="bdgsownv2-logo-mark">BD</div>
-      <div class="bdgsownv2-logo-text"><span>BD</span> Growth Suite</div>
+    <!-- LOGO (same asset + home URL as bdgrowthsuite.com) -->
+    <a href="https://bdgrowthsuite.com/" class="bdgsownv2-logo">
+      <img class="bdgsownv2-logo-img" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite" height="36" decoding="async">
     </a>
 
     <!-- NAV LINKS -->
     <ul class="bdgsownv2-nav-links">
 
       <!-- SERVICES -->
-      <li class="bdgsownv2-nav-item">
-        <a class="bdgsownv2-nav-link" href="/services">
+      <li class="bdgsownv2-nav-item bdgsownv2-nav-item--has-dropdown">
+        <button type="button" class="bdgsownv2-nav-link" aria-expanded="false" aria-haspopup="true">
           Services
-          <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </a>
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
         <div class="bdgsownv2-dropdown">
           <div class="bdgsownv2-dropdown-grid">
             <a href="/setup" class="bdgsownv2-dropdown-item">
@@ -778,11 +781,11 @@ body {
       </li>
 
       <!-- GROW WITH AI -->
-      <li class="bdgsownv2-nav-item">
-        <a class="bdgsownv2-nav-link" href="/grow-with-ai">
+      <li class="bdgsownv2-nav-item bdgsownv2-nav-item--has-dropdown">
+        <button type="button" class="bdgsownv2-nav-link" aria-expanded="false" aria-haspopup="true">
           Grow with AI
-          <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </a>
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
         <div class="bdgsownv2-dropdown">
           <div class="bdgsownv2-dropdown-grid">
             <a href="/ai-development" class="bdgsownv2-dropdown-item">
@@ -817,11 +820,11 @@ body {
       </li>
 
       <!-- TOOLS -->
-      <li class="bdgsownv2-nav-item">
-        <a class="bdgsownv2-nav-link" href="/tools">
+      <li class="bdgsownv2-nav-item bdgsownv2-nav-item--has-dropdown">
+        <button type="button" class="bdgsownv2-nav-link" aria-expanded="false" aria-haspopup="true">
           Tools
-          <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </a>
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-sm">
           <div class="bdgsownv2-dropdown-grid">
             <a href="/tools" class="bdgsownv2-dropdown-item">
@@ -1159,6 +1162,60 @@ window.addEventListener('scroll', function() {
     header.classList.remove('scrolled');
   }
 });
+
+// Nav dropdowns: bridge handles hover gap (CSS). Click toggles; items don't navigate; outside click closes.
+(function() {
+  var dropdownParents = document.querySelectorAll('.bdgsownv2-nav-item--has-dropdown');
+  if (!dropdownParents.length) return;
+
+  function setExpanded(item, open) {
+    var btn = item.querySelector('.bdgsownv2-nav-link');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  function closeAll() {
+    dropdownParents.forEach(function(item) {
+      item.classList.remove('is-open');
+      setExpanded(item, false);
+    });
+  }
+
+  dropdownParents.forEach(function(item) {
+    var trigger = item.querySelector('.bdgsownv2-nav-link');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var willOpen = !item.classList.contains('is-open');
+      closeAll();
+      if (willOpen) {
+        item.classList.add('is-open');
+        setExpanded(item, true);
+      }
+    });
+
+    var panel = item.querySelector('.bdgsownv2-dropdown');
+    if (!panel) return;
+
+    panel.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.bdgsownv2-nav-item--has-dropdown')) {
+      closeAll();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
 </script>
 
 </body>
