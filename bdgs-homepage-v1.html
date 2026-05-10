@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BD Growth Suite — Brilliant Directories Developers</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   BDGS OWN V2 — DESIGN SYSTEM
+   Prefix: bdgsownv2-
+   Stack: Bootstrap 3 + Custom
+   Colors: #E74D56 (coral) + #95256E (purple)
+   Font: DM Sans (replacing Glacial/Roboto for web)
+   ============================================ */
+
+:root {
+  --bdgs-coral: #E74D56;
+  --bdgs-coral-dark: #C93A44;
+  --bdgs-coral-light: #FDF0F0;
+  --bdgs-purple: #95256E;
+  --bdgs-purple-dark: #7A1D5A;
+  --bdgs-purple-light: #F8EDF5;
+  --bdgs-dark: #1A1A2E;
+  --bdgs-dark-mid: #2D2D44;
+  --bdgs-text: #2C2C3A;
+  --bdgs-text-muted: #6B6B80;
+  --bdgs-bg: #FAFAFA;
+  --bdgs-white: #FFFFFF;
+  --bdgs-border: #E8E8EE;
+  --bdgs-gradient: linear-gradient(135deg, #E74D56 0%, #95256E 100%);
+  --bdgs-gradient-subtle: linear-gradient(135deg, #FDF0F0 0%, #F8EDF5 100%);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--bdgs-text);
+  background: var(--bdgs-white);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   HEADER / NAVIGATION
+   ============================================ */
+
+.bdgsownv2-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bdgs-white);
+  border-bottom: 1px solid var(--bdgs-border);
+  transition: box-shadow 0.3s;
+}
+.bdgsownv2-header.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+
+.bdgsownv2-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 68px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bdgsownv2-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+.bdgsownv2-logo-mark {
+  width: 36px;
+  height: 36px;
+  background: var(--bdgs-gradient);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.5px;
+}
+.bdgsownv2-logo-text {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--bdgs-dark);
+  letter-spacing: -0.3px;
+}
+.bdgsownv2-logo-text span {
+  color: var(--bdgs-coral);
+}
+
+.bdgsownv2-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bdgsownv2-nav-item {
+  position: relative;
+}
+.bdgsownv2-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bdgs-text);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.bdgsownv2-nav-link:hover {
+  background: var(--bdgs-bg);
+  color: var(--bdgs-coral);
+  text-decoration: none;
+}
+.bdgsownv2-nav-link svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+  transition: transform 0.2s;
+}
+.bdgsownv2-nav-item:hover .bdgsownv2-nav-link svg {
+  transform: rotate(180deg);
+}
+
+.bdgsownv2-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--bdgs-gradient);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.bdgsownv2-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(231,77,86,0.3);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* DROPDOWN */
+.bdgsownv2-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bdgs-white);
+  border: 1px solid var(--bdgs-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 20px;
+  min-width: 520px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+.bdgsownv2-nav-item:hover .bdgsownv2-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.bdgsownv2-dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.bdgsownv2-dropdown-item {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.bdgsownv2-dropdown-item:hover {
+  background: var(--bdgs-bg);
+  text-decoration: none;
+}
+.bdgsownv2-dropdown-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bdgs-dark);
+  margin-bottom: 2px;
+}
+.bdgsownv2-dropdown-item-desc {
+  font-size: 12px;
+  color: var(--bdgs-text-muted);
+  line-height: 1.4;
+}
+
+.bdgsownv2-dropdown-highlight {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: var(--bdgs-gradient-subtle);
+  border-radius: 10px;
+  border: 1px solid rgba(231,77,86,0.1);
+  grid-column: 1 / -1;
+}
+.bdgsownv2-dropdown-highlight a {
+  color: var(--bdgs-coral);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+.bdgsownv2-dropdown-highlight a:hover { text-decoration: underline; }
+.bdgsownv2-dropdown-highlight p {
+  font-size: 12px;
+  color: var(--bdgs-text-muted);
+  margin: 4px 0 0;
+}
+
+.bdgsownv2-dropdown-sm {
+  min-width: 280px;
+}
+.bdgsownv2-dropdown-sm .bdgsownv2-dropdown-grid {
+  grid-template-columns: 1fr;
+}
+
+/* ============================================
+   HERO SECTIONS (Multiple Options)
+   ============================================ */
+
+.bdgsownv2-hero-label {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: var(--bdgs-dark);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 10;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.bdgsownv2-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* HERO OPTION 1: Bold gradient with pain-point */
+.bdgsownv2-hero-1 {
+  background: var(--bdgs-dark);
+  color: #fff;
+  padding: 80px 0 90px;
+  text-align: center;
+}
+.bdgsownv2-hero-1 h1 {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 auto 20px;
+  max-width: 720px;
+  letter-spacing: -1px;
+}
+.bdgsownv2-hero-1 h1 em {
+  font-style: normal;
+  background: var(--bdgs-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bdgsownv2-hero-1 .bdgsownv2-hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.bdgsownv2-hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.bdgsownv2-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+}
+.bdgsownv2-hero-ctas {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bdgsownv2-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--bdgs-gradient);
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.bdgsownv2-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(231,77,86,0.35);
+  color: #fff;
+  text-decoration: none;
+}
+.bdgsownv2-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.bdgsownv2-btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* HERO OPTION 2: Split — left copy, right visual (Urban Company inspired) */
+.bdgsownv2-hero-2 {
+  background: var(--bdgs-white);
+  padding: 60px 0 70px;
+}
+.bdgsownv2-hero-2 .bdgsownv2-hero-left {
+  padding-right: 40px;
+}
+.bdgsownv2-hero-2 h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--bdgs-dark);
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+}
+.bdgsownv2-hero-2 h1 em {
+  font-style: normal;
+  color: var(--bdgs-coral);
+}
+.bdgsownv2-hero-2 .bdgsownv2-hero-sub {
+  font-size: 17px;
+  color: var(--bdgs-text-muted);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.bdgsownv2-hero-visual {
+  background: var(--bdgs-gradient-subtle);
+  border-radius: 16px;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--bdgs-border);
+  position: relative;
+  overflow: hidden;
+}
+.bdgsownv2-hero-visual-placeholder {
+  font-size: 14px;
+  color: var(--bdgs-text-muted);
+  text-align: center;
+  padding: 40px;
+}
+
+/* HERO OPTION 3: Founder credibility — direct quote */
+.bdgsownv2-hero-3 {
+  background: var(--bdgs-gradient-subtle);
+  border-bottom: 1px solid var(--bdgs-border);
+  padding: 70px 0 80px;
+  text-align: center;
+}
+.bdgsownv2-hero-3 .bdgsownv2-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bdgs-coral);
+  background: var(--bdgs-white);
+  border: 1px solid rgba(231,77,86,0.15);
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.bdgsownv2-hero-3 h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--bdgs-dark);
+  max-width: 700px;
+  margin: 0 auto 20px;
+  letter-spacing: -1px;
+}
+.bdgsownv2-hero-3 h1 em {
+  font-style: normal;
+  color: var(--bdgs-coral);
+}
+
+/* HERO OPTION 4: Pain-first — "Bought BD… Now What?" */
+.bdgsownv2-hero-4 {
+  background: var(--bdgs-white);
+  padding: 70px 0 80px;
+  text-align: center;
+}
+.bdgsownv2-hero-4 h1 {
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--bdgs-dark);
+  max-width: 680px;
+  margin: 0 auto 16px;
+  letter-spacing: -1px;
+}
+.bdgsownv2-hero-4 h1 em {
+  font-style: italic;
+  color: var(--bdgs-coral);
+}
+.bdgsownv2-hero-4 .bdgsownv2-hero-answer {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--bdgs-dark-mid);
+  max-width: 600px;
+  margin: 0 auto 12px;
+}
+
+/* HERO OPTION 5: Stats-led — big numbers */
+.bdgsownv2-hero-5 {
+  background: var(--bdgs-dark);
+  color: #fff;
+  padding: 70px 0;
+}
+.bdgsownv2-hero-5 h1 {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+.bdgsownv2-hero-5 h1 em {
+  font-style: normal;
+  background: var(--bdgs-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bdgsownv2-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.bdgsownv2-stat {
+  text-align: center;
+  padding: 24px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+}
+.bdgsownv2-stat-number {
+  font-size: 36px;
+  font-weight: 700;
+  background: var(--bdgs-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bdgsownv2-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+
+/* HERO OPTION 6: "Hire Forever" — developer commitment pitch */
+.bdgsownv2-hero-6 {
+  background: var(--bdgs-white);
+  padding: 70px 0 80px;
+}
+.bdgsownv2-hero-6 h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--bdgs-dark);
+  margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
+.bdgsownv2-hero-6 h1 em { font-style: normal; color: var(--bdgs-coral); }
+.bdgsownv2-timeline {
+  margin: 32px 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid var(--bdgs-border);
+  padding-left: 24px;
+}
+.bdgsownv2-timeline li {
+  position: relative;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--bdgs-text-muted);
+  line-height: 1.5;
+}
+.bdgsownv2-timeline li::before {
+  content: '';
+  position: absolute;
+  left: -29px;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bdgs-coral);
+}
+.bdgsownv2-timeline li strong {
+  color: var(--bdgs-dark);
+}
+
+/* HERO OPTION 7: AI-first — bold AI messaging */
+.bdgsownv2-hero-7 {
+  background: var(--bdgs-dark);
+  color: #fff;
+  padding: 80px 0 90px;
+  text-align: center;
+  position: relative;
+}
+.bdgsownv2-hero-7::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(231,77,86,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(149,37,110,0.12) 0%, transparent 60%);
+}
+.bdgsownv2-hero-7 > * { position: relative; z-index: 1; }
+.bdgsownv2-hero-7 h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  max-width: 750px;
+  margin: 0 auto 20px;
+  letter-spacing: -1.5px;
+}
+.bdgsownv2-hero-7 .bdgsownv2-ai-compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  max-width: 600px;
+  margin: 36px auto;
+  align-items: center;
+}
+.bdgsownv2-ai-compare-col {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+}
+.bdgsownv2-ai-compare-col.before {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.bdgsownv2-ai-compare-col.after {
+  background: rgba(231,77,86,0.1);
+  border: 1px solid rgba(231,77,86,0.2);
+}
+.bdgsownv2-ai-compare-col .time {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.bdgsownv2-ai-compare-col .label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+}
+.bdgsownv2-ai-arrow {
+  font-size: 24px;
+  color: var(--bdgs-coral);
+}
+
+/* HERO OPTION 8: CEO endorsement + video embed */
+.bdgsownv2-hero-8 {
+  background: var(--bdgs-gradient-subtle);
+  padding: 70px 0 80px;
+}
+.bdgsownv2-hero-8 h1 {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--bdgs-dark);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.bdgsownv2-hero-8 h1 em { font-style: normal; color: var(--bdgs-coral); }
+.bdgsownv2-video-embed {
+  background: var(--bdgs-dark);
+  border-radius: 12px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.bdgsownv2-footer {
+  background: var(--bdgs-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 60px 0 0;
+}
+.bdgsownv2-footer h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: -0.2px;
+}
+.bdgsownv2-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bdgsownv2-footer ul li {
+  margin-bottom: 8px;
+}
+.bdgsownv2-footer ul li a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.15s;
+}
+.bdgsownv2-footer ul li a:hover {
+  color: var(--bdgs-coral);
+}
+.bdgsownv2-footer-bottom {
+  margin-top: 48px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.bdgsownv2-footer-bottom p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+}
+.bdgsownv2-footer-badges {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.bdgsownv2-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+}
+
+/* UTILITY */
+.bdgsownv2-section-divider {
+  height: 1px;
+  background: var(--bdgs-border);
+  margin: 0;
+  border: none;
+}
+.bdgsownv2-hero + .bdgsownv2-hero {
+  border-top: 3px solid var(--bdgs-border);
+}
+
+@media (max-width: 991px) {
+  .bdgsownv2-nav-links { display: none; }
+  .bdgsownv2-hero-1 h1, .bdgsownv2-hero-3 h1, .bdgsownv2-hero-4 h1, .bdgsownv2-hero-7 h1 { font-size: 30px; }
+  .bdgsownv2-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .bdgsownv2-ai-compare { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER NAVIGATION
+     ============================================ -->
+<header class="bdgsownv2-header" id="bdgsHeader">
+  <nav class="bdgsownv2-nav">
+
+    <!-- LOGO (click = home) -->
+    <a href="/" class="bdgsownv2-logo">
+      <div class="bdgsownv2-logo-mark">BD</div>
+      <div class="bdgsownv2-logo-text"><span>BD</span> Growth Suite</div>
+    </a>
+
+    <!-- NAV LINKS -->
+    <ul class="bdgsownv2-nav-links">
+
+      <!-- SERVICES -->
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/services">
+          Services
+          <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <div class="bdgsownv2-dropdown">
+          <div class="bdgsownv2-dropdown-grid">
+            <a href="/setup" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Setup &amp; Launch</div>
+              <div class="bdgsownv2-dropdown-item-desc">Concierge BD launch. Business-first, not template-first.</div>
+            </a>
+            <a href="/hire-developer" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Hire a Developer</div>
+              <div class="bdgsownv2-dropdown-item-desc">AI-savvy BD devs. Dedicated. Long-term. Your team.</div>
+            </a>
+            <a href="/customization" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Custom Projects</div>
+              <div class="bdgsownv2-dropdown-item-desc">Features, integrations, APIs — built to your spec.</div>
+            </a>
+            <a href="/maintenance" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Maintenance Plans</div>
+              <div class="bdgsownv2-dropdown-item-desc">Ongoing support, backups, updates, optimization.</div>
+            </a>
+            <a href="/consultation" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Consultation</div>
+              <div class="bdgsownv2-dropdown-item-desc">1-on-1 with Yakin Shah. 18+ years BD expertise.</div>
+            </a>
+            <a href="/growth-plans" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Growth Plans</div>
+              <div class="bdgsownv2-dropdown-item-desc">Monthly retainers. Dev hours + strategy + AI.</div>
+            </a>
+          </div>
+          <div class="bdgsownv2-dropdown-highlight">
+            <a href="/zoom-clinics">🟢 Free Zoom Clinics — Drop in, get help, no strings</a>
+            <p>Our developers are live. Ask anything about your BD site.</p>
+          </div>
+        </div>
+      </li>
+
+      <!-- GROW WITH AI -->
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/grow-with-ai">
+          Grow with AI
+          <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <div class="bdgsownv2-dropdown">
+          <div class="bdgsownv2-dropdown-grid">
+            <a href="/ai-development" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">AI-Powered Development</div>
+              <div class="bdgsownv2-dropdown-item-desc">What took years → months. Savings passed to you.</div>
+            </a>
+            <a href="/ai-dev-fleet" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">AI Dev Fleet</div>
+              <div class="bdgsownv2-dropdown-item-desc">A team of AI works for you. Pay for one developer.</div>
+            </a>
+            <a href="/ai-for-your-site" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">AI for Your BD Site</div>
+              <div class="bdgsownv2-dropdown-item-desc">Chatbots, agents, smart search — built on your site.</div>
+            </a>
+            <a href="/bd-automation" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">BD Automation</div>
+              <div class="bdgsownv2-dropdown-item-desc">Follow-ups, lead gen, content AI, member engagement.</div>
+            </a>
+            <a href="/growth-plans" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Growth Plans</div>
+              <div class="bdgsownv2-dropdown-item-desc">AI-powered monthly plans. Basic · Plus · Elite.</div>
+            </a>
+            <a href="/seo-growth" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">SEO &amp; Growth</div>
+              <div class="bdgsownv2-dropdown-item-desc">Audits, schema, traffic strategy — BD-specific.</div>
+            </a>
+          </div>
+          <div class="bdgsownv2-dropdown-highlight">
+            <a href="/about">🤖 Claude / Anthropic Service Partner — The only BD team building with AI</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- TOOLS -->
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/tools">
+          Tools
+          <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <div class="bdgsownv2-dropdown bdgsownv2-dropdown-sm">
+          <div class="bdgsownv2-dropdown-grid">
+            <a href="/tools" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">All Solutions (61+)</div>
+              <div class="bdgsownv2-dropdown-item-desc">Done-for-you BD customizations with warranty.</div>
+            </a>
+            <a href="/tools/brilliantchat" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">BrilliantChat</div>
+              <div class="bdgsownv2-dropdown-item-desc">AI chatbot for your BD site.</div>
+            </a>
+            <a href="/tools?category=seo" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">SEO Solutions</div>
+              <div class="bdgsownv2-dropdown-item-desc">Schema, audit, speed, on-page fixes.</div>
+            </a>
+            <a href="/tools?category=conversion" class="bdgsownv2-dropdown-item">
+              <div class="bdgsownv2-dropdown-item-title">Conversion Boosters</div>
+              <div class="bdgsownv2-dropdown-item-desc">Lead gen, CTAs, member signup flows.</div>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- THEMES (direct link) -->
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/themes">Themes</a>
+      </li>
+
+      <!-- BLOG (direct link) -->
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/blog">Blog</a>
+      </li>
+
+    </ul>
+
+    <!-- CTA -->
+    <a href="/contact" class="bdgsownv2-cta-btn">Get Started →</a>
+
+  </nav>
+</header>
+
+
+<!-- ============================================
+     HERO OPTION 1: Bold dark gradient — "Only Team"
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-1">
+  <div class="bdgsownv2-hero-label">Hero Option 1</div>
+  <div class="container">
+    <div class="bdgsownv2-hero-badges">
+      <span class="bdgsownv2-badge">🏅 Gold Certified BD Partner</span>
+      <span class="bdgsownv2-badge">🤖 Claude / Anthropic Partner</span>
+      <span class="bdgsownv2-badge">🌍 500+ BD Sites Served</span>
+    </div>
+    <h1>The only BD team that<br>gets you to <em>$1M</em></h1>
+    <p class="bdgsownv2-hero-sub">We don't just build features. We build businesses. AI-powered development, founder-led strategy, and the largest BD team in the world — all working for your growth.</p>
+    <div class="bdgsownv2-hero-ctas">
+      <a href="/services" class="bdgsownv2-btn-primary">Explore Services</a>
+      <a href="/zoom-clinics" class="bdgsownv2-btn-secondary">Join Free Zoom Clinic</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 2: Split layout — Urban Company style
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-2">
+  <div class="bdgsownv2-hero-label">Hero Option 2</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 bdgsownv2-hero-left">
+        <div class="bdgsownv2-hero-badges" style="justify-content:flex-start;margin-bottom:20px">
+          <span class="bdgsownv2-badge" style="background:var(--bdgs-coral-light);color:var(--bdgs-coral);border-color:rgba(231,77,86,0.15)">🏅 Gold Certified</span>
+        </div>
+        <h1>Your BD site is a <em>business</em>.<br>Treat it like one.</h1>
+        <p class="bdgsownv2-hero-sub">Setup. Customization. AI. Growth strategy. The world's largest BD development team — building with you, not just for you.</p>
+        <div class="bdgsownv2-hero-ctas" style="justify-content:flex-start">
+          <a href="/services" class="bdgsownv2-btn-primary" style="background:var(--bdgs-coral)">Explore Services</a>
+          <a href="https://wa.me/917799285123" class="bdgsownv2-btn-secondary" style="color:var(--bdgs-dark);border-color:var(--bdgs-border)">WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="bdgsownv2-hero-visual">
+          <div class="bdgsownv2-hero-visual-placeholder">
+            [Hero image / illustration / service grid]<br>
+            <small>Setup · Custom · AI · Themes · Tools · Growth</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 3: Eyebrow + Founder credibility
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-3">
+  <div class="bdgsownv2-hero-label">Hero Option 3</div>
+  <div class="container">
+    <div class="bdgsownv2-hero-eyebrow">🤖 Now AI-Native — Claude / Anthropic Service Partner</div>
+    <h1>From zero to launch. From launch to <em>$1M</em>. We've done it. <em>Let's do it for you.</em></h1>
+    <p class="bdgsownv2-hero-sub" style="color:var(--bdgs-text-muted);max-width:580px;margin:0 auto 28px;font-size:17px;line-height:1.6">Founded by Yakin Shah (18+ years, 500+ BD sites). The only team where strategy is baked into the service — because our founder scaled a dev agency the same way you're scaling your directory.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <a href="/services" class="bdgsownv2-btn-primary">Explore Services</a>
+      <a href="/about" class="bdgsownv2-btn-secondary" style="color:var(--bdgs-dark);border-color:var(--bdgs-border)">Our Story</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 4: Pain-first — "Bought BD… Now What?"
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-4">
+  <div class="bdgsownv2-hero-label">Hero Option 4</div>
+  <div class="container">
+    <h1><em>"I bought BD…<br>now what?"</em></h1>
+    <p class="bdgsownv2-hero-answer">Now you call us.</p>
+    <p class="bdgsownv2-hero-sub" style="color:var(--bdgs-text-muted);max-width:540px;margin:0 auto 32px;font-size:16px;line-height:1.65">You're not alone. 95% of BD site owners feel stuck after purchase. We've helped 500+ of them go from confused to converting — with AI-powered development, expert strategy, and a team that actually knows BD.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <a href="/services" class="bdgsownv2-btn-primary">See How We Help</a>
+      <a href="/zoom-clinics" class="bdgsownv2-btn-secondary" style="color:var(--bdgs-dark);border-color:var(--bdgs-border)">Free Zoom Clinic →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 5: Stats-led — big numbers
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-5">
+  <div class="bdgsownv2-hero-label">Hero Option 5</div>
+  <div class="container">
+    <h1 style="text-align:center">The team behind <em>500+ BD sites</em><br>across 7+ countries</h1>
+    <div class="bdgsownv2-stat-grid">
+      <div class="bdgsownv2-stat">
+        <div class="bdgsownv2-stat-number">500+</div>
+        <div class="bdgsownv2-stat-label">BD Sites Served</div>
+      </div>
+      <div class="bdgsownv2-stat">
+        <div class="bdgsownv2-stat-number">140+</div>
+        <div class="bdgsownv2-stat-label">Verified Reviews</div>
+      </div>
+      <div class="bdgsownv2-stat">
+        <div class="bdgsownv2-stat-number">10+</div>
+        <div class="bdgsownv2-stat-label">Years in BD Ecosystem</div>
+      </div>
+      <div class="bdgsownv2-stat">
+        <div class="bdgsownv2-stat-number">20+</div>
+        <div class="bdgsownv2-stat-label">In-House BD Developers</div>
+      </div>
+    </div>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center;margin-top:36px">
+      <a href="/services" class="bdgsownv2-btn-primary">Explore Services</a>
+      <a href="/blabs-review" class="bdgsownv2-btn-secondary">Read 140+ Reviews</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 6: "Hire Forever" — Developer commitment
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-6">
+  <div class="bdgsownv2-hero-label">Hero Option 6</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>Your BD site is a tech business.<br><em>Treat it like one.</em></h1>
+        <p style="font-size:17px;color:var(--bdgs-text-muted);line-height:1.65;margin-bottom:8px">Stop hiring developers for one-off jobs. Your directory is a living product — it needs someone who knows it inside out, every single day.</p>
+        <ul class="bdgsownv2-timeline">
+          <li><strong>Friday 9pm:</strong> You get an idea. With a dedicated dev, prototyping starts Monday morning — not next month.</li>
+          <li><strong>$5,000/month × 10 years = $600K.</strong> You only need one great idea to hit $1M ARR. The math works.</li>
+          <li><strong>4-8 experiments per year.</strong> A dedicated dev means you can test, pivot, and scale — not wait in queues.</li>
+          <li><strong>AI-savvy devs</strong> ship 2x faster. What used to take 5 days now takes 2. Same cost, double the output.</li>
+        </ul>
+        <div class="bdgsownv2-hero-ctas" style="justify-content:flex-start">
+          <a href="/hire-developer" class="bdgsownv2-btn-primary">Hire Your Developer</a>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="bdgsownv2-hero-visual" style="min-height:420px">
+          <div class="bdgsownv2-hero-visual-placeholder">
+            [Developer working / team collaboration visual]
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 7: AI-First — Speed comparison
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-7">
+  <div class="bdgsownv2-hero-label">Hero Option 7</div>
+  <div class="container">
+    <h1>The only agency that proudly<br>says: <em style="background:var(--bdgs-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent">we use AI to save you<br>time and money</em></h1>
+    <p class="bdgsownv2-hero-sub" style="color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto 8px;font-size:17px">And not just that — we can build AI for your BD site too.</p>
+    <div class="bdgsownv2-ai-compare">
+      <div class="bdgsownv2-ai-compare-col before">
+        <div class="time" style="color:rgba(255,255,255,0.4)">6 months</div>
+        <div class="label">Before AI</div>
+      </div>
+      <div class="bdgsownv2-ai-arrow">→</div>
+      <div class="bdgsownv2-ai-compare-col after">
+        <div class="time" style="color:var(--bdgs-coral)">6 weeks</div>
+        <div class="label">With BDGS + AI</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:32px">We pass every cost saving directly to you.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <a href="/grow-with-ai" class="bdgsownv2-btn-primary">Grow with AI</a>
+      <a href="/hire-developer" class="bdgsownv2-btn-secondary">Hire an AI Dev</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     HERO OPTION 8: CEO Endorsement + Video
+     ============================================ -->
+<section class="bdgsownv2-hero bdgsownv2-hero-8">
+  <div class="bdgsownv2-hero-label">Hero Option 8</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <span class="bdgsownv2-badge" style="background:var(--bdgs-white);color:var(--bdgs-purple);border:1px solid rgba(149,37,110,0.15);margin-bottom:20px;display:inline-flex">🏅 Recommended by BD's CEO</span>
+        <h1>Don't take our word for it.<br><em>Hear from the source.</em></h1>
+        <p style="font-size:16px;color:var(--bdgs-text-muted);line-height:1.65;margin-bottom:24px">Jason, CEO of Brilliant Directories, personally endorsed BD Growth Suite across 3 official webinars. There's a reason we're the team BD site owners trust most.</p>
+        <div class="bdgsownv2-hero-ctas" style="justify-content:flex-start">
+          <a href="/services" class="bdgsownv2-btn-primary">Explore Services</a>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="bdgsownv2-video-embed">
+          [Embedded BD CEO Webinar Clip — 30-60 seconds]<br>
+          <small>YouTube embed from official BD channel</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="bdgsownv2-footer">
+  <div class="container">
+    <div class="row">
+
+      <!-- Col 1: Services -->
+      <div class="col-md-3 col-sm-6">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/setup">Setup &amp; Launch</a></li>
+          <li><a href="/customization">Custom Projects</a></li>
+          <li><a href="/hire-developer">Hire a Developer</a></li>
+          <li><a href="/maintenance">Maintenance Plans</a></li>
+          <li><a href="/consultation">Consultation</a></li>
+          <li><a href="/growth-plans">Growth Plans</a></li>
+          <li><a href="/zoom-clinics" style="color:var(--bdgs-coral)">Free Zoom Clinics 🟢</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 2: Grow with AI -->
+      <div class="col-md-3 col-sm-6">
+        <h4>Grow with AI</h4>
+        <ul>
+          <li><a href="/ai-development">AI-Powered Development</a></li>
+          <li><a href="/ai-dev-fleet">AI Dev Fleet</a></li>
+          <li><a href="/ai-for-your-site">AI for Your BD Site</a></li>
+          <li><a href="/bd-automation">BD Automation</a></li>
+          <li><a href="/seo-growth">SEO &amp; Growth</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Resources -->
+      <div class="col-md-3 col-sm-6">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/tools">All Solutions (61+)</a></li>
+          <li><a href="/themes">BD Themes (6)</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/blabs-review">Client Reviews (140+)</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/webinars">BD CEO Webinars</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Get Started -->
+      <div class="col-md-3 col-sm-6">
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="https://wa.me/917799285123">WhatsApp Chat</a></li>
+          <li><a href="https://book.businesslabs.org/discovery-session">Book a Call</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+        <div style="margin-top:20px">
+          <h4>Growth Plans</h4>
+          <ul>
+            <li><a href="/growth-plans">Basic — $999/mo</a></li>
+            <li><a href="/growth-plans">Plus — $1,999/mo</a></li>
+            <li><a href="/growth-plans">Elite — $3,999/mo</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="bdgsownv2-footer-bottom">
+      <p>&copy; 2026 BD Growth Suite by BusinessLabs. All rights reserved. &nbsp;|&nbsp; <a href="/about/terms" style="color:rgba(255,255,255,0.4)">Terms</a> &nbsp;|&nbsp; <a href="/about/privacy" style="color:rgba(255,255,255,0.4)">Privacy</a></p>
+      <div class="bdgsownv2-footer-badges">
+        <span class="bdgsownv2-footer-badge">🏅 Gold Certified BD Partner</span>
+        <span class="bdgsownv2-footer-badge">🤖 Claude / Anthropic Partner</span>
+        <span class="bdgsownv2-footer-badge">🌍 500+ BD Sites · 7+ Countries</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+// Sticky header shadow on scroll
+window.addEventListener('scroll', function() {
+  var header = document.getElementById('bdgsHeader');
+  if (window.scrollY > 10) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+</script>
+
+</body>
+</html>
