@@ -62,11 +62,13 @@ body {
 .bdgsownv2-nav-link {
   display: flex; align-items: center; gap: 4px;
   padding: 8px 13px; font-size: 14px; font-weight: 500;
-  color: var(--bdgs-text); text-decoration: none; border-radius: 6px; transition: all 0.2s;
+  color: var(--bdgs-text); text-decoration: none !important; border-radius: 6px; transition: all 0.2s;
+  cursor: pointer; background: none; border: none;
 }
 .bdgsownv2-nav-link:hover { background: var(--bdgs-bg); color: var(--bdgs-coral); text-decoration: none; }
 .bdgsownv2-nav-link svg { width: 12px; height: 12px; opacity: 0.5; transition: transform 0.2s; }
-.bdgsownv2-nav-item:hover .bdgsownv2-nav-link svg { transform: rotate(180deg); }
+.bdgsownv2-nav-item.active .bdgsownv2-nav-link { background: var(--bdgs-bg); color: var(--bdgs-coral); }
+.bdgsownv2-nav-item.active .bdgsownv2-nav-link svg { transform: rotate(180deg); }
 .bdgsownv2-nav-zoom {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 14px; font-size: 13px; font-weight: 600;
@@ -98,8 +100,9 @@ body {
   border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.08);
   padding: 20px; min-width: 520px;
   opacity: 0; visibility: hidden; transition: all 0.2s; pointer-events: none;
+  z-index: 1000;
 }
-.bdgsownv2-nav-item:hover .bdgsownv2-dropdown {
+.bdgsownv2-nav-item.active .bdgsownv2-dropdown {
   opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
 }
 .bdgsownv2-dropdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
@@ -237,16 +240,16 @@ body {
 .bdgsownv2-stack-card {
   background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
   border-radius: 16px; padding: 40px; margin-bottom: 20px;
-  position: sticky; top: 140px;
+  position: relative;
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
   transition: all 0.3s;
 }
-.bdgsownv2-stack-card:nth-child(1) { top: 140px; z-index: 6; }
-.bdgsownv2-stack-card:nth-child(2) { top: 160px; z-index: 5; }
-.bdgsownv2-stack-card:nth-child(3) { top: 180px; z-index: 4; }
-.bdgsownv2-stack-card:nth-child(4) { top: 200px; z-index: 3; }
-.bdgsownv2-stack-card:nth-child(5) { top: 220px; z-index: 2; }
-.bdgsownv2-stack-card:nth-child(6) { top: 240px; z-index: 1; }
+.bdgsownv2-stack-card:nth-child(1) { z-index: 6; }
+.bdgsownv2-stack-card:nth-child(2) { z-index: 5; }
+.bdgsownv2-stack-card:nth-child(3) { z-index: 4; }
+.bdgsownv2-stack-card:nth-child(4) { z-index: 3; }
+.bdgsownv2-stack-card:nth-child(5) { z-index: 2; }
+.bdgsownv2-stack-card:nth-child(6) { z-index: 1; }
 .bdgsownv2-stack-card-title {
   font-size: 22px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 8px;
 }
@@ -939,14 +942,99 @@ body {
 </footer>
 
 <script>
-// Sticky header shadow
+// Sticky header
 window.addEventListener('scroll', function() {
   document.getElementById('bdgsHeader').classList.toggle('scrolled', window.scrollY > 10);
 });
 
-// Tab active state on click
+// Menu - click + hover based toggle with 0.5s grace period
+var menuHoverTimeout;
+document.querySelectorAll('.bdgsownv2-nav-item').forEach(function(item) {
+  var link = item.querySelector('.bdgsownv2-nav-link');
+  var dropdown = item.querySelector('.bdgsownv2-dropdown');
+  
+  if (dropdown && link) {
+    // Click to toggle
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(otherItem) {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      item.classList.toggle('active');
+    });
+    
+    // Hover to open (no click needed)
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(menuHoverTimeout);
+      
+      document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(otherItem) {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      item.classList.add('active');
+    });
+    
+    // 0.5s grace period before closing on mouseleave
+    item.addEventListener('mouseleave', function() {
+      var currentItem = item;
+      menuHoverTimeout = setTimeout(function() {
+        currentItem.classList.remove('active');
+      }, 500);
+    });
+  }
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.bdgsownv2-nav-item')) {
+    clearTimeout(menuHoverTimeout);
+    document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(item) {
+      item.classList.remove('active');
+    });
+  }
+});
+
+// Close dropdown when clicking on a dropdown item
+document.querySelectorAll('.bdgsownv2-dropdown-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    clearTimeout(menuHoverTimeout);
+    document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(navItem) {
+      navItem.classList.remove('active');
+    });
+  });
+});
+
+// Stack cards on scroll - make them follow scroll
+var stackCards = document.querySelectorAll('.bdgsownv2-stack-card');
+if (stackCards.length > 0) {
+  var stackContainer = document.querySelector('.bdgsownv2-stack-cards');
+  var containerTop = stackContainer.offsetTop;
+  var cardHeight = 80; // approximate card height with margin
+  
+  window.addEventListener('scroll', function() {
+    var scrollPos = window.scrollY;
+    var relativeScroll = scrollPos - containerTop;
+    
+    stackCards.forEach(function(card, index) {
+      var offsetDistance = index * 20; // each card stacks 20px below previous
+      var finalTop = Math.max(0, relativeScroll - (cardHeight * index));
+      
+      card.style.transform = 'translateY(' + finalTop + 'px)';
+    });
+  });
+}
+
+// Tab active state for services
 document.querySelectorAll('.bdgsownv2-stack-tab').forEach(function(tab) {
   tab.addEventListener('click', function(e) {
+    e.preventDefault();
     document.querySelectorAll('.bdgsownv2-stack-tab').forEach(function(t) { t.classList.remove('active'); });
     this.classList.add('active');
   });
