@@ -238,16 +238,28 @@ body {
   background: var(--bdgs-coral-light); text-decoration: none;
 }
 /* Stacking cards - Razorpay-style sticky stacking with visible titles */
-.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 100px; }
+.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 600px; }
 .bdgsownv2-stack-card {
   background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
   border-radius: 16px; padding: 32px 40px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.06);
   position: sticky;
   margin-bottom: 24px;
-  /* Minimum height ensures consistent stacking */
-  min-height: 280px;
+  transition: opacity 0.4s ease, mask-image 0.4s ease, -webkit-mask-image 0.4s ease;
 }
+/* Inactive (previous) cards: fade lower portion to transparent, keep title visible */
+.bdgsownv2-stack-card.dimmed {
+  /* Gradient mask: top 90px fully visible (title peek), then fades to transparent */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 70px, rgba(0,0,0,0.1) 110px, rgba(0,0,0,0) 140px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 70px, rgba(0,0,0,0.1) 110px, rgba(0,0,0,0) 140px);
+}
+/* z-index: later cards stack ON TOP of earlier ones — prevents leak */
+.bdgsownv2-stack-card:nth-child(1) { z-index: 1; }
+.bdgsownv2-stack-card:nth-child(2) { z-index: 2; }
+.bdgsownv2-stack-card:nth-child(3) { z-index: 3; }
+.bdgsownv2-stack-card:nth-child(4) { z-index: 4; }
+.bdgsownv2-stack-card:nth-child(5) { z-index: 5; }
+.bdgsownv2-stack-card:nth-child(6) { z-index: 6; }
 /* Each card sticks 50px lower than previous — exposes ~50px of card behind (title visible) */
 .bdgsownv2-stack-card:nth-child(1) { top: 140px; }
 .bdgsownv2-stack-card:nth-child(2) { top: 190px; }
@@ -280,6 +292,127 @@ body {
   position: absolute; top: 0; left: 0; width: 4px; height: 100%;
   border-radius: 16px 0 0 16px;
 }
+
+/* Tier sub-cards inside Setup stacking card */
+.bdgsownv2-tier-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px;
+}
+.bdgsownv2-tier-card {
+  background: var(--bdgs-bg); border: 1px solid var(--bdgs-border);
+  border-radius: 12px; padding: 18px 16px;
+  transition: all 0.2s; position: relative;
+  display: flex; flex-direction: column;
+}
+.bdgsownv2-tier-card:hover {
+  border-color: var(--bdgs-coral);
+  box-shadow: 0 4px 16px rgba(231,77,86,0.08);
+  transform: translateY(-2px);
+}
+.bdgsownv2-tier-card.featured {
+  background: var(--bdgs-gradient-subtle); border-color: var(--bdgs-coral);
+}
+.bdgsownv2-tier-card.free {
+  background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.2);
+}
+.bdgsownv2-tier-card.application {
+  background: var(--bdgs-dark); border-color: var(--bdgs-purple);
+  color: rgba(255,255,255,0.85);
+}
+.bdgsownv2-tier-tag {
+  position: absolute; top: -9px; right: 12px;
+  font-size: 9px; font-weight: 700; padding: 3px 9px;
+  border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase;
+}
+.bdgsownv2-tier-tag.free { background: #16A34A; color: #fff; }
+.bdgsownv2-tier-tag.popular { background: var(--bdgs-coral); color: #fff; }
+.bdgsownv2-tier-tag.apply { background: var(--bdgs-purple); color: #fff; }
+.bdgsownv2-tier-eyebrow {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--bdgs-coral); margin-bottom: 4px;
+}
+.bdgsownv2-tier-card.application .bdgsownv2-tier-eyebrow {
+  color: rgba(255,255,255,0.6);
+}
+.bdgsownv2-tier-title {
+  font-size: 15px; font-weight: 700; color: var(--bdgs-dark);
+  margin-bottom: 4px; line-height: 1.25;
+}
+.bdgsownv2-tier-card.application .bdgsownv2-tier-title { color: #fff; }
+.bdgsownv2-tier-price {
+  font-size: 18px; font-weight: 700; color: var(--bdgs-coral);
+  margin-bottom: 6px; line-height: 1;
+}
+.bdgsownv2-tier-price small {
+  font-size: 11px; color: var(--bdgs-text-muted); font-weight: 500;
+}
+.bdgsownv2-tier-card.application .bdgsownv2-tier-price small { color: rgba(255,255,255,0.5); }
+.bdgsownv2-tier-card.free .bdgsownv2-tier-price { color: #16A34A; }
+.bdgsownv2-tier-desc {
+  font-size: 12px; color: var(--bdgs-text-muted);
+  line-height: 1.45; margin-bottom: 10px; flex: 1;
+}
+.bdgsownv2-tier-card.application .bdgsownv2-tier-desc { color: rgba(255,255,255,0.6); }
+.bdgsownv2-tier-features {
+  list-style: none; padding: 0; margin: 0 0 14px;
+}
+.bdgsownv2-tier-features li {
+  font-size: 11px; color: var(--bdgs-text);
+  padding: 3px 0; line-height: 1.35; position: relative; padding-left: 14px;
+}
+.bdgsownv2-tier-card.application .bdgsownv2-tier-features li { color: rgba(255,255,255,0.75); }
+.bdgsownv2-tier-features li::before {
+  content: '✓'; position: absolute; left: 0; top: 2px;
+  color: var(--bdgs-coral); font-weight: 700; font-size: 11px;
+}
+.bdgsownv2-tier-cta a, .bdgsownv2-tier-cta button {
+  display: inline-block; width: 100%; text-align: center;
+  padding: 9px 12px; font-size: 12px; font-weight: 600;
+  border-radius: 7px; text-decoration: none; transition: all 0.2s;
+  cursor: pointer; border: none;
+}
+.bdgsownv2-tier-cta a.primary, .bdgsownv2-tier-cta button.primary {
+  background: var(--bdgs-gradient); color: #fff;
+}
+.bdgsownv2-tier-cta a.primary:hover, .bdgsownv2-tier-cta button.primary:hover {
+  transform: translateY(-1px); box-shadow: 0 4px 12px rgba(231,77,86,0.3);
+}
+.bdgsownv2-tier-cta a.secondary {
+  background: var(--bdgs-white); color: var(--bdgs-dark);
+  border: 1px solid var(--bdgs-border);
+}
+.bdgsownv2-tier-cta a.secondary:hover { border-color: var(--bdgs-coral); color: var(--bdgs-coral); }
+.bdgsownv2-tier-cta button.free-cta {
+  background: #16A34A; color: #fff;
+}
+.bdgsownv2-tier-cta button.free-cta:hover { background: #15803D; }
+@media (max-width: 768px) {
+  .bdgsownv2-tier-grid { grid-template-columns: 1fr; }
+}
+
+/* Modal */
+.bdgsownv2-modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6); z-index: 9999;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px; backdrop-filter: blur(4px);
+}
+.bdgsownv2-modal-overlay.active { display: flex; }
+.bdgsownv2-modal {
+  background: var(--bdgs-white); border-radius: 16px; max-width: 520px; width: 100%;
+  padding: 32px; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+}
+.bdgsownv2-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 8px; border: none;
+  background: var(--bdgs-bg); cursor: pointer; font-size: 18px;
+  color: var(--bdgs-text-muted); transition: all 0.2s;
+}
+.bdgsownv2-modal-close:hover { background: var(--bdgs-coral); color: #fff; }
+.bdgsownv2-modal h3 {
+  font-size: 24px; font-weight: 700; color: var(--bdgs-dark);
+  margin: 0 0 8px; letter-spacing: -0.5px;
+}
+.bdgsownv2-modal p { font-size: 14px; color: var(--bdgs-text-muted); line-height: 1.6; margin: 0 0 16px; }
 
 /* ============================================
    HIRE SECTION
@@ -590,15 +723,61 @@ body {
 
       <div class="bdgsownv2-stack-card" id="svc-setup">
         <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
-        <div class="bdgsownv2-stack-card-title">Setup &amp; Launch</div>
-        <div class="bdgsownv2-stack-card-desc">Concierge-style directory launch. We don't just configure settings — we plan your business model, membership tiers, categories, SEO foundation, and launch strategy. Business-first, not template-first.</div>
-        <div class="bdgsownv2-stack-card-features">
-          <span>Business model planning</span>
-          <span>Membership structure</span>
-          <span>SEO foundation</span>
-          <span>Launch in 3 weeks</span>
+        <div class="bdgsownv2-stack-card-title">Launch Your Directory — Three Ways</div>
+        <div class="bdgsownv2-stack-card-desc">Budget-tight? Ready to launch fast? Aiming for a million-dollar directory? There's a path for you.</div>
+        
+        <div class="bdgsownv2-tier-grid">
+          
+          <!-- Zoom Clinics — FREE -->
+          <div class="bdgsownv2-tier-card free">
+            <span class="bdgsownv2-tier-tag free">FREE</span>
+            <div class="bdgsownv2-tier-title">Zoom Clinics</div>
+            <div class="bdgsownv2-tier-price">Free<small> · drop in</small></div>
+            <div class="bdgsownv2-tier-desc">Small silly things? Never pay a dev again. Learn BD. Our devs show you how.</div>
+            <ul class="bdgsownv2-tier-features">
+              <li>Live dev help</li>
+              <li>No booking needed</li>
+              <li>Ask anything</li>
+            </ul>
+            <div class="bdgsownv2-tier-cta"><button type="button" class="free-cta" onclick="bdgsOpenZoomModal()">Join Next Session →</button></div>
+          </div>
+          
+          <!-- Express Setup — $900 — POPULAR -->
+          <div class="bdgsownv2-tier-card">
+            <span class="bdgsownv2-tier-tag popular">POPULAR</span>
+            <div class="bdgsownv2-tier-title">Express Setup</div>
+            <div class="bdgsownv2-tier-price">$900<small> · one-time</small></div>
+            <div class="bdgsownv2-tier-desc">Fast, technical setup. Our devs configure your directory in 3 days once we have your inputs.</div>
+            <ul class="bdgsownv2-tier-features">
+              <li>3-day turnaround</li>
+              <li>Full configuration</li>
+              <li>Categories &amp; tiers</li>
+              <li>SEO basics</li>
+            </ul>
+            <div class="bdgsownv2-tier-cta"><a href="/setup#express" class="secondary">Start Express →</a></div>
+          </div>
+          
+          <!-- Founder Concierge — $3,500 — APPLY ONLY -->
+          <div class="bdgsownv2-tier-card application">
+            <span class="bdgsownv2-tier-tag apply">APPLY ONLY</span>
+            <div class="bdgsownv2-tier-eyebrow">For million-dollar directory founders</div>
+            <div class="bdgsownv2-tier-title">Founder Concierge</div>
+            <div class="bdgsownv2-tier-price">$3,500<small> · by application</small></div>
+            <div class="bdgsownv2-tier-desc">Yakin joins to think alongside you. Pay $900 floor. If no fit in 30 min, devs do Express. If fit, pay $2,600 more.</div>
+            <ul class="bdgsownv2-tier-features">
+              <li>2× strategy sessions with Yakin</li>
+              <li>Setup + 5 hrs customization</li>
+              <li>2× post-launch GTM sessions</li>
+              <li>$900 floor — refundable</li>
+            </ul>
+            <div class="bdgsownv2-tier-cta"><a href="/setup#founder-concierge" class="primary">Apply for Concierge →</a></div>
+          </div>
+          
         </div>
-        <div class="bdgsownv2-stack-card-cta"><a href="/setup">Learn about Setup →</a></div>
+        
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--bdgs-border);font-size:12px;color:var(--bdgs-text-muted);text-align:center">
+          Not sure which fits? <a href="/setup" style="color:var(--bdgs-coral);font-weight:600;text-decoration:none">Compare all three on Setup &amp; Launch →</a>
+        </div>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-dev">
@@ -946,7 +1125,40 @@ body {
   </div>
 </footer>
 
+<!-- Zoom Clinics Modal (placeholder content — to be locked later) -->
+<div class="bdgsownv2-modal-overlay" id="bdgsZoomModal">
+  <div class="bdgsownv2-modal">
+    <button class="bdgsownv2-modal-close" onclick="bdgsCloseZoomModal()">×</button>
+    <h3>🟢 Join Free Zoom Clinics</h3>
+    <p>Small silly things on your directory site? Never pay a developer for those again. Drop into our live Zoom session, get help, learn how BD works.</p>
+    <p style="background:var(--bdgs-bg);padding:12px 14px;border-radius:8px;font-size:13px;border-left:3px solid var(--bdgs-coral)"><strong style="color:var(--bdgs-dark)">Next session:</strong> [Schedule placeholder — to be locked]<br><strong style="color:var(--bdgs-dark)">Format:</strong> 60-min open Q&amp;A with our devs<br><strong style="color:var(--bdgs-dark)">Cost:</strong> Free, forever</p>
+    <p style="font-size:12px;color:var(--bdgs-text-muted);margin-top:14px">Strategy questions? Those need our Founder Concierge or Express Setup. Everything else — come on in.</p>
+    <div style="display:flex;gap:10px;margin-top:18px">
+      <a href="/zoom-clinics" class="bdgsownv2-btn-primary" style="flex:1;text-align:center;padding:11px 18px;font-size:14px">See full schedule →</a>
+      <button onclick="bdgsCloseZoomModal()" class="bdgsownv2-btn-secondary bdgsownv2-btn-light" style="padding:11px 18px;font-size:14px;cursor:pointer">Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
+// Modal — Zoom Clinics
+function bdgsOpenZoomModal() {
+  document.getElementById('bdgsZoomModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function bdgsCloseZoomModal() {
+  document.getElementById('bdgsZoomModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+// Close modal on overlay click
+document.getElementById('bdgsZoomModal').addEventListener('click', function(e) {
+  if (e.target === this) bdgsCloseZoomModal();
+});
+// Close modal on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') bdgsCloseZoomModal();
+});
+
 // Sticky header
 window.addEventListener('scroll', function() {
   document.getElementById('bdgsHeader').classList.toggle('scrolled', window.scrollY > 10);
@@ -1018,14 +1230,70 @@ document.querySelectorAll('.bdgsownv2-dropdown-item').forEach(function(item) {
 
 // Stack cards now handled purely by CSS sticky positioning
 
-// Tab active state for services
-document.querySelectorAll('.bdgsownv2-stack-tab').forEach(function(tab) {
+// Tab → card mapping (tab href matches card ID)
+var bdgsTabs = document.querySelectorAll('.bdgsownv2-stack-tab');
+var bdgsStackCards = document.querySelectorAll('.bdgsownv2-stack-card');
+
+// 1. Tab click → smooth scroll to card + immediate active
+bdgsTabs.forEach(function(tab) {
   tab.addEventListener('click', function(e) {
     e.preventDefault();
-    document.querySelectorAll('.bdgsownv2-stack-tab').forEach(function(t) { t.classList.remove('active'); });
-    this.classList.add('active');
+    var targetId = this.getAttribute('href').replace('#', '');
+    var target = document.getElementById(targetId);
+    if (target) {
+      // Offset for sticky header (68px) + sticky tabs (~60px) + a bit more so card lands below tabs
+      var offset = 150;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
   });
 });
+
+// 2. Auto-activate tab based on which card is currently most visible
+// Strategy: the active card is the one whose TOP has crossed the viewport's
+// middle line. As soon as a new card starts occupying the upper half of the
+// screen, its tab activates — matching what the user is moving toward.
+
+function bdgsUpdateActiveTab() {
+  // Activation line at viewport midpoint
+  var activationLine = window.innerHeight * 0.5;
+  var activeIndex = 0;
+  
+  for (var i = 0; i < bdgsStackCards.length; i++) {
+    var card = bdgsStackCards[i];
+    var rect = card.getBoundingClientRect();
+    
+    // Card's top has crossed the midpoint — it's now the dominant card
+    if (rect.top <= activationLine) {
+      activeIndex = i;
+    }
+  }
+  
+  bdgsTabs.forEach(function(tab, i) {
+    tab.classList.toggle('active', i === activeIndex);
+  });
+  
+  // Dim all cards BEFORE the active one (they're hidden behind it anyway).
+  // Their title peek stays bright via gradient mask.
+  bdgsStackCards.forEach(function(card, i) {
+    card.classList.toggle('dimmed', i < activeIndex);
+  });
+}
+
+// Throttled scroll listener
+var bdgsScrollTicking = false;
+window.addEventListener('scroll', function() {
+  if (!bdgsScrollTicking) {
+    window.requestAnimationFrame(function() {
+      bdgsUpdateActiveTab();
+      bdgsScrollTicking = false;
+    });
+    bdgsScrollTicking = true;
+  }
+});
+
+// Initial state
+bdgsUpdateActiveTab();
 </script>
 </body>
 </html>
