@@ -238,20 +238,13 @@ body {
   background: var(--bdgs-coral-light); text-decoration: none;
 }
 /* Stacking cards - Razorpay-style sticky stacking with visible titles */
-.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 600px; }
+.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 100px; }
 .bdgsownv2-stack-card {
   background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
   border-radius: 16px; padding: 32px 40px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.06);
   position: sticky;
   margin-bottom: 24px;
-  transition: opacity 0.4s ease, mask-image 0.4s ease, -webkit-mask-image 0.4s ease;
-}
-/* Inactive (previous) cards: fade lower portion to transparent, keep title visible */
-.bdgsownv2-stack-card.dimmed {
-  /* Gradient mask: top 90px fully visible (title peek), then fades to transparent */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 70px, rgba(0,0,0,0.1) 110px, rgba(0,0,0,0) 140px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 70px, rgba(0,0,0,0.1) 110px, rgba(0,0,0,0) 140px);
 }
 /* z-index: later cards stack ON TOP of earlier ones — prevents leak */
 .bdgsownv2-stack-card:nth-child(1) { z-index: 1; }
@@ -1263,7 +1256,6 @@ function bdgsUpdateActiveTab() {
     var card = bdgsStackCards[i];
     var rect = card.getBoundingClientRect();
     
-    // Card's top has crossed the midpoint — it's now the dominant card
     if (rect.top <= activationLine) {
       activeIndex = i;
     }
@@ -1271,12 +1263,6 @@ function bdgsUpdateActiveTab() {
   
   bdgsTabs.forEach(function(tab, i) {
     tab.classList.toggle('active', i === activeIndex);
-  });
-  
-  // Dim all cards BEFORE the active one (they're hidden behind it anyway).
-  // Their title peek stays bright via gradient mask.
-  bdgsStackCards.forEach(function(card, i) {
-    card.classList.toggle('dimmed', i < activeIndex);
   });
 }
 
