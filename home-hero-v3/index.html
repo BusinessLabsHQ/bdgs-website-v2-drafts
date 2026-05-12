@@ -1011,22 +1011,26 @@ document.querySelectorAll('.bdgsownv2-dropdown-item').forEach(function(item) {
   });
 });
 
-// Stack cards on scroll - make them follow scroll
+// Stack cards on scroll - make them follow scroll like Razorpay
 var stackCards = document.querySelectorAll('.bdgsownv2-stack-card');
 if (stackCards.length > 0) {
   var stackContainer = document.querySelector('.bdgsownv2-stack-cards');
-  var containerTop = stackContainer.offsetTop;
-  var cardHeight = 80; // approximate card height with margin
+  var containerTop = stackContainer.getBoundingClientRect().top + window.scrollY;
   
   window.addEventListener('scroll', function() {
     var scrollPos = window.scrollY;
-    var relativeScroll = scrollPos - containerTop;
+    var distanceIntoSection = scrollPos - (containerTop - window.innerHeight);
     
     stackCards.forEach(function(card, index) {
-      var offsetDistance = index * 20; // each card stacks 20px below previous
-      var finalTop = Math.max(0, relativeScroll - (cardHeight * index));
+      var cardHeight = card.offsetHeight + 20; // card height + margin
+      var stackOffset = Math.max(0, distanceIntoSection - (cardHeight * index));
+      var maxOffset = cardHeight * (index);
       
-      card.style.transform = 'translateY(' + finalTop + 'px)';
+      // Cap the offset so cards don't go too far
+      stackOffset = Math.min(stackOffset, maxOffset);
+      
+      card.style.position = 'relative';
+      card.style.top = stackOffset + 'px';
     });
   });
 }
