@@ -135,6 +135,8 @@ body {
 .bdgsownv2-section-label.green { background: #16A34A; }
 .bdgsownv2-section-label.blue { background: #2563EB; }
 .bdgsownv2-section { position: relative; overflow: hidden; }
+/* Stacking services needs overflow visible for sticky to work */
+.bdgsownv2-services-stack { overflow: visible !important; }
 .bdgsownv2-section + .bdgsownv2-section { border-top: 4px solid var(--bdgs-border); }
 .bdgsownv2-hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
 .bdgsownv2-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; }
@@ -235,21 +237,24 @@ body {
   color: var(--bdgs-coral); border-color: var(--bdgs-coral);
   background: var(--bdgs-coral-light); text-decoration: none;
 }
-/* Stacking cards */
-.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; }
+/* Stacking cards - Razorpay-style sticky stacking with visible titles */
+.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 100px; }
 .bdgsownv2-stack-card {
   background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
-  border-radius: 16px; padding: 40px; margin-bottom: 20px;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  transition: all 0.3s;
+  border-radius: 16px; padding: 32px 40px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  position: sticky;
+  margin-bottom: 24px;
+  /* Minimum height ensures consistent stacking */
+  min-height: 280px;
 }
-.bdgsownv2-stack-card:nth-child(1) { z-index: 6; }
-.bdgsownv2-stack-card:nth-child(2) { z-index: 5; }
-.bdgsownv2-stack-card:nth-child(3) { z-index: 4; }
-.bdgsownv2-stack-card:nth-child(4) { z-index: 3; }
-.bdgsownv2-stack-card:nth-child(5) { z-index: 2; }
-.bdgsownv2-stack-card:nth-child(6) { z-index: 1; }
+/* Each card sticks 50px lower than previous — exposes ~50px of card behind (title visible) */
+.bdgsownv2-stack-card:nth-child(1) { top: 140px; }
+.bdgsownv2-stack-card:nth-child(2) { top: 190px; }
+.bdgsownv2-stack-card:nth-child(3) { top: 240px; }
+.bdgsownv2-stack-card:nth-child(4) { top: 290px; }
+.bdgsownv2-stack-card:nth-child(5) { top: 340px; }
+.bdgsownv2-stack-card:nth-child(6) { top: 390px; }
 .bdgsownv2-stack-card-title {
   font-size: 22px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 8px;
 }
@@ -1011,29 +1016,7 @@ document.querySelectorAll('.bdgsownv2-dropdown-item').forEach(function(item) {
   });
 });
 
-// Stack cards on scroll - make them follow scroll like Razorpay
-var stackCards = document.querySelectorAll('.bdgsownv2-stack-card');
-if (stackCards.length > 0) {
-  var stackContainer = document.querySelector('.bdgsownv2-stack-cards');
-  var containerTop = stackContainer.getBoundingClientRect().top + window.scrollY;
-  
-  window.addEventListener('scroll', function() {
-    var scrollPos = window.scrollY;
-    var distanceIntoSection = scrollPos - (containerTop - window.innerHeight);
-    
-    stackCards.forEach(function(card, index) {
-      var cardHeight = card.offsetHeight + 20; // card height + margin
-      var stackOffset = Math.max(0, distanceIntoSection - (cardHeight * index));
-      var maxOffset = cardHeight * (index);
-      
-      // Cap the offset so cards don't go too far
-      stackOffset = Math.min(stackOffset, maxOffset);
-      
-      card.style.position = 'relative';
-      card.style.top = stackOffset + 'px';
-    });
-  });
-}
+// Stack cards now handled purely by CSS sticky positioning
 
 // Tab active state for services
 document.querySelectorAll('.bdgsownv2-stack-tab').forEach(function(tab) {
