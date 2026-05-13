@@ -1770,6 +1770,7 @@ document.querySelectorAll('.bdgsownv2-dropdown-item').forEach(function(item) {
 // Tab → card mapping (tab href matches card ID)
 var bdgsTabs = document.querySelectorAll('.bdgsownv2-stack-tab');
 var bdgsStackCards = document.querySelectorAll('.bdgsownv2-stack-card');
+var bdgsStackSectionEl = document.querySelector('.bdgsownv2-services-stack');
 
 function bdgsStackScrollOffsetPx() {
   return window.matchMedia('(min-width: 992px)').matches ? 168 : 112;
@@ -1795,8 +1796,7 @@ bdgsTabs.forEach(function(tab) {
   });
 });
 
-// 2. Auto-activate tab — desktop: rail-locked to CSS sticky `top` (must match nth-child tops below).
-//    Mobile (≤991px): cards are position:relative — use document probe line, not sticky tops.
+// 2. Auto-activate tab — see bdgsUpdateActiveTab() comment (desktop stack rail + fallbacks).
 
 /** Must stay in sync with `.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(n){ top: … }` */
 var bdgsStackStickyTopsPx = [140, 190, 240, 290, 336, 368];
@@ -1807,30 +1807,80 @@ function bdgsDocTopFromViewport(el) {
 }
 
 /**
- * Desktop: highest-index card whose top is rail-locked to its sticky `top` (within stickEps).
- * Mobile: largest index i with probeY >= card i document top (scrollspy).
+ * Desktop stack: several cards can be sticky at their CSS `top` at once (each layer has its own rail).
+ * Tab must track the visually front layer (highest z-index among layers currently parked on the rail).
+ *
+ * Rule:
+ * 1) "At rail" for card i: rect.bottom shows it is on-screen, and rect.top is within RAIL_STRICT_PX of
+ *    bdgsStackStickyTopsPx[i] (must match nth-child `top` in CSS).
+ * 2) If multiple indices qualify (common while scrolling the stack), take Math.max — highest card wins.
+ * 3) If none qualify in the strict band (subpixel / zoom / in-between scroll), take cards whose top is
+ *    within a looser band under their rail (still "in the stack") and pick the one with the largest
+ *    rect.bottom (extends lowest in the viewport ≈ front face of the pile); ties → higher index.
+ * 4) Else fall back to document probe (same idea as mobile).
+ * 5) If the whole services section has scrolled past above the viewport, keep the last tab (Growth)
+ *    so the strip does not snap backward to Setup.
  */
 function bdgsUpdateActiveTab() {
   var activeIndex = 0;
   var stackDesktop = window.matchMedia('(min-width: 992px)').matches;
+  var n = bdgsStackCards.length;
 
   if (!stackDesktop) {
     var probeY = window.scrollY + 130;
-    for (var j = bdgsStackCards.length - 1; j >= 0; j--) {
+    for (var j = n - 1; j >= 0; j--) {
       if (probeY + 1 >= bdgsDocTopFromViewport(bdgsStackCards[j])) {
         activeIndex = j;
         break;
       }
     }
   } else {
-    var minBottom = 120;
-    var stickEps = 8;
-    for (var i = bdgsStackCards.length - 1; i >= 0; i--) {
+    if (bdgsStackSectionEl) {
+      var srect = bdgsStackSectionEl.getBoundingClientRect();
+      if (srect.bottom < 80) {
+        activeIndex = n - 1;
+        bdgsTabs.forEach(function(tab, k) {
+          tab.classList.toggle('active', k === activeIndex);
+        });
+        return;
+      }
+    }
+
+    var minBottom = 100;
+    var RAIL_STRICT_PX = 22;
+    var RAIL_LOOSE_BELOW_PX = 40;
+    var strictHits = [];
+    var bestLooseIdx = -1;
+    var bestLooseBottom = -Infinity;
+
+    for (var i = 0; i < n; i++) {
       var rect = bdgsStackCards[i].getBoundingClientRect();
       var t = bdgsStackStickyTopsPx[i];
-      if (rect.bottom > minBottom && rect.top <= t + stickEps && rect.top >= t - stickEps) {
-        activeIndex = i;
-        break;
+      if (rect.bottom <= minBottom) continue;
+
+      if (Math.abs(rect.top - t) <= RAIL_STRICT_PX) {
+        strictHits.push(i);
+      }
+
+      if (rect.top <= t + RAIL_STRICT_PX && rect.top >= t - RAIL_LOOSE_BELOW_PX) {
+        if (rect.bottom > bestLooseBottom || (rect.bottom === bestLooseBottom && i > bestLooseIdx)) {
+          bestLooseBottom = rect.bottom;
+          bestLooseIdx = i;
+        }
+      }
+    }
+
+    if (strictHits.length) {
+      activeIndex = Math.max.apply(null, strictHits);
+    } else if (bestLooseIdx >= 0) {
+      activeIndex = bestLooseIdx;
+    } else {
+      var probeY2 = window.scrollY + bdgsStackScrollOffsetPx();
+      for (var jj = n - 1; jj >= 0; jj--) {
+        if (probeY2 + 1 >= bdgsDocTopFromViewport(bdgsStackCards[jj])) {
+          activeIndex = jj;
+          break;
+        }
       }
     }
   }
