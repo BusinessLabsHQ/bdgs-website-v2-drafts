@@ -104,6 +104,7 @@ body {
 .bdgsownv2-cta-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 20px; font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
   color: #fff; background: var(--bdgs-gradient);
   border: none; border-radius: 8px; text-decoration: none;
   transition: all 0.25s; margin-left: 6px; flex-shrink: 0;
@@ -881,8 +882,13 @@ body {
 .bdgsownv2-footer h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 16px; }
 .bdgsownv2-footer ul { list-style: none; padding: 0; margin: 0; }
 .bdgsownv2-footer ul li { margin-bottom: 8px; }
-.bdgsownv2-footer ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.15s; }
-.bdgsownv2-footer ul li a:hover { color: var(--bdgs-coral); }
+.bdgsownv2-footer ul li a,
+.bdgsownv2-footer ul li button.bdgsownv2-footer-link {
+  color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.15s;
+  background: none; border: none; padding: 0; margin: 0; font: inherit; cursor: pointer; text-align: left;
+}
+.bdgsownv2-footer ul li a:hover,
+.bdgsownv2-footer ul li button.bdgsownv2-footer-link:hover { color: var(--bdgs-coral); }
 .bdgsownv2-footer-bottom {
   margin-top: 48px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.08);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
@@ -962,7 +968,7 @@ body {
       <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/blog">Blog</a></li>
       <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-zoom" href="/zoom-clinics"><span class="pulse"></span> Zoom Clinics</a></li>
     </ul>
-    <a href="/contact" class="bdgsownv2-cta-btn">Get Started →</a>
+    <button type="button" class="bdgsownv2-cta-btn" onclick="bdgsOpenInquiryModal(); return false;">Get Started →</button>
   </nav>
 </header>
 
@@ -1531,7 +1537,7 @@ body {
         <ul>
           <li><a href="https://wa.me/917799285123">WhatsApp Chat</a></li>
           <li><a href="/consultation">Book a Consultation</a></li>
-          <li><a href="/contact">Contact Us</a></li>
+          <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal(); return false;">Contact Us</button></li>
           <li><a href="/login">Login</a></li>
         </ul>
       </div>
