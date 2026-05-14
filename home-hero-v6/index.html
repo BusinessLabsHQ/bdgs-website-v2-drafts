@@ -269,11 +269,15 @@ body {
   box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.22);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65), 0 0 18px rgba(231, 77, 86, 0.22);
 }
-/* Setup + See solutions: shimmer visible at rest; hover adds sweep + lift + stronger ring/shadow */
+/* Setup + See solutions: shimmer at rest; ::after hover uses shine keyframes. Setup chip lifts + ring on hover; solutions: slide X only. */
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--setup a,
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a {
   overflow: hidden;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 16px rgba(231, 77, 86, 0.18);
+}
+.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a {
+  transition: color 0.18s ease, opacity 0.18s ease, text-shadow 0.18s ease, transform 0.12s ease,
+    background 0.18s ease, box-shadow 0.22s ease;
 }
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--setup a::after,
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a::after {
@@ -303,8 +307,10 @@ body {
   transform: translateY(-1px);
 }
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a:hover {
-  box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.32), 0 6px 16px rgba(231, 77, 86, 0.16);
-  transform: translate(2px, -1px);
+  transform: translateX(2px);
+  background: rgba(231, 77, 86, 0.09);
+  box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.12);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 16px rgba(231, 77, 86, 0.18);
 }
 /* Meet the team: plain link + same ::after gradient + shine keyframes as setup */
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--meet-team a {
