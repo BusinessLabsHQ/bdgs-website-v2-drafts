@@ -1223,9 +1223,14 @@ Directory automation that removes real busywork.</div>
             <span class="bdgsownv2-tier-tag free">FREE</span>
             <div class="bdgsownv2-tier-title">Zoom Clinics</div>
             <div class="bdgsownv2-tier-price">Free<small> · drop in</small></div>
-            <div class="bdgsownv2-tier-desc">Small silly things? Never pay a dev again. Learn BD. Our devs show you how.</div>
+            <div class="bdgsownv2-tier-desc">Small silly things? Never pay a developer again.<br>Learn Brilliant Directories. Our devs show you live.</div>
+            <p class="bdgsownv2-tier-schedule">
+              📅 Tuesdays &amp; Thursdays<br>
+              🕡 6:30 PM IST · <span id="bdgs-zoom-clinics-local-time">6:30 PM IST</span><br>
+              <small>(We stay another 30 min if active queues need help)</small>
+            </p>
             <ul class="bdgsownv2-tier-features">
-              <li>Live dev help</li>
+              <li>Live developer help</li>
               <li>No booking needed</li>
               <li>Ask anything</li>
             </ul>
@@ -1968,6 +1973,76 @@ window.addEventListener('resize', bdgsScheduleActiveTab);
 
 // Initial state
 bdgsUpdateActiveTab();
+
+// Zoom Clinics — 6:30 PM Asia/Kolkata (Tue/Thu anchor) → visitor local time
+(function bdgsRenderZoomClinicsLocalTime() {
+  var el = document.getElementById('bdgs-zoom-clinics-local-time');
+  if (!el) return;
+
+  var IST = 'Asia/Kolkata';
+
+  function partsInZone(instant, tz) {
+    var dtf = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false, weekday: 'short'
+    });
+    var map = {};
+    dtf.formatToParts(instant).forEach(function(p) {
+      if (p.type !== 'literal') map[p.type] = p.value;
+    });
+    return map;
+  }
+
+  function instantAtLocalTime(y, mo, d, h, mi, tz) {
+    var utcGuess = Date.UTC(y, mo - 1, d, h, mi, 0);
+    for (var n = 0; n < 3; n++) {
+      var p = partsInZone(new Date(utcGuess), tz);
+      var asUtc = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second || 0);
+      utcGuess += Date.UTC(y, mo - 1, d, h, mi, 0) - asUtc;
+    }
+    return new Date(utcGuess);
+  }
+
+  function nextTueOrThuYMD() {
+    var now = new Date();
+    for (var i = 0; i < 14; i++) {
+      var probe = new Date(now.getTime() + i * 86400000);
+      var p = partsInZone(probe, IST);
+      if (p.weekday === 'Tue' || p.weekday === 'Thu') {
+        return { y: +p.year, mo: +p.month, d: +p.day };
+      }
+    }
+    return { y: 2026, mo: 5, d: 19 };
+  }
+
+  function formatSession(instant, tz, withTzName) {
+    var opts = {
+      timeZone: tz,
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    };
+    if (withTzName) opts.timeZoneName = 'short';
+    return new Intl.DateTimeFormat('en-US', opts).format(instant);
+  }
+
+  try {
+    var ymd = nextTueOrThuYMD();
+    var sessionInstant = instantAtLocalTime(ymd.y, ymd.mo, ymd.d, 18, 30, IST);
+    var userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var istLabel = formatSession(sessionInstant, IST, true);
+    if (userTz === IST) {
+      el.textContent = istLabel;
+    } else {
+      var localLabel = formatSession(sessionInstant, userTz, true);
+      el.textContent = istLabel + ' — that\u2019s ' + localLabel + ' for you';
+    }
+  } catch (err) {
+    el.textContent = '6:30 PM IST';
+  }
+})();
 </script>
 </body>
 </html>
