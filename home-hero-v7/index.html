@@ -251,7 +251,7 @@ body {
 .bdgsownv2-pain-card .pain-answer { font-size: 14px; color: var(--bdgs-text-muted); line-height: 1.6; }
 .bdgsownv2-pain-card .pain-answer strong { color: var(--bdgs-dark); }
 .bdgsownv2-pain-card .pain-cta { margin-top: 14px; }
-/* Chip / button CTAs — cards 1, 5 only */
+/* Pill CTAs — all six cards (See solutions reference) */
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn a {
   font-size: 13px; font-weight: 700; color: var(--bdgs-coral-dark); text-decoration: none;
   display: inline-flex; align-items: center; gap: 4px; position: relative;
@@ -260,144 +260,49 @@ body {
   background: rgba(231, 77, 86, 0.09);
   box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.12);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 14px rgba(231, 77, 86, 0.14);
-  transition: color 0.18s ease, opacity 0.18s ease, text-shadow 0.18s ease, transform 0.18s ease,
+  transition: color 0.18s ease, opacity 0.18s ease, text-shadow 0.18s ease, transform 0.12s ease,
     background 0.18s ease, box-shadow 0.22s ease;
 }
 .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn a:hover {
   color: var(--bdgs-coral-dark); text-decoration: none;
-  background: rgba(231, 77, 86, 0.14);
-  box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.22);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65), 0 0 18px rgba(231, 77, 86, 0.22);
-}
-/* Setup + See solutions: shimmer at rest; ::after hover uses shine keyframes. Setup chip lifts + ring on hover; solutions: slide X only. */
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--setup a,
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a {
-  overflow: hidden;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 16px rgba(231, 77, 86, 0.18);
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a {
-  transition: color 0.18s ease, opacity 0.18s ease, text-shadow 0.18s ease, transform 0.12s ease,
-    background 0.18s ease, box-shadow 0.22s ease;
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--setup a::after,
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a::after {
-  content: ''; position: absolute; top: -8%; bottom: -8%; left: -50%; width: 42%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.88), transparent);
-  transform: skewX(-18deg) translateX(-35%);
-  opacity: 0.62; pointer-events: none;
-  z-index: 0;
-  animation: bdgsownv2-pain-cta-shine-idle 2.8s ease-in-out infinite;
-}
-@keyframes bdgsownv2-pain-cta-shine-idle {
-  0% { transform: skewX(-18deg) translateX(-42%); opacity: 0.52; }
-  50% { transform: skewX(-18deg) translateX(220%); opacity: 0.72; }
-  100% { transform: skewX(-18deg) translateX(-42%); opacity: 0.52; }
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--setup a:hover::after,
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a:hover::after {
-  animation: bdgsownv2-pain-cta-shine-hover 0.55s ease;
-  opacity: 0.88;
-}
-@keyframes bdgsownv2-pain-cta-shine-hover {
-  from { transform: skewX(-18deg) translateX(-35%); }
-  to { transform: skewX(-18deg) translateX(240%); }
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--setup a:hover {
-  box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.32), 0 6px 16px rgba(231, 77, 86, 0.16);
-  transform: translateY(-1px);
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--solutions a:hover {
   transform: translateX(2px);
   background: rgba(231, 77, 86, 0.09);
   box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.12);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 16px rgba(231, 77, 86, 0.18);
 }
-/* Meet the team: plain link + same ::after gradient + shine keyframes as setup */
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--meet-team a {
-  overflow: hidden;
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--meet-team a::after {
-  content: ''; position: absolute; top: -8%; bottom: -8%; left: -50%; width: 42%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.88), transparent);
-  transform: skewX(-18deg) translateX(-35%);
-  opacity: 0.62; pointer-events: none;
-  z-index: 0;
-  animation: bdgsownv2-pain-cta-shine-idle 2.8s ease-in-out infinite;
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--meet-team a:hover::after {
-  animation: bdgsownv2-pain-cta-shine-hover 0.55s ease;
-  opacity: 0.88;
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--meet-team a:hover {
-  transform: translateX(2px);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-/* Plain text links — no chip */
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link a {
-  font-size: 13px; font-weight: 700; color: var(--bdgs-coral-dark); text-decoration: none;
-  display: inline-flex; align-items: center; gap: 4px; position: relative;
-  max-width: 100%;
-  padding: 2px 0; margin: 0; border: 0; border-radius: 0;
-  background: transparent; box-shadow: none;
-  text-shadow: none;
-  transition: color 0.18s ease, text-decoration 0.18s ease, letter-spacing 0.2s ease,
-    filter 0.2s ease, transform 0.18s ease;
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link a:hover { color: var(--bdgs-coral-dark); text-decoration: none; }
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--link-prominent a {
-  font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--link-prominent a:hover {
-  text-decoration: underline; text-underline-offset: 3px;
-}
-/* Hire long term: gradient sheen always; hover = underline only (no letter-spacing / lift) */
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--longterm a {
-  background: linear-gradient(90deg, #D1323D 0%, var(--bdgs-coral) 25%, var(--bdgs-purple) 50%, var(--bdgs-coral) 75%, #D1323D 100%);
-  background-size: 220% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: bdgsownv2-pain-cta-longterm-sheen 4.5s ease-in-out infinite;
-  border: 0;
-  border-bottom: 1px solid transparent;
-}
-@keyframes bdgsownv2-pain-cta-longterm-sheen {
-  0%, 100% { background-position: 0% 0; }
-  50% { background-position: 100% 0; }
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--longterm a:hover {
-  border-bottom-color: var(--bdgs-coral-dark);
-}
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--longterm a:focus-visible {
+.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn a:focus-visible {
   outline: 2px solid var(--bdgs-coral);
   outline-offset: 3px;
 }
-/* Grow with AI: no chip; smaller dot + heartbeat; reserved column so text never jumps */
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--grow-ai a {
-  gap: 8px;
-  padding-left: 2px;
+/* Row 1 only: subtle CTA shimmer */
+.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--shine a {
+  overflow: hidden;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55), 0 0 12px rgba(231, 77, 86, 0.12);
 }
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--grow-ai a::before {
-  content: '';
-  flex: 0 0 8px;
-  width: 8px;
-  min-width: 8px;
-  height: 8px;
-  align-self: center;
-  border-radius: 50%;
-  background: var(--bdgs-coral);
-  box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.35);
-  animation: bdgsownv2-pain-cta-heartbeat 1.35s ease-in-out infinite;
+.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--shine a::after {
+  content: ''; position: absolute; top: -6%; bottom: -6%; left: -50%; width: 32%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-18deg) translateX(-35%);
+  opacity: 0.28; pointer-events: none;
+  z-index: 0;
+  animation: bdgsownv2-pain-cta-shine-idle 4.2s ease-in-out infinite;
 }
-@keyframes bdgsownv2-pain-cta-heartbeat {
-  0%, 100% { opacity: 0.88; transform: scale(1); }
-  20% { opacity: 1; transform: scale(1.14); }
-  40% { opacity: 0.72; transform: scale(0.9); }
-  60% { opacity: 1; transform: scale(1.1); }
-  80% { opacity: 0.85; transform: scale(0.96); }
+@keyframes bdgsownv2-pain-cta-shine-idle {
+  0% { transform: skewX(-18deg) translateX(-42%); opacity: 0.22; }
+  50% { transform: skewX(-18deg) translateX(220%); opacity: 0.38; }
+  100% { transform: skewX(-18deg) translateX(-42%); opacity: 0.22; }
 }
-.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--link.bdgsownv2-pain-cta--grow-ai a:hover {
-  text-decoration: underline; text-underline-offset: 3px;
+.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--shine a:hover::after {
+  animation: bdgsownv2-pain-cta-shine-hover 0.65s ease;
+  opacity: 0.42;
+}
+@keyframes bdgsownv2-pain-cta-shine-hover {
+  from { transform: skewX(-18deg) translateX(-35%); }
+  to { transform: skewX(-18deg) translateX(240%); }
+}
+.bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn.bdgsownv2-pain-cta--shine a:hover {
+  background: rgba(231, 77, 86, 0.14);
+  box-shadow: 0 0 0 1px rgba(231, 77, 86, 0.22);
 }
 
 /* ============================================
@@ -962,7 +867,7 @@ body {
           </div>
         </div>
       </li>
-      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="#hire-developer">Hire a Developer</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="#svc-dev">Hire a Developer</a></li>
       <li class="bdgsownv2-nav-item">
         <a class="bdgsownv2-nav-link" href="/tools">Tools <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-sm">
@@ -1114,21 +1019,21 @@ body {
         <div class="bdgsownv2-pain-card">
           <div class="pain-quote">"I bought Brilliant Directories… now what?"</div>
           <div class="pain-answer">You expected plug-and-play. Reality hit. <strong>We take you from purchase → launch → first paying member.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--setup"><a href="/setup">Start your setup →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="/setup">Start your setup →</a></div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="bdgsownv2-pain-card">
           <div class="pain-quote">"This isn't as no-code as I thought."</div>
           <div class="pain-answer"><strong>Our team handles the technical parts.</strong> You handle the vision. We handle everything else.</div>
-          <div class="pain-cta bdgsownv2-pain-cta--link bdgsownv2-pain-cta--link-prominent"><a href="#hire-developer">Get a dedicated developer →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="#hire-developer">Get a dedicated developer →</a></div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="bdgsownv2-pain-card">
           <div class="pain-quote">"I need a team that's actually done this before."</div>
           <div class="pain-answer">Our founder built BusinessLabs from solo to 50+ devs serving 500+ sites. Every dev on your account has trained under that playbook. <strong>They've shipped 1000+ Brilliant Directories features — yours next.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--link bdgsownv2-pain-cta--meet-team"><a href="/about">Meet the team →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="/about">Meet the team →</a></div>
         </div>
       </div>
       <div class="clearfix visible-md-block visible-lg-block"></div>
@@ -1136,21 +1041,21 @@ body {
         <div class="bdgsownv2-pain-card">
           <div class="pain-quote">"I don't want to explain my business to every new dev."</div>
           <div class="pain-answer">Hire a dedicated BD developer who knows your codebase, your vision, your niche. <strong>One team. Forever.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--link bdgsownv2-pain-cta--longterm"><a href="#hire-developer">Hire for the long term →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn"><a href="#hire-developer">Hire for the long term →</a></div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="bdgsownv2-pain-card">
           <div class="pain-quote">"I want a site I'd be proud to pitch to investors."</div>
           <div class="pain-answer">We've built directories that raised funding, won awards, and scaled to 6 figures. <strong>Yours can be next.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--solutions"><a href="/solutions">See solutions →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn"><a href="/solutions">See solutions →</a></div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="bdgsownv2-pain-card">
           <div class="pain-quote">"I need AI but I don't know where to start."</div>
           <div class="pain-answer">We don't just use AI — we build it for your directory. <strong>Chatbots, agents, smart search, bd automation.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--link bdgsownv2-pain-cta--grow-ai"><a href="/grow-with-ai">Grow with AI →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn"><a href="/grow-with-ai">Grow with AI →</a></div>
         </div>
       </div>
     </div>
