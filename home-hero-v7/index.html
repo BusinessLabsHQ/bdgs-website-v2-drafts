@@ -144,9 +144,9 @@ body {
 .bdgsownv2-dropdown-sm .bdgsownv2-dropdown-grid { grid-template-columns: 1fr; }
 /* Services mega menu (3-column: Services grid | divider | Solutions) */
 .bdgsownv2-dropdown-mega {
-  min-width: 680px;
-  max-width: min(720px, calc(100vw - 48px));
-  padding: 22px 24px;
+  min-width: 800px;
+  max-width: min(840px, calc(100vw - 48px));
+  padding: 22px 28px;
 }
 .bdgsownv2-dropdown-mega-layout {
   display: flex;
@@ -159,8 +159,9 @@ body {
   padding-right: 20px;
 }
 .bdgsownv2-dropdown-mega-solutions {
-  flex: 0 0 200px;
-  padding-left: 20px;
+  flex: 0 0 228px;
+  min-width: 228px;
+  padding-left: 24px;
 }
 .bdgsownv2-dropdown-mega-divider {
   flex: 0 0 0;
@@ -189,6 +190,9 @@ body {
 .bdgsownv2-dropdown-item--prominent:hover {
   background: var(--bdgs-coral-light);
   border-color: rgba(231,77,86,0.22);
+}
+.bdgsownv2-dropdown-item--prominent .bdgsownv2-dropdown-item-title {
+  white-space: nowrap;
 }
 @media (max-width: 991px) {
   .bdgsownv2-dropdown-mega {
@@ -933,9 +937,9 @@ body {
             <div class="bdgsownv2-dropdown-mega-divider" aria-hidden="true"></div>
             <div class="bdgsownv2-dropdown-mega-solutions">
               <p class="bdgsownv2-dropdown-col-heading">Solutions Done For You</p>
-              <a href="/solutions" class="bdgsownv2-dropdown-item bdgsownv2-dropdown-item--prominent">
-                <div class="bdgsownv2-dropdown-item-title">Solutions (Done-For-You)</div>
-                <div class="bdgsownv2-dropdown-item-desc">Pre-defined services we implement on your site.</div>
+              <a href="/all-solutions" class="bdgsownv2-dropdown-item bdgsownv2-dropdown-item--prominent">
+                <div class="bdgsownv2-dropdown-item-title">All Solutions</div>
+                <div class="bdgsownv2-dropdown-item-desc">Done-for-you services for your directory.</div>
               </a>
             </div>
           </div>
