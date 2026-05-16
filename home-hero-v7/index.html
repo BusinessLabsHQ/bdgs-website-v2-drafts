@@ -1243,8 +1243,8 @@ Chatbots. Agents. Smart search.<br>
             <div class="bdgsownv2-tier-desc">Small silly things? Never pay a developer again. Learn Brilliant Directories. Our devs show you live.</div>
             <div class="bdgsownv2-clinic-time">
               📅 Tuesdays &amp; Thursdays<br>
-              🕡 <span id="bdgs-zoom-clinics-local-time">6:30 PM IST</span><br>
-              <span class="bdgsownv2-clinic-buffer">(+30 min if needed)</span>
+              🕡 <span id="bdgs-zoom-clinics-local-time">6:30–7:30 PM IST</span><br>
+              <span class="bdgsownv2-clinic-buffer">(We stay another 30 min if active queues need help)</span>
             </div>
             <div class="bdgsownv2-tier-cta"><button type="button" class="free-cta" onclick="bdgsOpenZoomModal()">Join Next Session →</button></div>
           </div>
@@ -1986,7 +1986,7 @@ window.addEventListener('resize', bdgsScheduleActiveTab);
 // Initial state
 bdgsUpdateActiveTab();
 
-// Zoom Clinics — 6:30 PM Asia/Kolkata (Tue/Thu anchor) → visitor local time
+// Zoom Clinics — 6:30–7:30 PM Asia/Kolkata (Tue/Thu anchor) → visitor local window
 (function bdgsRenderZoomClinicsLocalTime() {
   var el = document.getElementById('bdgs-zoom-clinics-local-time');
   if (!el) return;
@@ -1994,6 +1994,7 @@ bdgsUpdateActiveTab();
   var IST = 'Asia/Kolkata';
   var INDIA_ZONES = { 'Asia/Kolkata': 1, 'Asia/Calcutta': 1 };
   var IST_OFFSET_MIN = 330;
+  var INDIA_RANGE = '6:30–7:30 PM IST';
 
   function partsInZone(instant, tz) {
     var dtf = new Intl.DateTimeFormat('en-US', {
@@ -2054,28 +2055,48 @@ bdgsUpdateActiveTab();
     return userOff !== null && userOff === istOff && userOff === IST_OFFSET_MIN;
   }
 
-  function formatVisitorLocal(instant, tz) {
-    return new Intl.DateTimeFormat('en-US', {
+  function clockParts(instant, tz, withTz) {
+    var opts = {
       timeZone: tz,
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true,
-      timeZoneName: 'short'
-    }).format(instant);
+      hour12: true
+    };
+    if (withTz) opts.timeZoneName = 'short';
+    var map = {};
+    new Intl.DateTimeFormat('en-US', opts).formatToParts(instant).forEach(function(p) {
+      if (p.type !== 'literal') map[p.type] = p.value;
+    });
+    return map;
+  }
+
+  function hm(p) {
+    return p.minute === '00' ? p.hour + ':00' : p.hour + ':' + p.minute;
+  }
+
+  function formatVisitorLocalRange(startInstant, endInstant, tz) {
+    var sp = clockParts(startInstant, tz, false);
+    var ep = clockParts(endInstant, tz, true);
+    var tzAbbr = ep.timeZoneName ? ' ' + ep.timeZoneName : '';
+    if (sp.dayPeriod === ep.dayPeriod) {
+      return hm(sp) + '–' + hm(ep) + ' ' + ep.dayPeriod + tzAbbr;
+    }
+    return hm(sp) + ' ' + sp.dayPeriod + '–' + hm(ep) + ' ' + ep.dayPeriod + tzAbbr;
   }
 
   try {
     var ymd = nextTueOrThuYMD();
-    var sessionInstant = instantAtLocalTime(ymd.y, ymd.mo, ymd.d, 18, 30, IST);
+    var sessionStart = instantAtLocalTime(ymd.y, ymd.mo, ymd.d, 18, 30, IST);
+    var sessionEnd = instantAtLocalTime(ymd.y, ymd.mo, ymd.d, 19, 30, IST);
     var userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || IST;
 
-    if (isIndiaVisitor(userTz, sessionInstant)) {
-      el.textContent = '6:30 PM IST';
+    if (isIndiaVisitor(userTz, sessionStart)) {
+      el.textContent = INDIA_RANGE;
     } else {
-      el.textContent = formatVisitorLocal(sessionInstant, userTz);
+      el.textContent = formatVisitorLocalRange(sessionStart, sessionEnd, userTz);
     }
   } catch (err) {
-    el.textContent = '6:30 PM IST';
+    el.textContent = INDIA_RANGE;
   }
 })();
 </script>
