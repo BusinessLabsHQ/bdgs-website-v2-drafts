@@ -578,6 +578,20 @@ body {
 @media (max-width: 768px) {
   .bdgsownv2-tier-grid { grid-template-columns: 1fr; }
 }
+.bdgsownv2-clinic-time {
+  margin: 12px 0 14px;
+  font-size: 12px;
+  color: var(--bdgs-text);
+  line-height: 1.6;
+}
+.bdgsownv2-clinic-time #bdgs-zoom-clinics-local-time {
+  font-weight: 600;
+}
+.bdgsownv2-clinic-buffer {
+  font-size: 11px;
+  color: var(--bdgs-text-muted);
+  font-style: italic;
+}  
 
 /* Team Philosophy mantra callout */
 .bdgsownv2-mantra-box {
@@ -1226,19 +1240,14 @@ Chatbots, agents, smart search.<br>
             <span class="bdgsownv2-tier-tag free">FREE</span>
             <div class="bdgsownv2-tier-title">Zoom Clinics</div>
             <div class="bdgsownv2-tier-price">Free<small> · drop in</small></div>
-            <div class="bdgsownv2-tier-desc">Small silly things? Never pay a developer again.<br>Learn Brilliant Directories. Our devs show you live.</div>
-            <p class="bdgsownv2-tier-schedule">
-              📅 Tuesdays &amp; Thursdays<br>
-              🕡 <span id="bdgs-zoom-clinics-local-time">6:30 PM IST</span><br>
-              <small>(We stay another 30 min if active queues need help)</small>
-            </p>
-            <ul class="bdgsownv2-tier-features">
-              <li>Live developer help</li>
-              <li>No booking needed</li>
-              <li>Ask anything</li>
-            </ul>
-            <div class="bdgsownv2-tier-cta"><button type="button" class="free-cta" onclick="bdgsOpenZoomModal()">Join Next Session →</button></div>
-          </div>
+            <div class="bdgsownv2-tier-desc">
+  Small silly things? Never pay a developer again. Learn Brilliant Directories. Our devs show you live.
+</div>
+<div class="bdgsownv2-clinic-time">
+  📅 Tuesdays &amp; Thursdays<br>
+  🕡 <span id="bdgs-zoom-clinics-local-time">6:30 PM IST</span><br>
+  <span class="bdgsownv2-clinic-buffer">(+30 min if needed)</span>
+</div>
 
           <!-- Express Setup — $900 — POPULAR -->
           <div class="bdgsownv2-tier-card">
@@ -2036,14 +2045,60 @@ bdgsUpdateActiveTab();
     var sessionInstant = instantAtLocalTime(ymd.y, ymd.mo, ymd.d, 18, 30, IST);
     var userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     var istLabel = formatSession(sessionInstant, IST, true);
-    if (userTz === IST) {
+   if (userTz === IST) {
       el.textContent = istLabel;
     } else {
       var localLabel = formatSession(sessionInstant, userTz, true);
-      el.textContent = istLabel + ' — that\u2019s ' + localLabel + ' for you';
+      el.textContent = localLabel;
     }
   } catch (err) {
     el.textContent = '6:30 PM IST';
+  }
+})();
+</script>
+  <script>
+// Zoom Clinic auto-timezone display
+(function() {
+  var clinicEl = document.getElementById('bdgs-zoom-clinics-local-time');
+  if (!clinicEl) return;
+
+  try {
+    // Anchor time: 6:30 PM IST (18:30 in Asia/Kolkata)
+    // Build today's clinic date object in IST, then let browser convert.
+    var now = new Date();
+    // Create a date for today at 18:30 IST
+    // IST = UTC+5:30, so 18:30 IST = 13:00 UTC
+    var clinicUTC = new Date(Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      13, 0, 0  // 13:00 UTC = 18:30 IST
+    ));
+
+    // Detect user's timezone
+    var userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    
+    if (userTZ === 'Asia/Kolkata') {
+      // User is in India — just show IST
+      clinicEl.textContent = '6:30 PM IST';
+      return;
+    }
+
+    // For everyone else: show their local time + abbreviation
+    var formatter = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZoneName: 'short',
+      hour12: true,
+      timeZone: userTZ
+    });
+    var localTime = formatter.format(clinicUTC);
+    // Result like "8:00 AM EST" or "9:00 AM EDT" — DST handled automatically
+    
+    clinicEl.textContent = localTime + ' (6:30 PM IST)';
+  } catch (e) {
+    // Fallback: just show IST
+    clinicEl.textContent = '6:30 PM IST';
   }
 })();
 </script>
