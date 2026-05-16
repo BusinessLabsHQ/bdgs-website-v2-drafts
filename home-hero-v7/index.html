@@ -1992,6 +1992,8 @@ bdgsUpdateActiveTab();
   if (!el) return;
 
   var IST = 'Asia/Kolkata';
+  var INDIA_ZONES = { 'Asia/Kolkata': 1, 'Asia/Calcutta': 1 };
+  var IST_OFFSET_MIN = 330;
 
   function partsInZone(instant, tz) {
     var dtf = new Intl.DateTimeFormat('en-US', {
@@ -2029,76 +2031,51 @@ bdgsUpdateActiveTab();
     return { y: 2026, mo: 5, d: 19 };
   }
 
-  function formatSession(instant, tz, withTzName) {
-    var opts = {
+  function tzOffsetMinutesAt(instant, tz) {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      timeZoneName: 'longOffset',
+      hour: 'numeric'
+    }).formatToParts(instant);
+    var name = '';
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].type === 'timeZoneName') name = parts[i].value;
+    }
+    var m = name.match(/GMT([+-])(\d{1,2})(?::(\d{2}))?/);
+    if (!m) return null;
+    var sign = m[1] === '+' ? 1 : -1;
+    return sign * (parseInt(m[2], 10) * 60 + (m[3] ? parseInt(m[3], 10) : 0));
+  }
+
+  function isIndiaVisitor(userTz, sessionInstant) {
+    if (INDIA_ZONES[userTz]) return true;
+    var userOff = tzOffsetMinutesAt(sessionInstant, userTz);
+    var istOff = tzOffsetMinutesAt(sessionInstant, IST);
+    return userOff !== null && userOff === istOff && userOff === IST_OFFSET_MIN;
+  }
+
+  function formatVisitorLocal(instant, tz) {
+    return new Intl.DateTimeFormat('en-US', {
       timeZone: tz,
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true
-    };
-    if (withTzName) opts.timeZoneName = 'short';
-    return new Intl.DateTimeFormat('en-US', opts).format(instant);
+      hour12: true,
+      timeZoneName: 'short'
+    }).format(instant);
   }
 
   try {
     var ymd = nextTueOrThuYMD();
     var sessionInstant = instantAtLocalTime(ymd.y, ymd.mo, ymd.d, 18, 30, IST);
-    var userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var istLabel = formatSession(sessionInstant, IST, true);
-   if (userTz === IST) {
-      el.textContent = istLabel;
+    var userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || IST;
+
+    if (isIndiaVisitor(userTz, sessionInstant)) {
+      el.textContent = '6:30 PM IST';
     } else {
-      var localLabel = formatSession(sessionInstant, userTz, true);
-      el.textContent = localLabel;
+      el.textContent = formatVisitorLocal(sessionInstant, userTz);
     }
   } catch (err) {
     el.textContent = '6:30 PM IST';
-  }
-})();
-</script>
-  <script>
-// Zoom Clinic auto-timezone display
-(function() {
-  var clinicEl = document.getElementById('bdgs-zoom-clinics-local-time');
-  if (!clinicEl) return;
-
-  try {
-    // Anchor time: 6:30 PM IST (18:30 in Asia/Kolkata)
-    // Build today's clinic date object in IST, then let browser convert.
-    var now = new Date();
-    // Create a date for today at 18:30 IST
-    // IST = UTC+5:30, so 18:30 IST = 13:00 UTC
-    var clinicUTC = new Date(Date.UTC(
-      now.getUTCFullYear(),
-      now.getUTCMonth(),
-      now.getUTCDate(),
-      13, 0, 0  // 13:00 UTC = 18:30 IST
-    ));
-
-    // Detect user's timezone
-    var userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    
-    if (userTZ === 'Asia/Kolkata') {
-      // User is in India — just show IST
-      clinicEl.textContent = '6:30 PM IST';
-      return;
-    }
-
-    // For everyone else: show their local time + abbreviation
-    var formatter = new Intl.DateTimeFormat('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      timeZoneName: 'short',
-      hour12: true,
-      timeZone: userTZ
-    });
-    var localTime = formatter.format(clinicUTC);
-    // Result like "8:00 AM EST" or "9:00 AM EDT" — DST handled automatically
-    
-    clinicEl.textContent = localTime + ' (6:30 PM IST)';
-  } catch (e) {
-    // Fallback: just show IST
-    clinicEl.textContent = '6:30 PM IST';
   }
 })();
 </script>
