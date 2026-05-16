@@ -142,6 +142,84 @@ body {
 .bdgsownv2-dropdown-highlight p { font-size: 12px; color: var(--bdgs-text-muted); margin: 4px 0 0; }
 .bdgsownv2-dropdown-sm { min-width: 280px; }
 .bdgsownv2-dropdown-sm .bdgsownv2-dropdown-grid { grid-template-columns: 1fr; }
+/* Services mega menu (3-column: Services grid | divider | Solutions) */
+.bdgsownv2-dropdown-mega {
+  min-width: 680px;
+  max-width: min(720px, calc(100vw - 48px));
+  padding: 22px 24px;
+}
+.bdgsownv2-dropdown-mega-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.bdgsownv2-dropdown-mega-services {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-right: 20px;
+}
+.bdgsownv2-dropdown-mega-solutions {
+  flex: 0 0 200px;
+  padding-left: 20px;
+}
+.bdgsownv2-dropdown-mega-divider {
+  flex: 0 0 0;
+  align-self: stretch;
+  border-left: 1px dotted var(--bdgs-border);
+  margin: 0;
+}
+.bdgsownv2-dropdown-col-heading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bdgs-text-muted);
+  margin: 0 0 12px;
+  padding: 0 14px;
+}
+.bdgsownv2-dropdown-mega-solutions .bdgsownv2-dropdown-col-heading {
+  padding-left: 0;
+  padding-right: 0;
+}
+.bdgsownv2-dropdown-item--prominent {
+  padding: 14px 16px;
+  background: var(--bdgs-gradient-subtle);
+  border: 1px solid rgba(231,77,86,0.12);
+}
+.bdgsownv2-dropdown-item--prominent:hover {
+  background: var(--bdgs-coral-light);
+  border-color: rgba(231,77,86,0.22);
+}
+@media (max-width: 991px) {
+  .bdgsownv2-dropdown-mega {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    padding: 16px 18px;
+  }
+  .bdgsownv2-dropdown-mega-layout {
+    flex-direction: column;
+    gap: 0;
+  }
+  .bdgsownv2-dropdown-mega-services {
+    padding-right: 0;
+  }
+  .bdgsownv2-dropdown-mega-divider {
+    border-left: none;
+    border-top: 1px dotted var(--bdgs-border);
+    margin: 16px 0;
+    height: 0;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  .bdgsownv2-dropdown-mega-solutions {
+    flex: 1 1 auto;
+    padding-left: 0;
+  }
+  .bdgsownv2-dropdown-mega .bdgsownv2-dropdown-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* ============================================
    SHARED STYLES
@@ -840,14 +918,26 @@ body {
     <ul class="bdgsownv2-nav-links">
       <li class="bdgsownv2-nav-item">
         <a class="bdgsownv2-nav-link" href="/services">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-        <div class="bdgsownv2-dropdown">
-          <div class="bdgsownv2-dropdown-grid">
+        <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
+          <div class="bdgsownv2-dropdown-mega-layout">
+            <div class="bdgsownv2-dropdown-mega-services">
+              <p class="bdgsownv2-dropdown-col-heading">Services</p>
+              <div class="bdgsownv2-dropdown-grid">
             <a href="/setup" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Setup &amp; Launch</div><div class="bdgsownv2-dropdown-item-desc">Concierge directory launch. Business-first approach.</div></a>
             <a href="/hire-developer" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Dedicated Developers</div><div class="bdgsownv2-dropdown-item-desc">AI-savvy directory devs. Long-term. Your permanent team.</div></a>
-            <a href="/solutions" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Solutions (Done-For-You)</div><div class="bdgsownv2-dropdown-item-desc">Pre-defined services we implement on your site.</div></a>
             <a href="/maintenance" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Maintenance Plans</div><div class="bdgsownv2-dropdown-item-desc">Ongoing support, backups, updates, optimization.</div></a>
             <a href="/consultation" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Consultation</div><div class="bdgsownv2-dropdown-item-desc">Talk to Yakin's team. 18+ years directory expertise.</div></a>
             <a href="/growth-plans" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Growth Plans</div><div class="bdgsownv2-dropdown-item-desc">Co-founder level strategy + dev + AI. Apply to join.</div></a>
+              </div>
+            </div>
+            <div class="bdgsownv2-dropdown-mega-divider" aria-hidden="true"></div>
+            <div class="bdgsownv2-dropdown-mega-solutions">
+              <p class="bdgsownv2-dropdown-col-heading">Solutions Done For You</p>
+              <a href="/solutions" class="bdgsownv2-dropdown-item bdgsownv2-dropdown-item--prominent">
+                <div class="bdgsownv2-dropdown-item-title">Solutions (Done-For-You)</div>
+                <div class="bdgsownv2-dropdown-item-desc">Pre-defined services we implement on your site.</div>
+              </a>
+            </div>
           </div>
         </div>
       </li>
