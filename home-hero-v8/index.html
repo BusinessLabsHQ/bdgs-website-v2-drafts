@@ -1,17 +1,29 @@
+<!--
+  ⚠️ PRODUCTION NOTE (v8 Draft — 2026-06-24)
+  ============================================
+  This is a GitHub Pages draft preview. All inter-page links currently point to:
+    https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/
+  Before deploying to production, replace ALL GitHub Pages URLs with the
+  production domain URLs (e.g. services-v1.html → /services or the live path).
+  Files in this draft:
+    - index-v1.html   (this file — homepage)
+    - services-v1.html (services page)
+    - reviews-v1.html  (reviews page)
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brilliant Directories Developers—BD Growth Suite (home-hero-v7 draft)</title>
+<title>Brilliant Directories Developers—BD Growth Suite (v8 draft)</title>
 <meta name="description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
 <!-- Google largely ignores meta keywords; client requested for legacy/other engines. -->
 <meta name="keywords" content="brilliant directories developers, business directories developers, dedicated bd developer, bd automation, brilliant directories, directory website expert, BD Growth Suite, BusinessLabs, BusinessLabs HQ, directory software, Brilliant Directories customization">
-<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Brilliant Directories Developers—BD Growth Suite automation">
 <meta property="og:description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
-<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html">
 <meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Brilliant Directories Developers—BD Growth Suite automation">
@@ -332,7 +344,7 @@ body {
    AI STRIP
    ============================================ */
 .bdgsownv2-ai-strip {
-  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  display: flex; justify-content: space-evenly; gap: 40px; flex-wrap: wrap;
   margin: 32px auto; max-width: 440px;
   padding: 20px 32px; background: var(--bdgs-white);
   border: 1px solid var(--bdgs-border); border-radius: 12px;
@@ -817,34 +829,287 @@ body {
 .bdgsownv2-client-logo img {
   max-width: 100%; max-height: 100%; object-fit: contain;
 }
-/* Review screenshots */
-.bdgsownv2-reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-bottom: 32px;
+
+  /* ============================================
+     VARIANT 1: Infinite Dual Marquee Logos
+     ============================================ */
+  @keyframes bdgsownv1-marqueeLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 20px)); } /* 20px is half of gap (40px) */
+  }
+
+  @keyframes bdgsownv1-marqueeRight {
+    0% { transform: translateX(calc(-50% - 20px)); }
+    100% { transform: translateX(0); }
+  }
+
+  .bdgsownv1-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 12px; /* Reduced space between rows */
+  }
+
+  .bdgsownv1-marquee-container::before,
+  .bdgsownv1-marquee-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .bdgsownv1-marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, rgba(255,255,255,0));
+  }
+  .bdgsownv1-marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, rgba(255,255,255,0));
+  }
+
+  .bdgsownv1-marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: bdgsownv1-marqueeLeft 40s linear infinite;
+    width: max-content;
+  }
+
+  .bdgsownv1-marquee-track.reverse {
+    animation: bdgsownv1-marqueeRight 40s linear infinite;
+  }
+
+  .bdgsownv1-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .bdgsownv1-marquee-content {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 40px;
+    padding-right: 40px;
+  }
+
+  .bdgsownv1-logo-item {
+    width: 160px;
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+    filter: grayscale(100%) opacity(0.55);
+  }
+
+  .bdgsownv1-logo-item:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+  }
+
+  .bdgsownv1-logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  /* End Variant 1 Logos CSS */
+
+  /* Variant 2: Horizontal Peek Carousel for Homepage */
+.bdgsownv2-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
 }
-.bdgsownv2-review-card {
+.bdgsownv2-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 calc(50% - 390px);
+}
+.bdgsownv2-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.bdgsownv2-card {
+  flex: 0 0 780px;
+  height: 480px;
+  scroll-snap-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  border: 1px solid var(--bdgs-border);
+  transition: all 0.4s ease;
+  opacity: 0.4;
+  transform: scale(0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: stretch;
+}
+.bdgsownv2-card.active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+  border-color: var(--bdgs-coral);
+}
+.v2-review-card {
+  background: #fff;
+  padding: 28px 32px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+.bdgsownv2-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+.bdgsownv2-review-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bdgs-dark);
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+}
+.bdgsownv2-submitted-by {
+  font-size: 12px;
+  color: var(--bdgs-text-muted);
+  white-space: normal;
+  flex-shrink: 0;
+}
+.bdgsownv2-rating-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px dashed var(--bdgs-border);
+  flex-shrink: 0;
+}
+.bdgsownv2-rating-pill {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bdgs-text);
+  white-space: nowrap;
+}
+.bdgsownv2-rating-pill .pill-stars {
+  display: flex;
+  gap: 1px;
+  color: #F59E0B;
+}
+.bdgsownv2-rating-pill .pill-stars svg {
+  width: 11px;
+  height: 11px;
+  fill: currentColor;
+}
+.bdgsownv2-review-text {
+  font-size: 14px;
+  color: var(--bdgs-text);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  text-align: left;
+}
+.bdgsownv2-review-text::-webkit-scrollbar { width: 4px; }
+.bdgsownv2-review-text::-webkit-scrollbar-track { background: transparent; }
+.bdgsownv2-review-text::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+.bdgsownv2-review-text::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+.bdgsownv2-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--bdgs-border);
+}
+.bdgsownv2-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #16A34A;
+}
+.bdgsownv2-verified-badge svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.bdgsownv2-verify-link {
+  font-size: 12px;
+  color: var(--bdgs-text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+.bdgsownv2-verify-link:hover {
+  color: var(--bdgs-coral);
+}
+.v2-progress-bar {
+  width: 100%;
+  max-width: 780px;
+  margin: 12px auto 0;
+  height: 3px;
+  background: var(--bdgs-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bdgsownv2-progress-fill {
+  height: 100%;
+  background: var(--bdgs-coral);
+  border-radius: 2px;
+  width: 0%;
+  transition: width linear;
+}
+.v2-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+.v2-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   background: var(--bdgs-white);
   border: 1px solid var(--bdgs-border);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
-  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  display: block;
-  text-decoration: none;
+  transition: all 0.2s;
+  color: var(--bdgs-text-muted);
 }
-.bdgsownv2-review-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(231,77,86,0.12);
+.v2-btn:hover {
   border-color: var(--bdgs-coral);
-  text-decoration: none;
+  color: var(--bdgs-coral);
+  box-shadow: 0 4px 12px rgba(231,77,86,0.15);
 }
-.bdgsownv2-review-card img {
-  width: 100%;
-  height: auto;
-  display: block;
+.v2-btn svg {
+  width: 24px;
+  height: 24px;
 }
 .bdgsownv2-reviews-more {
   text-align: center;
@@ -862,11 +1127,30 @@ body {
 }
 @media (max-width: 991px) {
   .bdgsownv2-logo-grid { grid-template-columns: repeat(4, 1fr); }
-  .bdgsownv2-reviews-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
   .bdgsownv2-logo-grid { grid-template-columns: repeat(3, 1fr); }
-  .bdgsownv2-reviews-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .bdgsownv2-carousel-track {
+    padding: 0 20px;
+    gap: 16px;
+  }
+  .bdgsownv2-card {
+    flex: 0 0 85vw;
+    height: auto;
+    min-height: 400px;
+  }
+  .bdgsownv2-rating-pills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .bdgsownv2-rating-pill {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }
 
 /* ============================================
@@ -993,6 +1277,331 @@ body {
   .bdgsownv2-nav-links { display: none; }
 }
 
+/* ============================================
+   MOBILE HAMBURGER MENU
+   ============================================ */
+.bdgs-mob-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.bdgs-mob-hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--bdgs-dark);
+  border-radius: 1px;
+  transition: transform 300ms, opacity 200ms;
+}
+.bdgs-mob-hamburger--active .bdgs-mob-hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.bdgs-mob-hamburger--active .bdgs-mob-hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.bdgs-mob-hamburger--active .bdgs-mob-hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.bdgs-mob-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bdgs-white);
+  transform: translateX(100%);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+}
+.bdgs-mob-overlay--open {
+  transform: translateX(0);
+  visibility: visible;
+}
+.bdgs-mob-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--bdgs-border);
+  flex-shrink: 0;
+}
+.bdgs-mob-panels {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: calc(100vh - 68px);
+  height: calc(100dvh - 68px);
+}
+.bdgs-mob-panel {
+  position: absolute;
+  inset: 0;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: none;
+  will-change: transform;
+}
+.bdgs-mob-panel--active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.bdgs-mob-panel--exit-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.bdgs-mob-panel--enter-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.bdgs-mob-panel--exit-right {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.bdgs-mob-panel-scroll {
+  padding: 16px 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bdgs-mob-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bdgs-mob-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--bdgs-border);
+  cursor: pointer;
+}
+.bdgs-mob-item:active {
+  background: var(--bdgs-bg);
+}
+.bdgs-mob-item-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--bdgs-text);
+}
+.bdgs-mob-item-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--bdgs-text);
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+.bdgs-mob-chevron {
+  color: var(--bdgs-text-muted);
+  flex-shrink: 0;
+}
+.bdgs-mob-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  min-height: 56px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--bdgs-coral);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--bdgs-border);
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+.bdgs-mob-back:active {
+  background: var(--bdgs-bg);
+}
+.bdgs-mob-section {
+  padding: 8px 0;
+}
+.bdgs-mob-section-heading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bdgs-text-muted);
+  margin: 0 0 4px;
+  padding: 8px 20px;
+}
+.bdgs-mob-subitem {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+}
+.bdgs-mob-subitem-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bdgs-dark);
+  margin-bottom: 2px;
+}
+.bdgs-mob-subitem-desc {
+  display: block;
+  font-size: 12px;
+  color: var(--bdgs-text-muted);
+  line-height: 1.4;
+}
+.bdgs-mob-subitem:active {
+  background: var(--bdgs-bg);
+}
+.bdgs-mob-divider {
+  height: 0;
+  border-top: 2px dashed var(--bdgs-border);
+  margin: 12px 20px;
+}
+.bdgs-mob-highlight {
+  padding: 14px 20px;
+  margin: 8px 20px;
+  background: var(--bdgs-gradient-subtle);
+  border: 1px solid rgba(231,77,86,0.1);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bdgs-coral);
+  line-height: 1.45;
+}
+.bdgs-mob-also {
+  padding: 20px;
+  margin-top: 16px;
+  background: var(--bdgs-bg);
+  border-top: 1px solid var(--bdgs-border);
+}
+.bdgs-mob-also-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--bdgs-text-muted);
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
+.bdgs-mob-also-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.bdgs-mob-also-pill {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  background: var(--bdgs-white);
+  border: 1px solid var(--bdgs-border);
+  color: var(--bdgs-text);
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.bdgs-mob-also-pill:active {
+  background: var(--bdgs-coral-light);
+  border-color: var(--bdgs-coral);
+  color: var(--bdgs-coral);
+}
+.bdgs-mob-item.bdgs-mob-item--pill {
+  justify-content: center;
+  cursor: default;
+}
+.bdgs-mob-zoom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bdgs-coral);
+  background: var(--bdgs-coral-light);
+  border: 1px solid rgba(231,77,86,0.2);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.bdgs-mob-zoom .pulse {
+  width: 7px;
+  height: 7px;
+  background: #22C55E;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+.bdgs-mob-cta-wrap {
+  padding: 20px;
+  margin-top: auto;
+}
+.bdgs-mob-cta {
+  display: block;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: var(--bdgs-gradient);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: center;
+}
+.bdgs-mob-cta:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(231,77,86,0.3);
+}
+.bdgs-mob-close {
+  background: none;
+  border: none;
+  color: var(--bdgs-text);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+.bdgs-mob-close:active {
+  background: var(--bdgs-bg);
+}
+body.bdgs-mob-noscroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+@media (max-width: 1029px) {
+  .bdgs-mob-hamburger {
+    display: flex;
+  }
+  .bdgsownv2-cta-btn {
+    display: none;
+  }
+}
+
 @media (max-width: 991px) {
   h1, h2 { font-size: 28px !important; }
   .bdgsownv2-stat-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1009,6 +1618,77 @@ body {
     margin: 0;
   }
 }
+
+/* Skeleton Loading Shimmer Styles */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+.bdgsownv2-card.skeleton {
+  pointer-events: none;
+}
+.skeleton-card {
+  background: #fff;
+  padding: 28px 32px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.skeleton-line {
+  height: 16px;
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+  display: inline-block;
+  position: relative;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+.skeleton-line.short {
+  width: 40%;
+  height: 12px;
+}
+.skeleton-line.title {
+  width: 70%;
+  height: 22px;
+  margin-top: 4px;
+}
+.skeleton-line.text {
+  width: 100%;
+  height: 14px;
+  margin-bottom: 8px;
+}
+.skeleton-line.text.short {
+  width: 60%;
+}
+.skeleton-line.badge {
+  width: 130px;
+  height: 16px;
+}
+.skeleton-line.link {
+  width: 110px;
+  height: 16px;
+}
+.skeleton-pill {
+  height: 24px;
+  border-radius: 12px;
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+}
+.skeleton-body {
+  margin-top: 10px;
+  flex: 1;
+}
 </style>
 </head>
 <body>
@@ -1018,12 +1698,12 @@ body {
      ============================================ -->
 <header class="bdgsownv2-header" id="bdgsHeader">
   <nav class="bdgsownv2-nav">
-    <a href="/" class="bdgsownv2-logo">
+    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html" class="bdgsownv2-logo">
       <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
     </a>
     <ul class="bdgsownv2-nav-links">
       <li class="bdgsownv2-nav-item bdgsownv2-nav-item-mega">
-        <a class="bdgsownv2-nav-link" href="services.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a class="bdgsownv2-nav-link" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
           <div class="bdgsownv2-dropdown-mega-layout">
             <div class="bdgsownv2-dropdown-mega-services">
@@ -1084,6 +1764,11 @@ body {
       <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/themes">Themes</a></li>
       <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-zoom" href="/zoom-clinics"><span class="pulse"></span> Zoom Clinics</a></li>
     </ul>
+    <button type="button" class="bdgs-mob-hamburger" id="bdgsMobMenuBtn" aria-label="Open menu" aria-expanded="false">
+      <span class="bdgs-mob-hamburger-line"></span>
+      <span class="bdgs-mob-hamburger-line"></span>
+      <span class="bdgs-mob-hamburger-line"></span>
+    </button>
     <button type="button" class="bdgsownv2-cta-btn" onclick="bdgsOpenInquiryModal(); return false;">Get Started →</button>
   </nav>
 </header>
@@ -1117,7 +1802,7 @@ body {
       </div>
     </div>
     <div class="bdgsownv2-hero-ctas">
-      <a href="services.html" class="bdgsownv2-btn-primary">Explore Services</a>
+      <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html" class="bdgsownv2-btn-primary">Explore Services</a>
       <button type="button" class="bdgsownv2-btn-secondary bdgsownv2-btn-light" onclick="bdgsOpenZoomModal(); return false;">Join Free Zoom Clinic</button>
     </div>
   </div>
@@ -1135,8 +1820,8 @@ body {
         <h2 style="font-size:34px;font-weight:700;color:var(--bdgs-dark);margin-bottom:16px;letter-spacing:-0.5px">Don't take our word for it.<br><span style="color:var(--bdgs-coral)">Hear from the source.</span></h2>
         <p style="font-size:16px;color:var(--bdgs-text-muted);line-height:1.65;margin-bottom:24px">Jason, CEO of Brilliant Directories, personally endorsed BD Growth Suite across 3 official webinars. When the platform's own CEO recommends a team — that says everything.</p>
         <div class="bdgsownv2-hero-ctas" style="justify-content:flex-start">
-          <a href="services.html" class="bdgsownv2-btn-primary">Explore Services</a>
-          <a href="/blabs-review" class="bdgsownv2-btn-secondary bdgsownv2-btn-light">Read 169+ Reviews</a>
+          <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html" class="bdgsownv2-btn-primary">Explore Services</a>
+          <a href="/blabs-review" class="bdgsownv2-btn-secondary bdgsownv2-btn-light" id="bdgs-hero-reviews-btn">Read Reviews</a>
         </div>
       </div>
       <div class="col-md-7">
@@ -1144,11 +1829,10 @@ body {
           <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" src="https://www.youtube-nocookie.com/embed/pxKOMfuuPO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div style="text-align: center; margin-top: 16px;">
-          <a href="https://www.youtube.com/@BrilliantDirectories/videos" target="_blank" style="font-size: 14px; color: var(--bdgs-coral); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: opacity 0.2s;">Check out more webinars →</a>
+          <a href="https://www.youtube.com/@BrilliantDirectories/videos" target="_blank" style="font-size: 14px; color: var(--bdgs-coral); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: opacity 0.2s;">Check out all webinars →</a>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
 </section>
 
 
@@ -1227,49 +1911,167 @@ Chatbots. Agents. Smart search.<br>
 <section class="bdgsownv2-section bdgsownv2-proof-section">
   <div class="container">
     <h2>We Made These Directories <span style="text-decoration:line-through;color:var(--bdgs-text-muted);font-weight:600;text-decoration-thickness:3px">Happy</span> <em>VERY HAPPY</em></h2>
-    <p class="proof-sub">Clients say we feel like in-house Brilliant Directories experts—not a ticket queue. We delivered beyond their expectations — and we'll do the same for you.</p>
+    <p class="proof-sub">Clients say we feel like in-house Brilliant Directories experts—not a ticket queue. We delivered beyond expectations — and we'll do the same for you.</p>
 
     <!-- Client Logos Grid (16 logos in 2 rows of 8) -->
-    <div class="bdgsownv2-logo-grid">
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/1.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/8.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/3.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/CCRG-LOGO-edit1.png" alt="CCRG"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/supplyseys.png" alt="Supplyseys"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/4.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/hotelsjuction.png" alt="Hotels Junction"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/yep.png" alt="Yep"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/7.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/isostylist.png" alt="ISO Stylist"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9_1.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/5.png" alt="Client logo"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/localbulls.png" alt="LocalBulls"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/insureblack.png" alt="Insure Black"></div>
-      <div class="bdgsownv2-client-logo"><img width="160" height="64" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/2.png" alt="Client logo"></div>
+    <!-- Variant 1: Smooth Infinite Marquee (Two Rows) -->
+    <!-- First Row (Scroll Left) -->
+    <div class="bdgsownv1-marquee-container">
+      <div class="bdgsownv1-marquee-track">
+        <!-- Content Set 1 -->
+        <div class="bdgsownv1-marquee-content">
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/1.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/8.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/3.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/CCRG-LOGO-edit1.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/supplyseys.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/4.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/hotelsjuction.png" alt="Logo"></div>
+        </div>
+        <!-- Content Set 2 (Exact Duplicate) -->
+        <div class="bdgsownv1-marquee-content">
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/1.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/8.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/3.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/CCRG-LOGO-edit1.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/supplyseys.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/4.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/hotelsjuction.png" alt="Logo"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Second Row (Scroll Right) -->
+    <div class="bdgsownv1-marquee-container" style="margin-bottom: 56px;">
+      <div class="bdgsownv1-marquee-track reverse">
+        <div class="bdgsownv1-marquee-content">
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/yep.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/7.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/isostylist.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9_1.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/5.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/localbulls.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/insureblack.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/2.png" alt="Logo"></div>
+        </div>
+        <div class="bdgsownv1-marquee-content">
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/yep.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/7.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/isostylist.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9_1.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/5.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/localbulls.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/insureblack.png" alt="Logo"></div>
+          <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/2.png" alt="Logo"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dynamic Reviews Horizontal Peek Carousel (Variant 2) -->
+    <div class="bdgsownv2-carousel-wrapper">
+      <div class="bdgsownv2-carousel-track" id="bdgsownv2-track">
+        <!-- Skeleton Card 1 (Active) -->
+        <div class="bdgsownv2-card active skeleton" data-bdgsownv2-index="0">
+          <div class="skeleton-card">
+            <div class="bdgsownv2-card-header">
+              <span class="skeleton-line short"></span>
+              <span class="skeleton-line title"></span>
+            </div>
+            <div class="bdgsownv2-rating-pills">
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+            </div>
+            <div class="skeleton-body">
+              <span class="skeleton-line text"></span>
+              <span class="skeleton-line text"></span>
+              <span class="skeleton-line text short"></span>
+            </div>
+            <div class="bdgsownv2-card-footer">
+              <span class="skeleton-line badge"></span>
+              <span class="skeleton-line link"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Skeleton Card 2 -->
+        <div class="bdgsownv2-card skeleton" data-bdgsownv2-index="1">
+          <div class="skeleton-card">
+            <div class="bdgsownv2-card-header">
+              <span class="skeleton-line short"></span>
+              <span class="skeleton-line title"></span>
+            </div>
+            <div class="bdgsownv2-rating-pills">
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+            </div>
+            <div class="skeleton-body">
+              <span class="skeleton-line text"></span>
+              <span class="skeleton-line text"></span>
+              <span class="skeleton-line text short"></span>
+            </div>
+            <div class="bdgsownv2-card-footer">
+              <span class="skeleton-line badge"></span>
+              <span class="skeleton-line link"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Skeleton Card 3 -->
+        <div class="bdgsownv2-card skeleton" data-bdgsownv2-index="2">
+          <div class="skeleton-card">
+            <div class="bdgsownv2-card-header">
+              <span class="skeleton-line short"></span>
+              <span class="skeleton-line title"></span>
+            </div>
+            <div class="bdgsownv2-rating-pills">
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+              <span class="skeleton-pill"></span>
+            </div>
+            <div class="skeleton-body">
+              <span class="skeleton-line text"></span>
+              <span class="skeleton-line text"></span>
+              <span class="skeleton-line text short"></span>
+            </div>
+            <div class="bdgsownv2-card-footer">
+              <span class="skeleton-line badge"></span>
+              <span class="skeleton-line link"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Review Screenshots Grid (11 screenshots, 3 rows × 4 = 12 slots, last row uses 3) -->
-    <div class="bdgsownv2-reviews-grid">
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/yoga.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/CoachMatch-.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/Emergency-Management-Logistics-Canada.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/MKB-.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/International-Times-Corporation.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/PhilipScreenshot_1.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/Place-marketing-Screenshot_2.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/Upper-Screenshot_4.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/Capecod-Screenshot_5.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/Christin-lawrens-Screenshot_6.png" alt="Client review"></a>
-      <a href="/blabs-review" class="bdgsownv2-review-card"><img width="800" height="300" referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/Got-clearens-Screenshot_7.png" alt="Client review"></a>
+    <!-- Progress bar under carousel -->
+    <div class="v2-progress-bar">
+      <div class="bdgsownv2-progress-fill"></div>
+    </div>
+    
+    <!-- Controls under carousel -->
+    <div class="v2-controls">
+      <button class="v2-btn" id="bdgsownv2-prev" aria-label="Previous Review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+      </button>
+      <button class="v2-btn" id="bdgsownv2-next" aria-label="Next Review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+      </button>
     </div>
 
-    <div class="bdgsownv2-reviews-more">
-      <a href="/blabs-review">See all 169+ reviews →</a>
+    <div class="bdgsownv2-reviews-more" style="margin-top: 32px;">
+      <a href="/blabs-review" id="bdgs-proof-reviews-link">See all reviews &rarr;</a>
     </div>
-  </div>
-</section>
-
+  </section>
 
 <!-- ============================================
      HOME: Stats (Proof Strip)
@@ -1282,7 +2084,7 @@ Chatbots. Agents. Smart search.<br>
         <div class="bdgsownv2-stat-label">Directory Sites Served</div>
       </div>
       <div class="bdgsownv2-stat">
-        <div class="bdgsownv2-stat-number bdgsownv2-grad-text">169+</div>
+        <div class="bdgsownv2-stat-number bdgsownv2-grad-text" id="bdgs-stat-reviews-count"></div>
         <div class="bdgsownv2-stat-label">Verified Reviews</div>
       </div>
       <div class="bdgsownv2-stat">
@@ -1662,7 +2464,7 @@ Chatbots. Agents. Smart search.<br>
           <li><a href="/solutions">Solutions (61+ done-for-you)</a></li>
           <li><a href="/themes">Directory Themes (6)</a></li>
           <li><a href="/blog">Blog</a></li>
-          <li><a href="/blabs-review">Client Reviews (169+)</a></li>
+          <li><a href="/blabs-review" id="bdgs-footer-reviews-link">Client Reviews</a></li>
           <li><a href="/about">About Us</a></li>
           <li><a href="/webinars">CEO Webinars</a></li>
         </ul>
@@ -1695,48 +2497,109 @@ Chatbots. Agents. Smart search.<br>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
     <div id="bdgsZoomModalContent">
-      <h3>🟢 Join Free Zoom Clinics</h3>
-      <p>Small silly things on your directory site? Never pay a developer for those again. Drop into our live Zoom session, get help, learn how BD works.</p>
       <div id="bdgsZoomModalStep1">
-        <p style="background:var(--bdgs-bg);padding:12px 14px;border-radius:8px;font-size:13px;border-left:3px solid var(--bdgs-coral);margin-bottom:16px;"><strong style="color:var(--bdgs-dark)">Next session:</strong> <span id="bdgsZoomSessionDisplay">Loading...</span><br><strong style="color:var(--bdgs-dark)">Format:</strong> 60-min open Q&amp;A with our devs<br><strong style="color:var(--bdgs-dark)">Cost:</strong> Free, forever</p>
+        <h3>🟢 Join Free Zoom Clinics</h3>
+        <p>Stuck on small things? Drop into our live Zoom session to get free help and learn Brilliant Directories.</p>
+        <div style="background:var(--bdgs-bg);padding:16px;border-radius:8px;font-size:14px;border-left:3px solid var(--bdgs-coral);margin-bottom:16px;">
+          <style>
+.bdgs-tz-wrapper { position:relative; display:inline-flex; align-items:center; background-color:rgba(17, 24, 39, 0.05); border-radius:6px; padding:4px 10px; margin-left:4px; cursor:pointer; user-select:none; transition: background-color 0.2s; }
+.bdgs-tz-wrapper:hover { background-color: rgba(17, 24, 39, 0.09) !important; }
+.bdgs-custom-dropdown { display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:100%; width:max-content; background:var(--bdgs-white); border:1px solid rgba(0,0,0,0.08); border-radius:8px; box-shadow:0 12px 28px -6px rgba(0,0,0,0.12), 0 8px 16px -8px rgba(0,0,0,0.08); z-index:1000; padding:6px; flex-direction:column; gap:2px; }
+.bdgs-custom-dropdown.show { display:flex; animation: bdgsDropdownFade 0.2s ease; }
+@keyframes bdgsDropdownFade { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
+.bdgs-tz-option { padding:8px 12px; font-size:13px; color:var(--bdgs-dark); border-radius:4px; cursor:pointer; transition:background 0.2s, color 0.2s; font-weight: 500; }
+.bdgs-tz-option:hover, .bdgs-tz-option.selected { background:rgba(231,77,86,0.08); color:var(--bdgs-coral); }
+</style>
 
-        <div style="margin-bottom:16px;">
-          <select id="bdgsZoomTimezone" onchange="bdgsUpdateTimezoneDisplay()" style="padding:12px; border-radius:8px; border:1px solid var(--bdgs-border); width:100%; font-size:14px; background:var(--bdgs-white);">
-            <option value="America/New_York" selected>United States - Eastern Time</option>
-            <option value="America/Chicago">United States - Central Time</option>
-            <option value="America/Denver">United States - Mountain Time</option>
-            <option value="America/Los_Angeles">United States - Pacific Time</option>
-            <option value="Europe/London">United Kingdom (UK)</option>
-            <option value="Europe/Paris">France</option>
-            <option value="Asia/Kolkata">India (IST)</option>
-            <option value="Australia/Sydney">Australia (Sydney)</option>
-          </select>
+          <div style="margin-bottom:8px;">
+            <strong style="color:var(--bdgs-dark)">Next session:</strong> <span id="bdgsZoomSessionDisplay">Loading...</span>
+            <div style="margin-top: 2px;">
+              <strong style="color:var(--bdgs-dark)">Timezone:</strong>
+              
+              <div class="bdgs-tz-wrapper" id="bdgsTzWrapper" onclick="document.getElementById('bdgsTzDropdown').classList.toggle('show')">
+                <span id="bdgsZoomTimezoneText" style="font-size:13px; color:inherit; margin-right:8px; pointer-events:none; font-weight:600;">Eastern Time (EDT / EST) - New York</span>
+                <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg" style="pointer-events:none; flex-shrink:0;"><path d="M1 1l4 4 4-4" stroke="#6b7280" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <input type="hidden" id="bdgsZoomTimezone" value="America/New_York">
+                
+                <div class="bdgs-custom-dropdown" id="bdgsTzDropdown">
+                  <div class="bdgs-tz-option selected" data-value="America/New_York" data-base="Eastern Time ({tz}) - New York" onclick="bdgsSelectTimezone(this, event)">Eastern Time - New York</div>
+                  <div class="bdgs-tz-option" data-value="America/Chicago" data-base="Central Time ({tz}) - Chicago" onclick="bdgsSelectTimezone(this, event)">Central Time - Chicago</div>
+                  <div class="bdgs-tz-option" data-value="America/Denver" data-base="Mountain Time ({tz}) - Denver" onclick="bdgsSelectTimezone(this, event)">Mountain Time - Denver</div>
+                  <div class="bdgs-tz-option" data-value="America/Los_Angeles" data-base="Pacific Time ({tz}) - Los Angeles" onclick="bdgsSelectTimezone(this, event)">Pacific Time - Los Angeles</div>
+                  <div class="bdgs-tz-option" data-value="America/Anchorage" data-base="Alaska Time ({tz}) - Anchorage" onclick="bdgsSelectTimezone(this, event)">Alaska Time - Anchorage</div>
+                  <div class="bdgs-tz-option" data-value="Europe/London" data-base="British Time ({tz}) - London" onclick="bdgsSelectTimezone(this, event)">British Time - London</div>
+
+                  <div class="bdgs-tz-option" data-value="Asia/Kolkata" data-base="Indian Standard Time ({tz}) - New Delhi" onclick="bdgsSelectTimezone(this, event)">Indian Standard Time - New Delhi</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom:2px;">
+            <strong style="color:var(--bdgs-dark)">Agenda:</strong> Live Website Reviews &amp; Open Q&amp;A
+          </div>
+          <strong style="color:var(--bdgs-dark)">Format:</strong> 60-min open Q&amp;A with our devs<br>
+          <strong style="color:var(--bdgs-dark)">Cost:</strong> Free, forever
         </div>
-        
-        <p style="font-size:12px;color:var(--bdgs-text-muted);margin-bottom:24px;">Strategy questions? Those need our Founder Concierge or Express Setup. Everything else — come on in.</p>
+
+        <p style="font-size:12px;color:var(--bdgs-text-muted);margin-bottom:24px;">Strategy questions? Those need our Founder Concierge or Express Setup. Everything else - come on in.</p>
         <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
-          <button type="button" onclick="bdgsShowZoomForm()" class="bdgsownv2-btn-primary" style="width:100%;padding:14px 20px;font-size:15px;text-align:center;">Schedule Session</button>
-          <a href="/zoom-clinics" style="font-size:13px;color:var(--bdgs-coral);font-weight:600;text-decoration:none;">See full schedule &rarr;</a>
+          <button type="button" onclick="bdgsShowZoomForm()" class="bdgsownv2-btn-primary" style="width:100%;padding:14px 20px;font-size:15px;text-align:center;">Register Now</button>
+          <a href="/zoom-clinics" style="font-size:13px;color:var(--bdgs-coral);font-weight:600;text-decoration:none;">View all upcoming clinics &rarr;</a>
         </div>
       </div>
 
       <form id="bdgsZoomBookingForm" onsubmit="event.preventDefault(); bdgsProcessZoomBooking();" style="display:none;">
-        <h4 style="margin:0 0 8px; font-size:18px; color:var(--bdgs-dark);">Your Details</h4>
+        <div style="margin-bottom:28px;">
+          <h3 style="font-size:21px; font-weight:700; color:var(--bdgs-dark); margin:0 0 20px; letter-spacing:-0.5px; padding-right:32px; line-height:1.3;">Live Website Reviews &amp; Open Q&amp;A</h3>
+          
+          <div style="font-size:15px; color:var(--bdgs-dark); margin-bottom:14px; display:flex; align-items:center;">
+            <strong style="font-weight:700; margin-right:6px;">Session:</strong> <span id="bdgsZoomSessionDisplayForm">Loading...</span>
+          </div>
+          
+          <div style="font-size:15px; color:var(--bdgs-dark); margin-bottom:20px; display:flex; align-items:center;">
+            <strong style="font-weight:700; margin-right:6px;">Timezone:</strong>
+            <div class="bdgs-tz-wrapper" id="bdgsTzWrapperForm" onclick="document.getElementById('bdgsTzDropdownForm').classList.toggle('show')" style="background-color:rgba(17, 24, 39, 0.04); margin-left:0; padding:6px 12px; border-radius:6px;">
+              <span id="bdgsZoomTimezoneTextForm" style="font-size:13px; color:inherit; margin-right:8px; pointer-events:none; font-weight:600;">Eastern Time (EDT / EST) - New York</span>
+              <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg" style="pointer-events:none; flex-shrink:0;"><path d="M1 1l4 4 4-4" stroke="#6b7280" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <input type="hidden" id="bdgsZoomTimezoneForm" value="America/New_York">
+              <div class="bdgs-custom-dropdown" id="bdgsTzDropdownForm">
+                <div class="bdgs-tz-option selected" data-value="America/New_York" data-base="Eastern Time ({tz}) - New York" onclick="bdgsSelectTimezone(this, event, 'Form')">Eastern Time - New York</div>
+                <div class="bdgs-tz-option" data-value="America/Chicago" data-base="Central Time ({tz}) - Chicago" onclick="bdgsSelectTimezone(this, event, 'Form')">Central Time - Chicago</div>
+                <div class="bdgs-tz-option" data-value="America/Denver" data-base="Mountain Time ({tz}) - Denver" onclick="bdgsSelectTimezone(this, event, 'Form')">Mountain Time - Denver</div>
+                <div class="bdgs-tz-option" data-value="America/Los_Angeles" data-base="Pacific Time ({tz}) - Los Angeles" onclick="bdgsSelectTimezone(this, event, 'Form')">Pacific Time - Los Angeles</div>
+                <div class="bdgs-tz-option" data-value="America/Anchorage" data-base="Alaska Time ({tz}) - Anchorage" onclick="bdgsSelectTimezone(this, event, 'Form')">Alaska Time - Anchorage</div>
+                <div class="bdgs-tz-option" data-value="Europe/London" data-base="British Time ({tz}) - London" onclick="bdgsSelectTimezone(this, event, 'Form')">British Time - London</div>
+
+                <div class="bdgs-tz-option" data-value="Asia/Kolkata" data-base="Indian Standard Time ({tz}) - New Delhi" onclick="bdgsSelectTimezone(this, event, 'Form')">Indian Standard Time - New Delhi</div>
+              </div>
+            </div>
+          </div>
+          
+          <p style="font-size:14px; color:var(--bdgs-text-muted); line-height:1.6; margin:0;">Stuck on small things? Drop into our live Zoom session to get free help and learn Brilliant Directories.</p>
+        </div>
+
+        <h4 style="margin:0 0 6px; font-size:16px; font-weight:700; color:var(--bdgs-dark); letter-spacing:-0.2px;">Your details please:</h4>
         <p style="font-size:13px; color:var(--bdgs-text-muted); margin-bottom:16px;">Please enter your name and email to receive the calendar invite.</p>
+        
         <div class="bdgsownv2-modal-form" style="margin-top:0; margin-bottom:24px;">
-          <input type="text" id="bdgsZoomName" name="name" placeholder="Your Name" required>
-          <input type="email" id="bdgsZoomEmail" name="email" placeholder="Your Email" required>
+          <input type="text" id="bdgsZoomName" name="name" placeholder="Your Name" required style="border-radius:8px; border:1px solid rgba(0,0,0,0.08); padding:12px 16px; width:100%; margin-bottom:12px; font-size:15px; outline:none; transition:border-color 0.2s, box-shadow 0.2s;">
+          <input type="email" id="bdgsZoomEmail" name="email" placeholder="Your Email" required style="border-radius:8px; border:1px solid rgba(0,0,0,0.08); padding:12px 16px; width:100%; font-size:15px; outline:none; transition:border-color 0.2s, box-shadow 0.2s;">
         </div>
-        <div style="display:flex; gap:10px;">
-          <button type="button" onclick="bdgsHideZoomForm()" class="bdgsownv2-btn-secondary bdgsownv2-btn-light" style="flex:1;">Back</button>
-          <button type="submit" id="bdgsZoomScheduleBtn" class="bdgsownv2-btn-primary" style="flex:2;padding:14px 20px;font-size:15px;text-align:center;">Confirm Booking</button>
-        </div>
+        
+        <button type="submit" id="bdgsZoomScheduleBtn" class="bdgsownv2-btn-primary" style="width:100%;padding:14px 20px;font-size:15px;text-align:center;border-radius:8px;font-weight:600;">Complete Registration</button>
       </form>
     </div>
-    <div id="bdgsZoomModalSuccess" style="display:none;text-align:center;padding:40px 20px;">
+    <div id="bdgsZoomModalSuccess" style="display:none;text-align:center;padding:24px 20px;">
       <div style="font-size:64px;margin-bottom:20px;display:inline-block;text-shadow: 0 10px 30px rgba(231,77,86,0.2);">🎉</div>
-      <h3 style="color:var(--bdgs-coral);font-size:26px;margin-bottom:12px;letter-spacing:-0.5px;">You're Booked!</h3>
-      <p style="font-size:15px;color:var(--bdgs-text-muted);line-height:1.6;">We've sent the calendar invite to your email.<br>See you at the session!</p>
+      <h3 style="color:var(--bdgs-coral);font-size:24px;margin-bottom:12px;letter-spacing:-0.5px;">Registration Complete!</h3>
+      <p style="font-size:15px;color:var(--bdgs-text-muted);line-height:1.6;margin-bottom:24px;">You have been successfully added to the session.<br>Please use the button below to add it to your calendar!</p>
+      
+      <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+        <a id="bdgsGoogleCalLink" target="_blank" href="#" class="bdgsownv2-btn-primary" style="width:100%; max-width:280px; padding:12px; font-size:14px; text-decoration:none; display:flex; justify-content:center; align-items:center; gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Add to Google Calendar
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -1872,6 +2735,53 @@ const ZOOM_SESSION_DB_DATE = new Date();
 ZOOM_SESSION_DB_DATE.setUTCDate(ZOOM_SESSION_DB_DATE.getUTCDate() + (4 - ZOOM_SESSION_DB_DATE.getUTCDay() + 7) % 7); // Next Thursday
 ZOOM_SESSION_DB_DATE.setUTCHours(13, 0, 0, 0); // 13:00 UTC = 9:00 AM Eastern Time
 
+function bdgsInitTimezoneDropdown() {
+  // Generate Calendar Links
+  const startStr = ZOOM_SESSION_DB_DATE.toISOString().replace(/-|:|\.\d\d\d/g, '');
+  const endDate = new Date(ZOOM_SESSION_DB_DATE.getTime() + 60*60*1000);
+  const endStr = endDate.toISOString().replace(/-|:|\.\d\d\d/g, '');
+  const title = encodeURIComponent("Zoom Clinic: Live Website Reviews & Open Q&A");
+  const details = encodeURIComponent("Join us for a free live Zoom session to get help and learn Brilliant Directories.\n\nFormat: 60-min open Q&A with our devs");
+  
+  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}&details=${details}`;
+  const icsData = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${startStr}\nDTEND:${endStr}\nSUMMARY:Zoom Clinic: Live Website Reviews & Open Q&A\nDESCRIPTION:Join us for a free live Zoom session to get help and learn Brilliant Directories.\nEND:VEVENT\nEND:VCALENDAR`;
+  const icsUrl = 'data:text/calendar;charset=utf8,' + encodeURIComponent(icsData);
+  
+  const gcalBtn = document.getElementById('bdgsGoogleCalLink');
+  const icsBtn = document.getElementById('bdgsIcsCalLink');
+  if(gcalBtn) gcalBtn.href = gcalUrl;
+  if(icsBtn) icsBtn.href = icsUrl;
+
+  document.querySelectorAll('.bdgs-tz-option').forEach(opt => {
+    const tz = opt.getAttribute('data-value');
+    const base = opt.getAttribute('data-base');
+    if(base) {
+      try {
+        const tzShort = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'short' })
+          .formatToParts(ZOOM_SESSION_DB_DATE)
+          .find(p => p.type === 'timeZoneName').value;
+        opt.innerText = base.replace('{tz}', tzShort);
+      } catch(e) {
+        opt.innerText = base.replace(' ({tz})', '');
+      }
+    }
+  });
+  const selectedOpt = document.querySelector('.bdgs-tz-option.selected');
+  if(selectedOpt) {
+    ['', 'Form'].forEach(sfx => {
+      const textSpan = document.getElementById('bdgsZoomTimezoneText' + sfx);
+      if(textSpan) textSpan.innerText = selectedOpt.innerText;
+    });
+  }
+}
+// Run init on load
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bdgsInitTimezoneDropdown);
+} else {
+  bdgsInitTimezoneDropdown();
+}
+
+
 function bdgsZoomAutoFill() {
   // Logic to auto-fill logged-in user data
   const loggedInUser = null; // placeholder for user object
@@ -1883,27 +2793,20 @@ function bdgsZoomAutoFill() {
 
 function bdgsUpdateTimezoneDisplay() {
   const tz = document.getElementById('bdgsZoomTimezone').value;
-  const display = document.getElementById('bdgsZoomSessionDisplay');
-  if(display) {
-    try {
-      const timeFmt = new Intl.DateTimeFormat('en-US', {
-        hour: 'numeric', minute: '2-digit', timeZone: tz
-      }).format(ZOOM_SESSION_DB_DATE);
-      
-      const timeEndDate = new Date(ZOOM_SESSION_DB_DATE.getTime() + 60*60*1000); // +1 hour duration
-      const timeEndFmt = new Intl.DateTimeFormat('en-US', {
-        hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone: tz
-      }).format(timeEndDate);
-      
-      const dateFmt = new Intl.DateTimeFormat('en-US', {
-        weekday: 'short', month: 'short', day: 'numeric', timeZone: tz
-      }).format(ZOOM_SESSION_DB_DATE);
-      
-      display.innerText = `${dateFmt} — ${timeFmt} to ${timeEndFmt}`;
-    } catch(e) {
-      display.innerText = '9:00 AM - 10:00 AM ET'; // Fallback
+  ['', 'Form'].forEach(sfx => {
+    const display = document.getElementById('bdgsZoomSessionDisplay' + sfx);
+    if(display) {
+      try {
+        const timeFmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz }).format(ZOOM_SESSION_DB_DATE);
+        const timeEndDate = new Date(ZOOM_SESSION_DB_DATE.getTime() + 60*60*1000);
+        const timeEndFmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone: tz }).format(timeEndDate);
+        const dateFmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: tz }).format(ZOOM_SESSION_DB_DATE);
+        display.innerText = `${dateFmt} - ${timeFmt} to ${timeEndFmt}`;
+      } catch(e) {
+        display.innerText = '9:00 AM - 10:00 AM ET';
+      }
     }
-  }
+  });
 }
 
 function bdgsShowZoomForm() {
@@ -2389,6 +3292,629 @@ setTimeout(bdgsSyncCardHeights, 2000);
   } catch (err) {
     el.textContent = INDIA_RANGE;
   }
+})();
+</script>
+
+<!-- Dynamic review fetcher & Variant 2 Carousel logic -->
+<script>
+(function() {
+  var API = 'https://bdgrowthsuite.com/api/widget/json/get/bdgs-blabs-reviews-api';
+  var KEY = '3d5ca826459ec3a3b47675f7ea0a0cd3';
+  var bdgsownv2Track = document.getElementById('bdgsownv2-track');
+  var bdgsownv2ProgressFill = document.querySelector('.bdgsownv2-progress-fill');
+  var BDGSOWNV2_INTERVAL_MS = 12000;
+  var bdgsownv2Timer = null;
+  var bdgsownv2Paused = false;
+  var bdgsownv2CurrentIndex = Math.floor(50 / 2);
+        bdgsownv2CurrentIndex = bdgsownv2CurrentIndex - (bdgsownv2CurrentIndex % 5);
+  var fetchedReviews = [];
+
+  var FALLBACK_REVIEWS = [
+    {
+      review_date: '7 May 2026',
+      title: 'Highly Recommend BusinessLabs',
+      overall_rating: 5, service_rating: 5, responsiveness_rating: 5, expertise_rating: 5, results_rating: 5, communication_rating: 5,
+      review_text: 'Great communication, project delivered on time, first class customer service. Would not hesitate to use BusinessLabs for future products.',
+      marketplace_review_id: '1609'
+    },
+    {
+      review_date: '30 Jan 2026',
+      title: 'Impressive Response & Service',
+      overall_rating: 5, service_rating: 5, responsiveness_rating: 5, expertise_rating: 5, results_rating: 5, communication_rating: 5,
+      review_text: 'We have recently implemented the Google Review Plugin, and the experience has been nothing short of impressive. The team from Business Labs impressed us with their quick response. Every time we had a question, we got an answer right away – always polite and professional. We recommend them.',
+      marketplace_review_id: '1588'
+    },
+    {
+      review_date: '26 Jan 2026',
+      title: 'Sensible Suggestions & Professional Work',
+      overall_rating: 5, service_rating: 5, responsiveness_rating: 5, expertise_rating: 5, results_rating: 5, communication_rating: 5,
+      review_text: 'I can confidently recommend Business Labs. They helped design and build our directory website and were excellent from start to finish, clear communication, fast turnaround, and a very professional approach. They understood what I was trying to achieve, made sensible suggestions, and implemented changes quickly. The site is now far more polished and easier for users to navigate.',
+      marketplace_review_id: '1586'
+    },
+    {
+      review_date: '24 Jan 2026',
+      title: 'BLabs Really Knows BD Inside and Out',
+      overall_rating: 5, service_rating: 5, responsiveness_rating: 5, expertise_rating: 5, results_rating: 5, communication_rating: 5,
+      review_text: "Brilliant Directories is a powerful directory solution, but with all those features come lots of options and settings. We use Brilliant Labs to get things done quickly without having to learn every little thing ourselves. They're super easy to work with. We just enter a ticket in the portal and typically someone takes care of it by the next day. Like having an expert we can check in with whenever we need to instead of hiring our own person.",
+      marketplace_review_id: '1585'
+    }
+  ];
+
+  function getStars(num) {
+    var starSVG = '<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+    var html = '';
+    for (var i = 0; i < num; i++) {
+      html += starSVG;
+    }
+    return html;
+  }
+
+  function anonymizeReviewText(text) {
+    if (!text) return '';
+    var clean = text
+      .replace(/arendal\.net/gi, 'our directory website')
+      .replace(/ConnectCare\.ie/gi, 'our directory website')
+      .replace(/uppercervicalcare\.com/gi, 'our directory website')
+      .replace(/RealEstatePhotography\.com/gi, 'our directory website')
+      .replace(/petrolheadlife\.com/gi, 'our directory website');
+    clean = clean.replace(/\b([a-z0-9]+(-[a-z0-9]+)*\.)+(com|net|org|ie|co|io|edu|gov|co\.uk)\b/gi, 'our directory website');
+    return clean;
+  }
+
+  function createBdgsownv2CardHTML(review) {
+    var ratingCategories = [
+      { label: 'Overall', value: review.overall_rating },
+      { label: 'Service', value: review.service_rating },
+      { label: 'Responsiveness', value: review.responsiveness_rating },
+      { label: 'Expertise', value: review.expertise_rating },
+      { label: 'Results', value: review.results_rating },
+      { label: 'Communication', value: review.communication_rating },
+    ];
+
+    var pillsHTML = ratingCategories.map(function(cat) {
+      return '<span class="bdgsownv2-rating-pill">' + cat.label + ' <span class="pill-stars">' + getStars(cat.value) + '</span></span>';
+    }).join('');
+
+    var dateObj = new Date(review.review_date);
+    var dateStr = '';
+    if (isNaN(dateObj.getTime())) { 
+      // If review_date is already a formatted string like '7 May 2026'
+      dateStr = review.review_date;
+    } else {
+      dateStr = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+    var cleanText = anonymizeReviewText(review.review_text);
+    var cleanTitle = anonymizeReviewText(review.title);
+    var verifyLink = review.marketplace_review_id || review.review_id ? 'https://marketplace.brilliantdirectories.com/india/partner/business-labs/reviews/' + (review.marketplace_review_id || review.review_id) : 'https://marketplace.brilliantdirectories.com/india/partner/business-labs';
+
+    return '<div class="v2-review-card">' +
+      '<div class="bdgsownv2-card-header">' +
+        '<span class="bdgsownv2-submitted-by">Submitted by Verified Brilliant Directories Site Owner on ' + dateStr + '</span>' +
+        '<h3 class="bdgsownv2-review-title">' + cleanTitle + '</h3>' +
+      '</div>' +
+      '<div class="bdgsownv2-rating-pills">' + pillsHTML + '</div>' +
+      '<p class="bdgsownv2-review-text">' + cleanText + '</p>' +
+      '<div class="bdgsownv2-card-footer">' +
+        '<span class="bdgsownv2-verified-badge">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>' +
+          'Verified Client Review' +
+        '</span>' +
+        '<a class="bdgsownv2-verify-link" href="' + verifyLink + '" target="_blank" rel="noopener">' +
+          'View on Marketplace ' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+        '</a>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function startBdgsownv2Progress() {
+    if (bdgsownv2ProgressFill) {
+      bdgsownv2ProgressFill.style.transition = 'none';
+      bdgsownv2ProgressFill.style.width = '0%';
+      void bdgsownv2ProgressFill.offsetWidth;
+      bdgsownv2ProgressFill.style.transition = 'width ' + BDGSOWNV2_INTERVAL_MS + 'ms linear';
+      bdgsownv2ProgressFill.style.width = '100%';
+    }
+  }
+
+  function resetBdgsownv2Progress() {
+    if (bdgsownv2ProgressFill) {
+      bdgsownv2ProgressFill.style.transition = 'none';
+      bdgsownv2ProgressFill.style.width = '0%';
+    }
+  }
+
+  function updateBdgsownv2Carousel(isInit) {
+    var cards = bdgsownv2Track.querySelectorAll('.bdgsownv2-card');
+    cards.forEach(function(card, idx) {
+      if (idx === bdgsownv2CurrentIndex) {
+        card.classList.add('active');
+        var scrollPos = card.offsetLeft - bdgsownv2Track.offsetLeft - (bdgsownv2Track.clientWidth - card.clientWidth) / 2;
+        bdgsownv2Track.scrollTo({ left: scrollPos, behavior: isInit ? 'auto' : 'smooth' });
+      } else {
+        card.classList.remove('active');
+      }
+    });
+    resetBdgsownv2Progress();
+    if (!bdgsownv2Paused) startBdgsownv2Progress();
+  }
+
+  function bdgsownv2Next() {
+    var cards = bdgsownv2Track.querySelectorAll('.bdgsownv2-card');
+    if (!cards.length) return;
+    bdgsownv2CurrentIndex = (bdgsownv2CurrentIndex + 1) % cards.length;
+    updateBdgsownv2Carousel();
+  }
+
+  function bdgsownv2Prev() {
+    var cards = bdgsownv2Track.querySelectorAll('.bdgsownv2-card');
+    if (!cards.length) return;
+    bdgsownv2CurrentIndex = (bdgsownv2CurrentIndex - 1 + cards.length) % cards.length;
+    updateBdgsownv2Carousel();
+  }
+
+  function startBdgsownv2AutoScroll() {
+    clearInterval(bdgsownv2Timer);
+    bdgsownv2Timer = setInterval(function() {
+      if (!bdgsownv2Paused) bdgsownv2Next();
+    }, BDGSOWNV2_INTERVAL_MS);
+    startBdgsownv2Progress();
+  }
+
+  function bindBdgsownv2Events() {
+    var nextBtn = document.getElementById('bdgsownv2-next');
+    var prevBtn = document.getElementById('bdgsownv2-prev');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        bdgsownv2Next();
+        startBdgsownv2AutoScroll();
+      });
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        bdgsownv2Prev();
+        startBdgsownv2AutoScroll();
+      });
+    }
+
+    var v2Wrapper = document.querySelector('.bdgsownv2-carousel-wrapper');
+    if (v2Wrapper) {
+      v2Wrapper.addEventListener('mouseenter', function() {
+        bdgsownv2Paused = true;
+        if (bdgsownv2ProgressFill) {
+          var computed = getComputedStyle(bdgsownv2ProgressFill).width;
+          var parent = bdgsownv2ProgressFill.parentElement.offsetWidth;
+          var pct = (parseFloat(computed) / parent * 100).toFixed(2);
+          bdgsownv2ProgressFill.style.transition = 'none';
+          bdgsownv2ProgressFill.style.width = pct + '%';
+        }
+      });
+      v2Wrapper.addEventListener('mouseleave', function() {
+        bdgsownv2Paused = false;
+        if (bdgsownv2ProgressFill) {
+          var computed = getComputedStyle(bdgsownv2ProgressFill).width;
+          var parent = bdgsownv2ProgressFill.parentElement.offsetWidth;
+          var currentPct = parseFloat(computed) / parent;
+          var remaining = BDGSOWNV2_INTERVAL_MS * (1 - currentPct);
+          bdgsownv2ProgressFill.style.transition = 'width ' + remaining + 'ms linear';
+          bdgsownv2ProgressFill.style.width = '100%';
+        }
+      });
+    }
+
+    // Allow clicking on cards to navigate
+    var trackCards = bdgsownv2Track.querySelectorAll('.bdgsownv2-card');
+    trackCards.forEach(function(card, idx) {
+      card.addEventListener('click', function() {
+        bdgsownv2CurrentIndex = idx;
+        updateBdgsownv2Carousel();
+        startBdgsownv2AutoScroll();
+      });
+    });
+  }
+
+  // Fetch count and reviews from the API
+  fetch(API + '?action=list&published_only=1&limit=200&offset=0&bd_api_key=' + KEY)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.ok) {
+        throw new Error('API ok was false');
+      }
+      
+      // Update count if available
+      if (data.total) {
+        var count = data.total;
+        var label = count + '+';
+        var heroBtn = document.getElementById('bdgs-hero-reviews-btn');
+        if (heroBtn) heroBtn.textContent = 'Read ' + label + ' Reviews';
+        var proofLink = document.getElementById('bdgs-proof-reviews-link');
+        if (proofLink) proofLink.textContent = 'See all ' + label + ' reviews \u2192';
+        var statNum = document.getElementById('bdgs-stat-reviews-count');
+        if (statNum) statNum.textContent = label;
+        var footerLink = document.getElementById('bdgs-footer-reviews-link');
+        if (footerLink) footerLink.textContent = 'Client Reviews (' + label + ')';
+      }
+
+      // Update carousel with dynamic fresh reviews
+      if (data.reviews && data.reviews.length > 0 && bdgsownv2Track) {
+        var targetIds = ['910', '912', '862', '928', '932', '881', '864', '848', '742', '838', '827'];
+        var filteredReviews = data.reviews.filter(function(r) {
+          return targetIds.indexOf(String(r.marketplace_review_id)) !== -1 || targetIds.indexOf(String(r.review_id)) !== -1;
+        });
+        
+        fetchedReviews = filteredReviews.length > 0 ? filteredReviews : data.reviews;
+        bdgsownv2Track.innerHTML = '';
+        var repeatedReviews = [];
+        for (var i = 0; i < 10; i++) {
+          repeatedReviews = repeatedReviews.concat(fetchedReviews);
+        }
+        bdgsownv2CurrentIndex = Math.floor(50 / 2);
+        bdgsownv2CurrentIndex = bdgsownv2CurrentIndex - (bdgsownv2CurrentIndex % 5);
+        repeatedReviews.forEach(function(review, idx) {
+          var card = document.createElement('div');
+          card.className = 'bdgsownv2-card' + (idx === bdgsownv2CurrentIndex ? ' active' : '');
+          card.setAttribute('data-bdgsownv2-index', idx);
+          card.innerHTML = createBdgsownv2CardHTML(review);
+          bdgsownv2Track.appendChild(card);
+        });
+        bindBdgsownv2Events();
+        setTimeout(function() {
+          updateBdgsownv2Carousel(true);
+          startBdgsownv2AutoScroll();
+        }, 50);
+      } else {
+        throw new Error('No reviews returned');
+      }
+    })
+    .catch(function(err) {
+      console.error('Error loading reviews, using fallback array:', err);
+      // Fallback: Populate track with FALLBACK_REVIEWS
+      if (bdgsownv2Track) {
+        bdgsownv2Track.innerHTML = '';
+        var repeatedReviewsFallback = [];
+        for (var i = 0; i < 10; i++) {
+          repeatedReviewsFallback = repeatedReviewsFallback.concat(FALLBACK_REVIEWS);
+        }
+        bdgsownv2CurrentIndex = Math.floor(50 / 2);
+        bdgsownv2CurrentIndex = bdgsownv2CurrentIndex - (bdgsownv2CurrentIndex % 5);
+        repeatedReviewsFallback.forEach(function(review, idx) {
+          var card = document.createElement('div');
+          card.className = 'bdgsownv2-card' + (idx === bdgsownv2CurrentIndex ? ' active' : '');
+          card.setAttribute('data-bdgsownv2-index', idx);
+          card.innerHTML = createBdgsownv2CardHTML(review);
+          bdgsownv2Track.appendChild(card);
+        });
+        bindBdgsownv2Events();
+        setTimeout(function() {
+          updateBdgsownv2Carousel(true);
+          startBdgsownv2AutoScroll();
+        }, 50);
+      }
+    });
+})();
+
+function bdgsSelectTimezone(el, event) {
+  event.stopPropagation();
+  const value = el.getAttribute('data-value');
+  const text = el.innerText;
+  
+  // Update both hidden inputs and display texts
+  ['', 'Form'].forEach(sfx => {
+    const input = document.getElementById('bdgsZoomTimezone' + sfx);
+    const textSpan = document.getElementById('bdgsZoomTimezoneText' + sfx);
+    if(input) input.value = value;
+    if(textSpan) textSpan.innerText = text;
+    
+    // Update selected class for both dropdowns
+    const options = document.querySelectorAll('#bdgsTzDropdown' + sfx + ' .bdgs-tz-option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    const matchingOpt = document.querySelector('#bdgsTzDropdown' + sfx + ' .bdgs-tz-option[data-value="'+value+'"]');
+    if(matchingOpt) matchingOpt.classList.add('selected');
+    
+    const dropdown = document.getElementById('bdgsTzDropdown' + sfx);
+    if(dropdown) dropdown.classList.remove('show');
+  });
+  
+  bdgsUpdateTimezoneDisplay();
+}
+
+document.addEventListener('click', function(e) {
+  ['', 'Form'].forEach(sfx => {
+    const wrapper = document.getElementById('bdgsTzWrapper' + sfx);
+    const dropdown = document.getElementById('bdgsTzDropdown' + sfx);
+    if (wrapper && dropdown && !wrapper.contains(e.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+});
+</script>
+
+<div class="bdgs-mob-overlay" id="bdgsMobOverlay" aria-hidden="true">
+  <div class="bdgs-mob-header">
+    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html" class="bdgsownv2-logo">
+      <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite" height="32">
+    </a>
+    <button type="button" class="bdgs-mob-close" id="bdgsMobCloseBtn" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="bdgs-mob-panels" id="bdgsMobPanels">
+    <div class="bdgs-mob-panel bdgs-mob-panel--active" data-panel="main">
+      <div class="bdgs-mob-panel-scroll">
+        <ul class="bdgs-mob-list">
+          <li class="bdgs-mob-item bdgs-mob-item--drillable" data-target="services">
+            <span class="bdgs-mob-item-label">Services</span>
+            <svg class="bdgs-mob-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </li>
+          <li class="bdgs-mob-item bdgs-mob-item--drillable" data-target="grow-ai">
+            <span class="bdgs-mob-item-label">Grow with AI</span>
+            <svg class="bdgs-mob-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </li>
+          <li class="bdgs-mob-item">
+            <a href="#svc-dev" class="bdgs-mob-item-link">Hire a Developer</a>
+          </li>
+          <li class="bdgs-mob-item bdgs-mob-item--drillable" data-target="tools">
+            <span class="bdgs-mob-item-label">Tools</span>
+            <svg class="bdgs-mob-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </li>
+          <li class="bdgs-mob-item">
+            <a href="/themes" class="bdgs-mob-item-link">Themes</a>
+          </li>
+          <li class="bdgs-mob-item bdgs-mob-item--pill">
+            <a href="/zoom-clinics" class="bdgs-mob-zoom"><span class="pulse"></span> Zoom Clinics</a>
+          </li>
+        </ul>
+        <div class="bdgs-mob-cta-wrap">
+          <button type="button" class="bdgs-mob-cta">Get Started →</button>
+        </div>
+      </div>
+    </div>
+    <div class="bdgs-mob-panel" data-panel="services">
+      <div class="bdgs-mob-panel-scroll">
+        <button type="button" class="bdgs-mob-back" data-back="main">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Services</span>
+        </button>
+        <div class="bdgs-mob-section">
+          <p class="bdgs-mob-section-heading">Services</p>
+          <a href="/setup" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Setup &amp; Launch</span><span class="bdgs-mob-subitem-desc">Concierge directory launch. Business-first approach.</span></a>
+          <a href="/hire-developer" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Dedicated Developers</span><span class="bdgs-mob-subitem-desc">AI-savvy directory devs. Long-term. Your permanent team.</span></a>
+          <a href="/maintenance" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Maintenance Plans</span><span class="bdgs-mob-subitem-desc">Ongoing support, backups, updates, optimization.</span></a>
+          <a href="/consultation" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Consultation</span><span class="bdgs-mob-subitem-desc">Talk to Yakin's team. 18+ years directory expertise.</span></a>
+          <a href="/growth-plans" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Growth Plans</span><span class="bdgs-mob-subitem-desc">Co-founder level strategy + dev + AI. Apply to join.</span></a>
+        </div>
+        <div class="bdgs-mob-divider"></div>
+        <div class="bdgs-mob-section">
+          <p class="bdgs-mob-section-heading">Solutions Done For You</p>
+          <a href="/solutions?category=seo" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">SEO &amp; Schema</span><span class="bdgs-mob-subitem-desc">Advanced markup &amp; technical SEO. Rank higher.</span></a>
+          <a href="/solutions?category=lead-gen" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Lead Gen &amp; Conversion</span><span class="bdgs-mob-subitem-desc">Capture more leads. Turn visitors into members.</span></a>
+          <a href="/solutions?category=member-profile" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Member Profile Enhancement</span><span class="bdgs-mob-subitem-desc">Custom profile layouts. Make members stand out.</span></a>
+          <a href="/solutions?category=search" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Search &amp; Discovery</span><span class="bdgs-mob-subitem-desc">Optimized search flows. Help users find what they need.</span></a>
+          <a href="/solutions?category=design" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Page Design &amp; Development</span><span class="bdgs-mob-subitem-desc">Stunning layouts. Built for modern directories.</span></a>
+          <a href="/solutions?category=content" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Content &amp; Engagement</span><span class="bdgs-mob-subitem-desc">Keep audiences hooked. Automated content strategies.</span></a>
+          <a href="/solutions?category=integrations" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Integrations</span><span class="bdgs-mob-subitem-desc">Connect your favorite tools. Seamless API integrations.</span></a>
+          <a href="/solutions/member-management" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Member Management</span><span class="bdgs-mob-subitem-desc">Approval workflows, dashboards, member control.</span></a>
+        </div>
+        <div class="bdgs-mob-also">
+          <p class="bdgs-mob-also-label">Also explore</p>
+          <div class="bdgs-mob-also-pills">
+            <a href="#" class="bdgs-mob-also-pill" data-nav-to="grow-ai">Grow with AI</a>
+            <a href="#" class="bdgs-mob-also-pill" data-nav-to="tools">Tools</a>
+            <a href="/themes" class="bdgs-mob-also-pill">Themes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bdgs-mob-panel" data-panel="grow-ai">
+      <div class="bdgs-mob-panel-scroll">
+        <button type="button" class="bdgs-mob-back" data-back="main">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Grow with AI</span>
+        </button>
+        <div class="bdgs-mob-section">
+          <a href="/ai-development" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">AI-Powered Development</span><span class="bdgs-mob-subitem-desc">Faster execution. Savings passed directly to you.</span></a>
+          <a href="/ai-dev-fleet" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">AI Dev Fleet</span><span class="bdgs-mob-subitem-desc">A team of AI works for you. Pay for one developer.</span></a>
+          <a href="/ai-for-your-site" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">AI for Your Directory</span><span class="bdgs-mob-subitem-desc">Chatbots, agents, smart search — on your site.</span></a>
+          <a href="/bd-automation" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Directory Automation</span><span class="bdgs-mob-subitem-desc">Follow-ups, lead gen, content AI, member engagement.</span></a>
+          <a href="/growth-plans" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Growth Plans</span><span class="bdgs-mob-subitem-desc">AI-powered strategy. Apply to join.</span></a>
+          <a href="/seo-growth" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">SEO &amp; Growth</span><span class="bdgs-mob-subitem-desc">Audits, schema, traffic strategy — directory-specific.</span></a>
+        </div>
+        <div class="bdgs-mob-highlight">
+          <span>Claude / Anthropic Service Partner — The only directory team building with AI</span>
+        </div>
+        <div class="bdgs-mob-also">
+          <p class="bdgs-mob-also-label">Also explore</p>
+          <div class="bdgs-mob-also-pills">
+            <a href="#" class="bdgs-mob-also-pill" data-nav-to="services">Services</a>
+            <a href="#" class="bdgs-mob-also-pill" data-nav-to="tools">Tools</a>
+            <a href="/themes" class="bdgs-mob-also-pill">Themes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bdgs-mob-panel" data-panel="tools">
+      <div class="bdgs-mob-panel-scroll">
+        <button type="button" class="bdgs-mob-back" data-back="main">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Tools</span>
+        </button>
+        <div class="bdgs-mob-section">
+          <a href="/tools" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">All Tools &amp; Themes</span><span class="bdgs-mob-subitem-desc">Productized software, AI tools, and premium themes.</span></a>
+          <a href="/tools/brilliantchat" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">BrilliantChat</span><span class="bdgs-mob-subitem-desc">AI chatbot for your directory site.</span></a>
+          <a href="/tools?category=seo" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">SEO Solutions</span><span class="bdgs-mob-subitem-desc">Schema, audit, speed, on-page fixes.</span></a>
+          <a href="/tools?category=conversion" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Conversion Boosters</span><span class="bdgs-mob-subitem-desc">Lead gen, CTAs, member signup flows.</span></a>
+        </div>
+        <div class="bdgs-mob-also">
+          <p class="bdgs-mob-also-label">Also explore</p>
+          <div class="bdgs-mob-also-pills">
+            <a href="#" class="bdgs-mob-also-pill" data-nav-to="services">Services</a>
+            <a href="#" class="bdgs-mob-also-pill" data-nav-to="grow-ai">Grow with AI</a>
+            <a href="/themes" class="bdgs-mob-also-pill">Themes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var overlay = document.getElementById('bdgsMobOverlay');
+  var openBtn = document.getElementById('bdgsMobMenuBtn');
+  var closeBtn = document.getElementById('bdgsMobCloseBtn');
+  var panels = document.getElementById('bdgsMobPanels');
+  var scrollTopBeforeLock = 0;
+  var animating = false;
+  var ANIM_DURATION = 300;
+
+  if (!overlay || !openBtn || !closeBtn || !panels) return;
+
+  function clearPanelClasses(panel) {
+    panel.classList.remove(
+      'bdgs-mob-panel--active',
+      'bdgs-mob-panel--exit-left',
+      'bdgs-mob-panel--enter-left',
+      'bdgs-mob-panel--exit-right'
+    );
+  }
+
+  function transitionPanel(targetId, direction) {
+    if (animating) return;
+    var current = panels.querySelector('.bdgs-mob-panel--active');
+    var target = panels.querySelector('[data-panel="' + targetId + '"]');
+    if (!target || target === current) return;
+
+    animating = true;
+
+    if (direction === 'forward') {
+      target.style.transition = 'none';
+      target.classList.remove('bdgs-mob-panel--exit-left', 'bdgs-mob-panel--enter-left', 'bdgs-mob-panel--exit-right');
+      target.style.transform = 'translateX(100%)';
+      target.style.opacity = '0';
+      target.offsetHeight;
+      target.style.transition = '';
+      target.style.transform = '';
+      target.style.opacity = '';
+      target.classList.add('bdgs-mob-panel--active');
+      if (current) {
+        current.classList.remove('bdgs-mob-panel--active');
+        current.classList.add('bdgs-mob-panel--exit-left');
+      }
+    } else {
+      target.style.transition = 'none';
+      target.classList.remove('bdgs-mob-panel--exit-left', 'bdgs-mob-panel--enter-left', 'bdgs-mob-panel--exit-right');
+      target.style.transform = 'translateX(-100%)';
+      target.style.opacity = '0';
+      target.offsetHeight;
+      target.style.transition = '';
+      target.style.transform = '';
+      target.style.opacity = '';
+      target.classList.add('bdgs-mob-panel--active');
+      if (current) {
+        current.classList.remove('bdgs-mob-panel--active');
+        current.classList.add('bdgs-mob-panel--exit-right');
+      }
+    }
+
+    target.scrollTop = 0;
+
+    setTimeout(function() {
+      if (current) clearPanelClasses(current);
+      animating = false;
+    }, ANIM_DURATION);
+  }
+
+  function resetToMain() {
+    var allP = panels.querySelectorAll('.bdgs-mob-panel');
+    allP.forEach(function(p) {
+      clearPanelClasses(p);
+      p.style.transition = 'none';
+      p.style.transform = '';
+      p.style.opacity = '';
+      if (p.dataset.panel === 'main') {
+        p.classList.add('bdgs-mob-panel--active');
+      }
+      p.offsetHeight;
+      p.style.transition = '';
+    });
+    animating = false;
+  }
+
+  function openMenu() {
+    scrollTopBeforeLock = window.pageYOffset;
+    document.body.style.top = '-' + scrollTopBeforeLock + 'px';
+    document.body.classList.add('bdgs-mob-noscroll');
+    overlay.classList.add('bdgs-mob-overlay--open');
+    overlay.setAttribute('aria-hidden', 'false');
+    openBtn.setAttribute('aria-expanded', 'true');
+    openBtn.setAttribute('aria-label', 'Close menu');
+    openBtn.classList.add('bdgs-mob-hamburger--active');
+  }
+
+  function closeMenu() {
+    overlay.classList.remove('bdgs-mob-overlay--open');
+    overlay.setAttribute('aria-hidden', 'true');
+    openBtn.setAttribute('aria-expanded', 'false');
+    openBtn.setAttribute('aria-label', 'Open menu');
+    openBtn.classList.remove('bdgs-mob-hamburger--active');
+    document.body.classList.remove('bdgs-mob-noscroll');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollTopBeforeLock);
+    setTimeout(resetToMain, ANIM_DURATION + 50);
+  }
+
+  openBtn.addEventListener('click', function() {
+    if (overlay.classList.contains('bdgs-mob-overlay--open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+  closeBtn.addEventListener('click', closeMenu);
+
+  var mobCta = overlay.querySelector('.bdgs-mob-cta');
+  if (mobCta) {
+    mobCta.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (typeof bdgsOpenInquiryModal === 'function') bdgsOpenInquiryModal();
+      closeMenu();
+    });
+  }
+
+  overlay.addEventListener('click', function(e) {
+    var drillable = e.target.closest('.bdgs-mob-item--drillable');
+    if (drillable) {
+      transitionPanel(drillable.dataset.target, 'forward');
+      return;
+    }
+    var backBtn = e.target.closest('.bdgs-mob-back');
+    if (backBtn) {
+      transitionPanel(backBtn.dataset.back, 'back');
+      return;
+    }
+    var alsoPill = e.target.closest('[data-nav-to]');
+    if (alsoPill) {
+      e.preventDefault();
+      transitionPanel(alsoPill.dataset.navTo, 'forward');
+      return;
+    }
+    var link = e.target.closest('a[href]:not([data-nav-to])');
+    if (link && link.getAttribute('href').startsWith('#')) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('bdgs-mob-overlay--open')) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 1029 && overlay.classList.contains('bdgs-mob-overlay--open')) {
+      closeMenu();
+    }
+  });
 })();
 </script>
 </body>
