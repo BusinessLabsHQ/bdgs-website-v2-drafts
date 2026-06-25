@@ -503,13 +503,13 @@ body {
 }
 /* Razorpay-style stack: sticky on direct children of .bdgsownv2-stack-cards (viewport scrollport). Min-height + margin-bottom supply scroll runway; consecutive `top` deltas set how much of the card behind peeks above the front layer. */
 /* Runway after last card: enough to unstick without uncapped vh dead zone on tall screens */
-.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: clamp(200px, 20vh, 300px); }
+.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: clamp(400px, 40vh, 500px); }
 .bdgsownv2-stack-cards > .bdgsownv2-stack-card {
   background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
   border-radius: 16px; padding: 28px 36px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.06);
   position: sticky;
-  margin-bottom: clamp(48px, 11vh, 140px);
+  margin-bottom: var(--base-mb, clamp(48px, 11vh, 140px));
   transform-origin: top center;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
@@ -517,13 +517,18 @@ body {
 @media (min-width: 992px) {
   .bdgsownv2-stack-cards > .bdgsownv2-stack-card { min-height: clamp(320px, 44vh, 540px); }
 }
-/* z-index: later cards stack ON TOP of earlier ones. Tighter 16px offsets. */
-.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(1) { z-index: 1; top: 140px; }
-.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(2) { z-index: 2; top: 156px; }
-.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(3) { z-index: 3; top: 172px; }
-.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(4) { z-index: 4; top: 188px; }
-.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(5) { z-index: 5; top: 204px; }
-.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(6) { z-index: 6; top: 220px; }
+/* z-index: later cards stack ON TOP of earlier ones. Tighter 42px offsets for 50% title reveal. */
+/* To prevent cards from overtaking each other when unsticking at the bottom of the container, 
+   we stagger the margin-bottoms perfectly inversely to their top positions. */
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card {
+  --base-mb: clamp(48px, 11vh, 140px);
+}
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(1) { z-index: 1; top: 140px; margin-bottom: calc(var(--base-mb) + 210px); }
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(2) { z-index: 2; top: 182px; margin-bottom: calc(var(--base-mb) + 168px); }
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(3) { z-index: 3; top: 224px; margin-bottom: calc(var(--base-mb) + 126px); }
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(4) { z-index: 4; top: 266px; margin-bottom: calc(var(--base-mb) + 84px); }
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(5) { z-index: 5; top: 308px; margin-bottom: calc(var(--base-mb) + 42px); }
+.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(6) { z-index: 6; top: 350px; margin-bottom: var(--base-mb); }
 .bdgsownv2-stack-card-title {
   font-size: 22px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 8px;
 }
@@ -1608,7 +1613,7 @@ body.bdgs-mob-noscroll {
   .bdgsownv2-stack-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding: 12px 16px; }
   .bdgsownv2-stack-cards > .bdgsownv2-stack-card {
     position: relative !important; top: auto !important; z-index: auto !important;
-    min-height: 0 !important; margin-bottom: 20px; scroll-margin-top: 100px;
+    min-height: 0 !important; margin-bottom: 20px !important; scroll-margin-top: 100px;
   }
   .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn a {
     display: flex;
@@ -3033,7 +3038,7 @@ bdgsTabs.forEach(function(tab) {
 // 2. Auto-activate tab — see bdgsUpdateActiveTab() comment (desktop stack rail + fallbacks).
 
 /** Must stay in sync with `.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(n){ top: … }` */
-var bdgsStackStickyTopsPx = [140, 156, 172, 188, 204, 220];
+var bdgsStackStickyTopsPx = [140, 182, 224, 266, 308, 350];
 
 function bdgsDocTopFromViewport(el) {
   var rect = el.getBoundingClientRect();
