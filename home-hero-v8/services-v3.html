@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expert Services for Brilliant Directories — BD Growth Suite</title>
+<meta name="description" content="Explore all BD Growth Suite services: Setup & Launch, Dedicated Developers, Custom Projects, Solutions, Maintenance, Consultation, and Founder's Track.">
+<meta name="keywords" content="brilliant directories developers, brilliant directories services, bd growth suite, directory website expert, bd automation, dedicated bd developer">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/services/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Expert Services for Brilliant Directories — BD Growth Suite">
+<meta property="og:description" content="From zero-to-launch setups to co-founder level strategy. Brilliant Directories developers who think like co-founders.">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/services/">
+<meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
+<link rel="shortcut icon" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
+<link rel="apple-touch-icon" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS (LOCKED — BDGS Brand)
+   ============================================ */
+:root {
+  --bdgs-coral: #E74D56;
+  --bdgs-coral-dark: #C93A44;
+  --bdgs-coral-light: #FDF0F0;
+  --bdgs-purple: #95256E;
+  --bdgs-purple-dark: #7A1D5A;
+  --bdgs-purple-light: #F8EDF5;
+  --bdgs-dark: #1A1A2E;
+  --bdgs-dark-mid: #2D2D44;
+  --bdgs-text: #2C2C3A;
+  --bdgs-text-muted: #6B6B80;
+  --bdgs-bg: #FAFAFA;
+  --bdgs-white: #FFFFFF;
+  --bdgs-border: #E8E8EE;
+  --bdgs-gradient: linear-gradient(135deg, #E74D56 0%, #95256E 100%);
+  --bdgs-gradient-subtle: linear-gradient(135deg, #FDF0F0 0%, #F8EDF5 100%);
+  --bdgs-green: #22C55E;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--bdgs-text); background: var(--bdgs-white); margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   HEADER NAV (LOCKED)
+   ============================================ */
+.bdgsownv2-header {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--bdgs-white);
+  border-bottom: 1px solid var(--bdgs-border);
+  transition: box-shadow 0.3s;
+}
+.bdgsownv2-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+.bdgsownv2-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 68px; max-width: 1240px; margin: 0 auto;
+  position: relative;
+}
+.bdgsownv2-logo {
+  display: flex; align-items: center; text-decoration: none; gap: 10px; flex-shrink: 0;
+}
+.bdgsownv2-logo img { height: 36px; width: auto; display: block; }
+.bdgsownv2-nav-links {
+  display: flex; align-items: center; gap: 2px; list-style: none; margin: 0; padding: 0;
+}
+.bdgsownv2-nav-item { position: relative; }
+.bdgsownv2-nav-item-mega { position: static; }
+.bdgsownv2-nav-link {
+  display: flex; align-items: center; gap: 4px;
+  padding: 8px 13px; font-size: 14px; font-weight: 500;
+  color: var(--bdgs-text); text-decoration: none !important; border-radius: 6px; transition: all 0.2s;
+  cursor: pointer; background: none; border: none;
+}
+.bdgsownv2-nav-link:hover { background: var(--bdgs-bg); color: var(--bdgs-coral); text-decoration: none; }
+.bdgsownv2-nav-link.active-page { color: var(--bdgs-coral); }
+.bdgsownv2-nav-link svg { width: 12px; height: 12px; opacity: 0.5; transition: transform 0.2s; }
+.bdgsownv2-nav-item.active .bdgsownv2-nav-link { background: var(--bdgs-bg); color: var(--bdgs-coral); }
+.bdgsownv2-nav-item.active .bdgsownv2-nav-link svg { transform: rotate(180deg); }
+.bdgsownv2-nav-zoom {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; font-size: 13px; font-weight: 600;
+  color: var(--bdgs-coral); background: var(--bdgs-coral-light);
+  border: 1px solid rgba(231,77,86,0.2); border-radius: 20px;
+  text-decoration: none; transition: all 0.2s;
+}
+.bdgsownv2-nav-zoom:hover { background: var(--bdgs-coral); color: #fff; text-decoration: none; }
+.bdgsownv2-nav-zoom .pulse {
+  width: 7px; height: 7px; background: #22C55E; border-radius: 50%;
+  display: inline-block; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+.bdgsownv2-cta-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 20px; font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  color: #fff; background: var(--bdgs-gradient);
+  border: none; border-radius: 8px; text-decoration: none;
+  transition: all 0.25s; margin-left: 6px; flex-shrink: 0;
+}
+.bdgsownv2-cta-btn:hover {
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(231,77,86,0.3);
+  color: #fff; text-decoration: none;
+}
+/* Dropdowns */
+.bdgsownv2-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
+  border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  padding: 20px; width: 520px; max-width: calc(100vw - 48px); max-height: calc(100vh - 90px); overflow-y: auto;
+  opacity: 0; visibility: hidden; transition: all 0.2s; pointer-events: none;
+  z-index: 1000;
+}
+.bdgsownv2-nav-item.active .bdgsownv2-dropdown {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+.bdgsownv2-nav-item-mega.active .bdgsownv2-dropdown-mega { transform: none; }
+.bdgsownv2-dropdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.bdgsownv2-dropdown-item {
+  display: block; padding: 12px 14px; border-radius: 8px;
+  text-decoration: none; transition: background 0.15s;
+}
+.bdgsownv2-dropdown-item:hover { background: var(--bdgs-bg); text-decoration: none; }
+.bdgsownv2-dropdown-item-title { font-size: 14px; font-weight: 600; color: var(--bdgs-dark); margin-bottom: 2px; }
+.bdgsownv2-dropdown-item-desc { font-size: 12px; color: var(--bdgs-text-muted); line-height: 1.4; }
+.bdgsownv2-dropdown-highlight {
+  margin-top: 12px; padding: 14px 16px;
+  background: var(--bdgs-gradient-subtle); border-radius: 10px;
+  border: 1px solid rgba(231,77,86,0.1); grid-column: 1 / -1;
+}
+.bdgsownv2-dropdown-highlight a { color: var(--bdgs-coral); font-weight: 600; font-size: 14px; text-decoration: none; }
+.bdgsownv2-dropdown-highlight p { font-size: 12px; color: var(--bdgs-text-muted); margin: 4px 0 0; }
+.bdgsownv2-dropdown-sm { width: 280px; }
+.bdgsownv2-dropdown-sm .bdgsownv2-dropdown-grid { grid-template-columns: 1fr; }
+.bdgsownv2-dropdown-mega {
+  top: 60px; left: 24px; right: 24px; transform: none;
+  width: auto; min-width: 0; max-width: none; padding: 22px 28px;
+}
+.bdgsownv2-dropdown-mega-layout { display: flex; align-items: stretch; gap: 0; }
+.bdgsownv2-dropdown-mega-services { flex: 0 0 37%; min-width: 0; padding-right: 10px; }
+.bdgsownv2-dropdown-mega-solutions { flex: 0 0 63%; min-width: 0; padding-left: 10px; }
+.bdgsownv2-dropdown-mega-divider {
+  flex: 0 0 0; align-self: stretch;
+  border-left: 2px dashed var(--bdgs-border); margin: 0;
+}
+.bdgsownv2-dropdown-col-heading {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--bdgs-text-muted);
+  margin: 0 0 12px; padding: 0 14px;
+}
+.bdgsownv2-dropdown-solutions-grid {
+  grid-template-rows: repeat(3, auto); grid-auto-flow: column;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 1199px) {
+  .bdgsownv2-dropdown-mega { padding: 16px 18px; }
+  .bdgsownv2-dropdown-mega-layout { flex-direction: column; gap: 0; }
+  .bdgsownv2-dropdown-mega-services { padding-right: 0; }
+  .bdgsownv2-dropdown-mega-divider {
+    border-left: none; border-top: 2px dashed var(--bdgs-border);
+    margin: 28px 0; height: 0; width: 100%; flex: 0 0 auto;
+  }
+  .bdgsownv2-dropdown-mega-solutions { flex: 1 1 auto; padding-left: 0; }
+  .bdgsownv2-dropdown-mega .bdgsownv2-dropdown-grid { grid-template-columns: repeat(3, 1fr); }
+  .bdgsownv2-dropdown-mega .bdgsownv2-dropdown-solutions-grid {
+    grid-template-rows: auto; grid-auto-flow: row; grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 991px) {
+  .bdgsownv2-dropdown-mega .bdgsownv2-dropdown-grid { grid-template-columns: 1fr; }
+  .bdgsownv2-dropdown-mega .bdgsownv2-dropdown-solutions-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 1029px) { .bdgsownv2-nav-links { display: none; } }
+
+/* ============================================
+   COMPACT SERVICES PAGE — V3
+   Constraint: Title + 7 cards + footer all in first viewport
+   ============================================ */
+.sv3-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 68px);
+}
+
+.sv3-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 0 20px;
+  background: var(--bdgs-bg);
+}
+
+.sv3-title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.sv3-title-bar h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--bdgs-dark);
+  letter-spacing: -0.8px;
+  margin: 0 0 6px;
+  line-height: 1.15;
+}
+.sv3-title-bar h1 span {
+  background: var(--bdgs-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.sv3-title-bar p {
+  font-size: 14px;
+  color: var(--bdgs-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 7-card grid: 4 top + 3 bottom (centered) */
+.sv3-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sv3-card {
+  background: var(--bdgs-white);
+  border: 1px solid var(--bdgs-border);
+  border-radius: 14px;
+  padding: 22px 20px 18px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.sv3-card:hover {
+  border-color: var(--bdgs-coral);
+  box-shadow: 0 8px 28px rgba(231,77,86,0.1);
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+.sv3-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--bdgs-gradient);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.sv3-card:hover::before { opacity: 1; }
+
+.sv3-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+.sv3-card-icon svg {
+  width: 22px; height: 22px;
+}
+
+.sv3-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bdgs-dark);
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+.sv3-card p {
+  font-size: 13px;
+  color: var(--bdgs-text-muted);
+  line-height: 1.5;
+  margin: 0 0 12px;
+  flex: 1;
+}
+.sv3-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bdgs-coral);
+  transition: gap 0.2s;
+}
+.sv3-card:hover .sv3-card-arrow { gap: 8px; }
+
+/* Bottom row: 3 cards centered */
+.sv3-grid-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: calc((1100px - 14px) * 0.75 + 14px);
+  margin: 14px auto 0;
+  padding: 0 24px;
+}
+
+/* Founder's Track — dark premium card */
+.sv3-card--founders {
+  background: var(--bdgs-dark);
+  border-color: var(--bdgs-dark-mid);
+}
+.sv3-card--founders::before {
+  background: linear-gradient(135deg, #FFD700, var(--bdgs-coral));
+}
+.sv3-card--founders h3 { color: #fff; }
+.sv3-card--founders p { color: rgba(255,255,255,0.6); }
+.sv3-card--founders .sv3-card-arrow { color: #FFD700; }
+.sv3-card--founders:hover {
+  border-color: var(--bdgs-purple);
+  box-shadow: 0 8px 28px rgba(149,37,110,0.2);
+}
+.sv3-card--founders .sv3-card-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  background: var(--bdgs-purple);
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* Icon color themes */
+.sv3-icon-coral { background: var(--bdgs-coral-light); color: var(--bdgs-coral); }
+.sv3-icon-purple { background: var(--bdgs-purple-light); color: var(--bdgs-purple); }
+.sv3-icon-dark { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); }
+.sv3-icon-green { background: rgba(34,197,94,0.1); color: #16A34A; }
+
+/* Compact footer bar */
+.sv3-footer-bar {
+  background: var(--bdgs-dark);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.sv3-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sv3-footer-left p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+.sv3-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sv3-footer-link {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.sv3-footer-link:hover { color: var(--bdgs-coral); text-decoration: none; }
+.sv3-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  padding: 3px 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 991px) {
+  .sv3-grid { grid-template-columns: repeat(2, 1fr); }
+  .sv3-grid-bottom {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1100px;
+  }
+  .sv3-main { padding: 24px 0 16px; }
+  .sv3-title-bar h1 { font-size: 24px; }
+}
+@media (max-width: 600px) {
+  .sv3-grid { grid-template-columns: 1fr; gap: 10px; }
+  .sv3-grid-bottom {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin-top: 10px;
+  }
+  .sv3-main { justify-content: flex-start; padding: 20px 0 12px; }
+  .sv3-title-bar { margin-bottom: 16px; }
+  .sv3-title-bar h1 { font-size: 22px; }
+  .sv3-card { padding: 16px; flex-direction: row; align-items: center; gap: 14px; }
+  .sv3-card-icon { margin-bottom: 0; width: 40px; height: 40px; }
+  .sv3-card-icon svg { width: 18px; height: 18px; }
+  .sv3-card h3 { font-size: 14px; margin-bottom: 2px; }
+  .sv3-card p { display: none; }
+  .sv3-card-arrow { margin-left: auto; }
+  .sv3-card--founders .sv3-card-tag { display: none; }
+  .sv3-footer-bar { flex-direction: column; text-align: center; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER NAV (V3 — Locked)
+     ============================================ -->
+<header class="bdgsownv2-header" id="bdgsHeader">
+  <nav class="bdgsownv2-nav">
+    <a href="/" class="bdgsownv2-logo">
+      <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
+    </a>
+    <ul class="bdgsownv2-nav-links">
+      <li class="bdgsownv2-nav-item bdgsownv2-nav-item-mega">
+        <a class="bdgsownv2-nav-link active-page" href="/services">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
+          <div class="bdgsownv2-dropdown-mega-layout">
+            <div class="bdgsownv2-dropdown-mega-services">
+              <p class="bdgsownv2-dropdown-col-heading">Services</p>
+              <div class="bdgsownv2-dropdown-grid">
+                <a href="/setup" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Setup &amp; Launch</div><div class="bdgsownv2-dropdown-item-desc">Concierge directory launch. Business-first approach.</div></a>
+                <a href="/hire-developer" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Dedicated Developers</div><div class="bdgsownv2-dropdown-item-desc">AI-savvy directory devs. Long-term. Your permanent team.</div></a>
+                <a href="/maintenance" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Maintenance Plans</div><div class="bdgsownv2-dropdown-item-desc">Ongoing support, backups, updates, optimization.</div></a>
+                <a href="/consultation" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Consultation</div><div class="bdgsownv2-dropdown-item-desc">Talk to Yakin's team. 18+ years directory expertise.</div></a>
+                <a href="/growth-plans" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Growth Plans</div><div class="bdgsownv2-dropdown-item-desc">Co-founder level strategy + dev + AI. Apply to join.</div></a>
+              </div>
+            </div>
+            <div class="bdgsownv2-dropdown-mega-divider" aria-hidden="true"></div>
+            <div class="bdgsownv2-dropdown-mega-solutions">
+              <p class="bdgsownv2-dropdown-col-heading">Solutions Done For You</p>
+              <div class="bdgsownv2-dropdown-grid bdgsownv2-dropdown-solutions-grid">
+                <a href="/solutions?category=seo" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">SEO &amp; Schema</div><div class="bdgsownv2-dropdown-item-desc">Advanced markup &amp; technical SEO.</div></a>
+                <a href="/solutions?category=lead-gen" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Lead Gen &amp; Conversion</div><div class="bdgsownv2-dropdown-item-desc">Capture more leads.</div></a>
+                <a href="/solutions?category=member-profile" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Member Profile Enhancement</div><div class="bdgsownv2-dropdown-item-desc">Custom profile layouts.</div></a>
+                <a href="/solutions?category=search" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Search &amp; Discovery</div><div class="bdgsownv2-dropdown-item-desc">Optimized search flows.</div></a>
+                <a href="/solutions?category=design" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Page Design</div><div class="bdgsownv2-dropdown-item-desc">Stunning modern layouts.</div></a>
+                <a href="/solutions?category=content" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Content &amp; Engagement</div><div class="bdgsownv2-dropdown-item-desc">Automated content strategies.</div></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/grow-with-ai">Grow with AI <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="bdgsownv2-dropdown">
+          <div class="bdgsownv2-dropdown-grid">
+            <a href="/ai-development" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">AI-Powered Development</div><div class="bdgsownv2-dropdown-item-desc">Faster execution. Savings passed to you.</div></a>
+            <a href="/ai-dev-fleet" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">AI Dev Fleet</div><div class="bdgsownv2-dropdown-item-desc">A team of AI works for you.</div></a>
+            <a href="/ai-for-your-site" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">AI for Your Directory</div><div class="bdgsownv2-dropdown-item-desc">Chatbots, agents, smart search.</div></a>
+            <a href="/bd-automation" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Directory Automation</div><div class="bdgsownv2-dropdown-item-desc">Follow-ups, lead gen, content AI.</div></a>
+          </div>
+          <div class="bdgsownv2-dropdown-highlight">
+            <a href="/about">Claude / Anthropic Service Partner</a>
+          </div>
+        </div>
+      </li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/hire-developer">Hire a Developer</a></li>
+      <li class="bdgsownv2-nav-item">
+        <a class="bdgsownv2-nav-link" href="/tools">Tools <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="bdgsownv2-dropdown bdgsownv2-dropdown-sm">
+          <div class="bdgsownv2-dropdown-grid">
+            <a href="/tools" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">All Tools &amp; Themes</div><div class="bdgsownv2-dropdown-item-desc">AI tools, premium themes.</div></a>
+            <a href="/tools/brilliantchat" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">BrilliantChat</div><div class="bdgsownv2-dropdown-item-desc">AI chatbot for your directory.</div></a>
+          </div>
+        </div>
+      </li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/themes">Themes</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-zoom" href="/zoom-clinics"><span class="pulse"></span> Zoom Clinics</a></li>
+    </ul>
+    <button type="button" class="bdgsownv2-cta-btn" onclick="bdgsOpenInquiryModal(); return false;">Get Started &rarr;</button>
+  </nav>
+</header>
+
+<!-- ============================================
+     V3: COMPACT VIEWPORT-FIT SERVICES PAGE
+     Everything visible in first viewport
+     ============================================ -->
+<div class="sv3-page">
+  <main class="sv3-main">
+    <div class="container">
+      <div class="sv3-title-bar">
+        <h1>Everything your directory needs. <span>One team.</span></h1>
+        <p>From zero-to-launch setups to co-founder level growth strategy &mdash; pick a service and let's go.</p>
+      </div>
+    </div>
+
+    <!-- Row 1: 4 cards -->
+    <div class="sv3-grid">
+      <a href="/setup" class="sv3-card">
+        <div class="sv3-card-icon sv3-icon-coral">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Setup &amp; Launch</h3>
+        <p>Concierge-style, 3-week business-first directory launch.</p>
+        <span class="sv3-card-arrow">View plans <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a href="/hire-developer" class="sv3-card">
+        <div class="sv3-card-icon sv3-icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <h3>Dedicated Developers</h3>
+        <p>AI-savvy directory devs who learn your codebase. Long-term.</p>
+        <span class="sv3-card-arrow">Hire now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a href="/customization" class="sv3-card">
+        <div class="sv3-card-icon sv3-icon-coral">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <h3>Custom Projects</h3>
+        <p>Scoped one-off builds. API integrations, custom widgets, features.</p>
+        <span class="sv3-card-arrow">Start a project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a href="/solutions" class="sv3-card">
+        <div class="sv3-card-icon sv3-icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3>Solutions (Done-For-You)</h3>
+        <p>61+ ready-made solutions. SEO, lead gen, profiles, search, design.</p>
+        <span class="sv3-card-arrow">Browse solutions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+
+    <!-- Row 2: 3 cards centered -->
+    <div class="sv3-grid-bottom">
+      <a href="/maintenance" class="sv3-card">
+        <div class="sv3-card-icon sv3-icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <h3>Maintenance Plans</h3>
+        <p>Ongoing support, backups, updates, and performance optimization.</p>
+        <span class="sv3-card-arrow">Explore plans <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a href="/consultation" class="sv3-card">
+        <div class="sv3-card-icon sv3-icon-coral">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Strategic Consultation</h3>
+        <p>1-on-1 deep dives with Yakin's team. 18+ years of directory expertise.</p>
+        <span class="sv3-card-arrow">Book a session <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a href="/founders-track" class="sv3-card sv3-card--founders">
+        <div class="sv3-card-icon sv3-icon-dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span class="sv3-card-tag">Apply Only</span>
+        <h3>Founder's Track</h3>
+        <p>Co-founder level strategy. Dedicated AI dev fleet. Aggressive growth.</p>
+        <span class="sv3-card-arrow">Apply to join <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Compact inline footer -->
+  <footer class="sv3-footer-bar">
+    <div class="sv3-footer-left">
+      <a href="/" class="bdgsownv2-logo" style="gap:8px">
+        <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite" style="height:24px">
+      </a>
+      <p>&copy; 2026 BD Growth Suite by BusinessLabs</p>
+    </div>
+    <div class="sv3-footer-right">
+      <a href="/about" class="sv3-footer-link">About</a>
+      <a href="/terms" class="sv3-footer-link">Terms</a>
+      <a href="/privacy" class="sv3-footer-link">Privacy</a>
+      <span class="sv3-footer-badge">500+ Sites</span>
+      <span class="sv3-footer-badge">Gold Certified BD Partner</span>
+    </div>
+  </footer>
+</div>
+
+<!-- Modal — Inquiry -->
+<div class="bdgsownv2-modal-overlay" id="bdgsInquiryModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)">
+  <div style="background:var(--bdgs-white);border-radius:16px;max-width:520px;width:100%;padding:32px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.3)">
+    <button onclick="bdgsCloseInquiryModal()" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:8px;border:none;background:var(--bdgs-bg);cursor:pointer;font-size:18px;color:var(--bdgs-text-muted)">&times;</button>
+    <div id="bdgsInquiryFormWrap">
+      <h3 style="font-size:24px;font-weight:700;color:var(--bdgs-dark);margin:0 0 8px">Get Started with BDGS</h3>
+      <p style="font-size:14px;color:var(--bdgs-text-muted);line-height:1.6;margin:0 0 16px">Tell us about your directory and we'll match you with the right service.</p>
+      <form id="bdgsInquiryForm" style="display:grid;gap:12px;margin-top:18px">
+        <input type="text" name="name" placeholder="Your name" required style="width:100%;border:1px solid var(--bdgs-border);border-radius:9px;padding:11px 12px;font-size:14px;font-family:inherit">
+        <input type="email" name="email" placeholder="Email address" required style="width:100%;border:1px solid var(--bdgs-border);border-radius:9px;padding:11px 12px;font-size:14px;font-family:inherit">
+        <select name="need" required style="width:100%;border:1px solid var(--bdgs-border);border-radius:9px;padding:11px 12px;font-size:14px;font-family:inherit;background:var(--bdgs-white)">
+          <option value="">What do you need?</option>
+          <option>Setup &amp; Launch</option>
+          <option>Dedicated Developer</option>
+          <option>Custom Project</option>
+          <option>Solutions / Tools</option>
+          <option>Maintenance</option>
+          <option>Consultation</option>
+          <option>Growth Plan</option>
+          <option>Not sure yet</option>
+        </select>
+        <textarea name="message" placeholder="Brief description" style="width:100%;border:1px solid var(--bdgs-border);border-radius:9px;padding:11px 12px;font-size:14px;font-family:inherit;min-height:80px;resize:vertical"></textarea>
+        <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;font-size:15px;font-weight:600;color:#fff;background:var(--bdgs-gradient);border:none;border-radius:10px;cursor:pointer;font-family:inherit">Submit Inquiry</button>
+      </form>
+    </div>
+    <div id="bdgsInquiryThanks" style="display:none;text-align:center;padding:14px 0 4px">
+      <div style="width:52px;height:52px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#fff;background:#16A34A;font-size:24px;font-weight:700">&#10003;</div>
+      <h3 style="font-size:24px;font-weight:700;color:var(--bdgs-dark);margin:0 0 8px">Thank you!</h3>
+      <p style="font-size:14px;color:var(--bdgs-text-muted)">We'll be in touch shortly.</p>
+      <button onclick="bdgsCloseInquiryModal()" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;font-weight:600;color:#fff;background:var(--bdgs-gradient);border:none;border-radius:10px;cursor:pointer;margin-top:16px;font-family:inherit">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', function() {
+  document.getElementById('bdgsHeader').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+var menuHoverTimeout;
+document.querySelectorAll('.bdgsownv2-nav-item').forEach(function(item) {
+  var link = item.querySelector('.bdgsownv2-nav-link');
+  var dropdown = item.querySelector('.bdgsownv2-dropdown');
+  if (dropdown && link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); e.stopPropagation();
+      document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(o) { if (o !== item) o.classList.remove('active'); });
+      item.classList.toggle('active');
+    });
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(menuHoverTimeout);
+      document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(o) { if (o !== item) o.classList.remove('active'); });
+      item.classList.add('active');
+    });
+    item.addEventListener('mouseleave', function() {
+      var c = item;
+      menuHoverTimeout = setTimeout(function() { c.classList.remove('active'); }, 500);
+    });
+  }
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.bdgsownv2-nav-item')) {
+    clearTimeout(menuHoverTimeout);
+    document.querySelectorAll('.bdgsownv2-nav-item.active').forEach(function(i) { i.classList.remove('active'); });
+  }
+});
+
+function bdgsOpenInquiryModal() {
+  var m = document.getElementById('bdgsInquiryModal');
+  m.style.display = 'flex';
+  document.getElementById('bdgsInquiryFormWrap').style.display = 'block';
+  document.getElementById('bdgsInquiryThanks').style.display = 'none';
+  document.body.style.overflow = 'hidden';
+}
+function bdgsCloseInquiryModal() {
+  document.getElementById('bdgsInquiryModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('bdgsInquiryModal').addEventListener('click', function(e) { if (e.target === this) bdgsCloseInquiryModal(); });
+document.getElementById('bdgsInquiryForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('bdgsInquiryFormWrap').style.display = 'none';
+  document.getElementById('bdgsInquiryThanks').style.display = 'block';
+});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') bdgsCloseInquiryModal(); });
+</script>
+</body>
+</html>

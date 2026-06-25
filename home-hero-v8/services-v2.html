@@ -1,11 +1,3 @@
-<!--
-  ⚠️ PRODUCTION NOTE (v8 Draft — 2026-06-24)
-  ============================================
-  This is a GitHub Pages draft preview. All inter-page links currently point to:
-    https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/
-  Before deploying to production, replace ALL GitHub Pages URLs with the
-  production domain URLs.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +6,11 @@
 <title>Expert Services for Brilliant Directories — BD Growth Suite</title>
 <meta name="description" content="Explore all BD Growth Suite services: Setup & Launch, Dedicated Developers, AI Dev Fleet, Solutions, Zoom Clinics, and Founder's Track. The only directory team that gets you from 0→$1M.">
 <meta name="keywords" content="brilliant directories developers, brilliant directories services, bd growth suite, directory website expert, bd automation, dedicated bd developer">
-<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v2.html">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/services/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Expert Services for Brilliant Directories — BD Growth Suite">
 <meta property="og:description" content="From zero-to-launch setups to co-founder level strategy. Brilliant Directories developers who think like co-founders.">
-<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v2.html">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/services/">
 <meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
@@ -49,7 +41,7 @@
   --bdgs-green: #22C55E;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+html { scroll-behavior: smooth; scroll-padding-top: 116px; }
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--bdgs-text); background: var(--bdgs-white); margin: 0;
@@ -321,9 +313,10 @@ body {
   border-bottom: 1px solid var(--bdgs-border);
   position: sticky; top: 68px; z-index: 100;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: opacity 0.25s ease;
 }
 .sv2-spoke-nav-inner {
-  display: flex; align-items: center; gap: 4px;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
   padding: 0 24px; max-width: 1240px; margin: 0 auto;
   overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
 }
@@ -352,7 +345,7 @@ body {
    SPOKE CARD — BASE LAYOUT
    ============================================ */
 .sv2-spoke-section {
-  padding: 80px 0;
+  padding: 40px 0;
   border-bottom: 1px solid var(--bdgs-border);
   background: var(--bdgs-white);
   position: relative;
@@ -829,40 +822,198 @@ body {
 /* ============================================
    RESPONSIVE
    ============================================ */
+
+/* -- 1440px and below: scale down generous whitespace -- */
+@media (max-width: 1440px) {
+  .sv2-hero { padding: 72px 0 64px; }
+  .sv2-hero h1 { font-size: 46px; }
+  .sv2-hero-sub { font-size: 17px; }
+  .sv2-spoke-section { padding: 36px 0; }
+  .sv2-spoke-copy { padding: 44px 40px; }
+  .sv2-spoke-visual { padding: 32px; }
+  .sv2-path-section { padding: 64px 0; }
+  .sv2-cta-section { padding: 64px 0; }
+  .sv2-hub-intro { padding: 40px 0 36px; }
+}
+
+/* -- 1200px: tighter layout, smaller type -- */
+@media (max-width: 1200px) {
+  .sv2-hero h1 { font-size: 40px; letter-spacing: -1.5px; }
+  .sv2-hero-sub { font-size: 16px; max-width: 520px; }
+  .sv2-hero-stat-num { font-size: 28px; }
+  .sv2-section-title { font-size: 30px; }
+  .sv2-spoke-copy h2 { font-size: 26px; }
+  .sv2-spoke-copy .sv2-spoke-desc { font-size: 14px; }
+  .sv2-spoke-layout { min-height: 380px; }
+  .sv2-spoke-copy { flex: 0 0 50%; padding: 36px 32px; }
+  .sv2-spoke-visual { padding: 28px; }
+  .sv2-path-card { padding: 28px 22px; }
+  .sv2-path-card h3 { font-size: 18px; }
+  .sv2-cta-section h2 { font-size: 32px; }
+}
+
+/* -- 1029px: hide desktop nav links -- */
 @media (max-width: 1029px) {
   .bdgsownv2-nav-links { display: none; }
 }
+
+/* -- 991px: stack spoke layouts, 2-col stats, 1-col paths -- */
 @media (max-width: 991px) {
-  .sv2-hero h1 { font-size: 36px !important; }
-  .sv2-section-title { font-size: 26px !important; }
+  .sv2-hero { padding: 56px 20px 48px; }
+  .sv2-hero h1 { font-size: 34px; letter-spacing: -1px; }
+  .sv2-hero-sub { font-size: 15px; max-width: 480px; }
+  .sv2-hero-stats { gap: 0; flex-wrap: wrap; }
+  .sv2-hero-stat {
+    padding: 0 20px; flex: 0 0 50%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 16px; padding-bottom: 16px;
+  }
+  .sv2-hero-stat-num { font-size: 26px; }
+  .sv2-section-title { font-size: 26px; }
+  .sv2-hub-intro { padding: 32px 16px 28px; }
+  .sv2-hub-intro .sv2-section-sub { font-size: 14px; }
+  .sv2-spoke-section { padding: 32px 0; }
   .sv2-spoke-layout {
     flex-direction: column; min-height: 0;
     transform: none !important;
   }
-  .sv2-spoke-copy { flex: none; padding: 36px 28px; }
-  .sv2-spoke-visual { flex: none; min-height: 320px; padding: 28px; }
+  .sv2-spoke-copy,
+  .sv2-spoke-visual { flex: none !important; order: unset !important; }
+  .sv2-spoke-copy { padding: 32px 28px; }
+  .sv2-spoke-visual { min-height: 300px; padding: 28px; }
+  .sv2-spoke-copy h2 { font-size: 24px; }
+  .sv2-ai-orbit { min-height: 240px; }
+  @keyframes sv2-orbit-spin {
+    0%   { transform: rotate(0deg)   translateX(90px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
+  }
+  .sv2-path-section { padding: 56px 0; }
   .sv2-path-grid { grid-template-columns: 1fr; gap: 16px; }
-  .sv2-hero-stats { gap: 0; }
-  .sv2-hero-stat { padding: 0 20px; flex: 0 0 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; padding-bottom: 20px; }
+  .sv2-path-card { padding: 28px 24px; }
+  .sv2-cta-section { padding: 56px 0; }
+  .sv2-cta-section h2 { font-size: 28px; }
+  .bdgsownv2-footer .row { display: flex; flex-wrap: wrap; }
+  .bdgsownv2-footer .col-md-3 { flex: 0 0 50%; max-width: 50%; margin-bottom: 28px; }
 }
+
+/* -- 768px: full mobile -- */
 @media (max-width: 768px) {
-  .sv2-hero { padding: 60px 20px 50px; }
-  .sv2-hero h1 { font-size: 30px !important; letter-spacing: -1px; }
-  .sv2-hero-ctas { flex-direction: column; align-items: center; }
-  .sv2-hero-cta-primary, .sv2-hero-cta-secondary { width: 100%; max-width: 340px; justify-content: center; }
-  .sv2-spoke-section { padding: 52px 0; }
-  .sv2-spoke-copy { padding: 28px 20px; }
-  .sv2-spoke-visual { min-height: 260px; padding: 20px; }
-  .sv2-spoke-cta-primary { padding: 11px 20px; font-size: 13px; }
-  .sv2-solutions-grid { grid-template-columns: 1fr; }
-  .sv2-founders-stats { grid-template-columns: 1fr 1fr; }
-  .sv2-cta-section h2 { font-size: 28px !important; }
-  .sv2-cta-btns { flex-direction: column; align-items: center; }
-  .sv2-cta-btns a, .sv2-cta-btns button { width: 100%; max-width: 340px; justify-content: center; }
+  .sv2-hero { padding: 44px 16px 40px; }
+  .sv2-hero h1 { font-size: 28px; letter-spacing: -0.8px; }
+  .sv2-hero-sub { font-size: 14px; margin-bottom: 28px; max-width: 100%; }
+  .sv2-hero-badge { font-size: 11px; padding: 5px 12px; margin-bottom: 20px; }
+  .sv2-hero-ctas { flex-direction: column; align-items: stretch; }
+  .sv2-hero-cta-primary, .sv2-hero-cta-secondary {
+    width: 100%; justify-content: center; padding: 13px 20px; font-size: 14px;
+  }
+  .sv2-hero-stats { margin-top: 32px; padding-top: 24px; }
+  .sv2-hero-stat { flex: 0 0 50%; padding: 0 12px; }
+  .sv2-hero-stat-num { font-size: 24px; }
+  .sv2-hero-stat-lbl { font-size: 11px; }
+  .sv2-hub-intro { padding: 28px 16px 24px; }
+  .sv2-section-title { font-size: 22px; letter-spacing: -0.5px; }
+  .sv2-section-sub { font-size: 13px; }
+  .sv2-spoke-nav-inner { padding: 0 16px; gap: 2px; }
+  .sv2-spoke-pill { padding: 11px 14px; font-size: 12px; }
+  .sv2-spoke-section { padding: 24px 0; }
+  .sv2-spoke-layout { border-radius: 14px; }
+  .sv2-spoke-copy { padding: 24px 20px; }
+  .sv2-spoke-copy h2 { font-size: 22px; }
+  .sv2-spoke-copy .sv2-spoke-desc { font-size: 13px; margin-bottom: 18px; }
+  .sv2-spoke-features li { font-size: 13px; }
+  .sv2-spoke-visual { min-height: 240px; padding: 20px; }
+  .sv2-spoke-ctas { flex-direction: column; gap: 10px; }
+  .sv2-spoke-cta-primary { width: 100%; justify-content: center; padding: 12px 20px; font-size: 13px; }
+  .sv2-spoke-cta-link { justify-content: center; }
+  .sv2-solutions-grid { grid-template-columns: 1fr; gap: 8px; }
+  .sv2-solution-chip { padding: 10px 12px; }
+  .sv2-founders-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sv2-founders-quote { padding: 16px 18px; }
+  .sv2-founders-quote p { font-size: 14px; }
+  .sv2-ai-fleet-labels { gap: 6px; }
+  .sv2-ai-label { font-size: 10px; padding: 5px 10px; }
+  .sv2-ai-orbit { min-height: 200px; }
+  @keyframes sv2-orbit-spin {
+    0%   { transform: rotate(0deg)   translateX(75px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(75px) rotate(-360deg); }
+  }
+  .sv2-ai-orbit-center { width: 60px; height: 60px; box-shadow: 0 0 0 10px rgba(231,77,86,0.12), 0 0 0 22px rgba(231,77,86,0.06); }
+  .sv2-ai-orbit-center svg { width: 28px; height: 28px; }
+  .sv2-ai-node { width: 36px; height: 36px; }
+  .sv2-ai-node svg { width: 16px !important; height: 16px !important; }
+  .sv2-tier-card { padding: 12px 14px; gap: 10px; }
+  .sv2-tier-icon { width: 34px; height: 34px; }
+  .sv2-tier-icon svg { width: 16px; height: 16px; }
+  .sv2-tier-name { font-size: 12px; }
+  .sv2-tier-desc { font-size: 10px; }
+  .sv2-tier-badge { font-size: 8px; padding: 2px 6px; }
+  .sv2-tier-price { font-size: 13px; }
+  .sv2-path-section { padding: 44px 0; }
+  .sv2-path-card { padding: 24px 20px; border-radius: 12px; }
+  .sv2-path-card h3 { font-size: 18px; margin-bottom: 8px; }
+  .sv2-path-card p { font-size: 13px; margin-bottom: 18px; }
+  .sv2-path-icon { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 16px; }
+  .sv2-path-icon svg { width: 22px; height: 22px; }
+  .sv2-cta-section { padding: 44px 16px; }
+  .sv2-cta-section h2 { font-size: 24px; }
+  .sv2-cta-section p { font-size: 14px; margin-bottom: 28px; }
+  .sv2-cta-btns { flex-direction: column; align-items: stretch; }
+  .sv2-cta-btns a, .sv2-cta-btns button { width: 100%; justify-content: center; }
+  .bdgsownv2-footer { padding: 40px 0 0; }
+  .bdgsownv2-footer .col-md-3 { flex: 0 0 50% !important; max-width: 50% !important; margin-bottom: 24px; }
+  .bdgsownv2-footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px 0; }
+  .bdgsownv2-footer-badges { flex-wrap: wrap; gap: 8px; }
+  .bdgsownv2-modal { padding: 24px; margin: 12px; }
+  .bdgsownv2-modal h3 { font-size: 20px; }
 }
+
+/* -- 480px: small phone -- */
 @media (max-width: 480px) {
-  .sv2-hero-stat { flex: 0 0 100%; }
+  .sv2-hero h1 { font-size: 24px; }
+  .sv2-hero-sub { font-size: 13px; }
+  .sv2-hero-stat { flex: 0 0 50%; padding: 0 8px; margin-bottom: 12px; padding-bottom: 12px; }
+  .sv2-hero-stat-num { font-size: 22px; }
+  .sv2-spoke-pill { padding: 10px 10px; font-size: 11px; }
+  .sv2-spoke-pill-dot { width: 5px; height: 5px; }
+  .sv2-spoke-copy { padding: 20px 16px; }
+  .sv2-spoke-copy h2 { font-size: 20px; }
+  .sv2-spoke-visual { padding: 16px; min-height: 200px; }
   .sv2-tier-stack { gap: 8px; }
+  .sv2-tier-card { flex-wrap: wrap; }
+  .sv2-tier-price { width: 100%; text-align: left; margin-top: 4px; }
+  .sv2-section-title { font-size: 20px; }
+  .sv2-cta-section h2 { font-size: 22px; }
+  .sv2-ai-orbit { min-height: 180px; }
+  @keyframes sv2-orbit-spin {
+    0%   { transform: rotate(0deg)   translateX(65px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(65px) rotate(-360deg); }
+  }
+  .sv2-ai-orbit-center { width: 50px; height: 50px; box-shadow: 0 0 0 8px rgba(231,77,86,0.12), 0 0 0 18px rgba(231,77,86,0.06); }
+  .sv2-ai-orbit-center svg { width: 24px; height: 24px; }
+  .sv2-ai-node { width: 30px; height: 30px; font-size: 14px; }
+  .sv2-ai-node svg { width: 14px !important; height: 14px !important; }
+  .sv2-founders-stats { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .sv2-founders-stat { padding: 10px 12px; }
+  .sv2-founders-stat-num { font-size: 18px; }
+  .sv2-zoom-schedule { padding: 16px; }
+  .sv2-zoom-slot { padding: 10px 12px; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .sv2-path-card { padding: 20px 16px; }
+  .sv2-path-card h3 { font-size: 16px; }
+  .sv2-path-card p { font-size: 12px; }
+  .bdgsownv2-footer .col-md-3 { flex: 0 0 100% !important; max-width: 100% !important; margin-bottom: 20px; }
+  .bdgsownv2-footer h4 { font-size: 13px; }
+  .bdgsownv2-footer ul li a, .bdgsownv2-footer ul li button.bdgsownv2-footer-link { font-size: 12px; }
+  .bdgsownv2-footer-badge { font-size: 10px; }
+}
+
+/* -- 360px: very small phone -- */
+@media (max-width: 360px) {
+  .sv2-hero h1 { font-size: 22px; }
+  .sv2-hero-stat { flex: 0 0 100%; }
+  .sv2-spoke-pill { padding: 9px 8px; font-size: 10px; gap: 4px; }
+  .sv2-spoke-copy h2 { font-size: 18px; }
+  .sv2-founders-stats { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -873,12 +1024,12 @@ body {
      ============================================ -->
 <header class="bdgsownv2-header" id="bdgsHeader">
   <nav class="bdgsownv2-nav">
-    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/" class="bdgsownv2-logo">
+    <a href="/" class="bdgsownv2-logo">
       <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
     </a>
     <ul class="bdgsownv2-nav-links">
       <li class="bdgsownv2-nav-item bdgsownv2-nav-item-mega">
-        <a class="bdgsownv2-nav-link active-page" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v2.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a class="bdgsownv2-nav-link active-page" href="/services">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
           <div class="bdgsownv2-dropdown-mega-layout">
             <div class="bdgsownv2-dropdown-mega-services">
@@ -996,42 +1147,39 @@ body {
 
 
 <!-- ============================================
-     STICKY SPOKE NAV
-     ============================================ -->
-<nav class="sv2-spoke-nav" id="sv2-spokeNav" aria-label="Service sections">
-  <div class="sv2-spoke-nav-inner">
-    <a href="#sv2-setup" class="sv2-spoke-pill active" id="sv2-pill-1">
-      <span class="sv2-spoke-pill-dot" style="background:#E74D56"></span>
-      Setup &amp; Launch
-    </a>
-    <a href="#sv2-dedicated" class="sv2-spoke-pill" id="sv2-pill-2">
-      <span class="sv2-spoke-pill-dot" style="background:#95256E"></span>
-      Dedicated Developers
-    </a>
-    <a href="#sv2-ai-fleet" class="sv2-spoke-pill" id="sv2-pill-3">
-      <span class="sv2-spoke-pill-dot" style="background:var(--bdgs-gradient, #E74D56)"></span>
-      AI Dev Fleet
-    </a>
-    <a href="#sv2-solutions" class="sv2-spoke-pill" id="sv2-pill-4">
-      <span class="sv2-spoke-pill-dot" style="background:#16A34A"></span>
-      Solutions
-    </a>
-    <a href="#sv2-zoom" class="sv2-spoke-pill" id="sv2-pill-5">
-      <span class="sv2-spoke-pill-dot" style="background:#22C55E"></span>
-      Zoom Clinics
-    </a>
-    <a href="#sv2-founders" class="sv2-spoke-pill" id="sv2-pill-6">
-      <span class="sv2-spoke-pill-dot" style="background:#F59E0B"></span>
-      Founder's Track
-    </a>
-  </div>
-</nav>
-
-
-<!-- ============================================
      SPOKE SECTIONS
      ============================================ -->
 <div class="sv2-spokes" id="sv2-spokes">
+
+  <!-- Spoke nav moved inside spokes wrapper so sticky stops at section boundary -->
+  <nav class="sv2-spoke-nav" id="sv2-spokeNav" aria-label="Service sections">
+    <div class="sv2-spoke-nav-inner">
+      <a href="#sv2-setup" class="sv2-spoke-pill active" id="sv2-pill-1">
+        <span class="sv2-spoke-pill-dot" style="background:#E74D56"></span>
+        Setup &amp; Launch
+      </a>
+      <a href="#sv2-dedicated" class="sv2-spoke-pill" id="sv2-pill-2">
+        <span class="sv2-spoke-pill-dot" style="background:#95256E"></span>
+        Dedicated Developers
+      </a>
+      <a href="#sv2-ai-fleet" class="sv2-spoke-pill" id="sv2-pill-3">
+        <span class="sv2-spoke-pill-dot" style="background:var(--bdgs-gradient, #E74D56)"></span>
+        AI Dev Fleet
+      </a>
+      <a href="#sv2-solutions" class="sv2-spoke-pill" id="sv2-pill-4">
+        <span class="sv2-spoke-pill-dot" style="background:#16A34A"></span>
+        Solutions
+      </a>
+      <a href="#sv2-zoom" class="sv2-spoke-pill" id="sv2-pill-5">
+        <span class="sv2-spoke-pill-dot" style="background:#22C55E"></span>
+        Zoom Clinics
+      </a>
+      <a href="#sv2-founders" class="sv2-spoke-pill" id="sv2-pill-6">
+        <span class="sv2-spoke-pill-dot" style="background:#F59E0B"></span>
+        Founder's Track
+      </a>
+    </div>
+  </nav>
 
   <!-- ── 1. SETUP & LAUNCH ── -->
   <section class="sv2-spoke-section" id="sv2-setup">
@@ -1799,17 +1947,28 @@ document.addEventListener('click', e => {
   }
 });
 
-// ── Spoke nav active pill on scroll ──
+// ── Spoke nav active pill on scroll + section-scoped visibility ──
 const pills = document.querySelectorAll('.sv2-spoke-pill');
 const spokes = ['sv2-setup','sv2-dedicated','sv2-ai-fleet','sv2-solutions','sv2-zoom','sv2-founders'];
+const spokeNav = document.getElementById('sv2-spokeNav');
+const spokesWrapper = document.getElementById('sv2-spokes');
+
 function updatePills() {
-  const scrollY = window.scrollY + 140;
+  const scrollY = window.scrollY + 116;
   let active = 0;
   spokes.forEach((id, i) => {
     const el = document.getElementById(id);
     if (el && el.offsetTop <= scrollY) active = i;
   });
   pills.forEach((p, i) => p.classList.toggle('active', i === active));
+
+  if (spokeNav && spokesWrapper) {
+    const wrapperRect = spokesWrapper.getBoundingClientRect();
+    const navH = spokeNav.offsetHeight || 48;
+    const inRange = wrapperRect.top <= 68 + navH && wrapperRect.bottom >= 68 + navH;
+    spokeNav.style.opacity = inRange ? '1' : '0';
+    spokeNav.style.pointerEvents = inRange ? 'auto' : 'none';
+  }
 }
 window.addEventListener('scroll', updatePills, { passive: true });
 
@@ -1819,7 +1978,7 @@ pills.forEach((pill, i) => {
     e.preventDefault();
     const target = document.getElementById(spokes[i]);
     if (target) {
-      const offset = 140;
+      const offset = 116;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
