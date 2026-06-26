@@ -1277,6 +1277,20 @@ body {
 }
 .bdgsownv2-footer ul li a:hover,
 .bdgsownv2-footer ul li button.bdgsownv2-footer-link:hover { color: var(--bdgs-coral); }
+.bdgsownv2-footer ul li.bdgsownv2-footer-gap-start { margin-top: 18px; }
+.bdgsownv2-footer ul li.bdgsownv2-footer-emph a,
+.bdgsownv2-footer ul li.bdgsownv2-footer-emph button.bdgsownv2-footer-link {
+  font-weight: 600;
+  color: rgba(255,255,255,0.62);
+}
+.bdgsownv2-footer ul li.bdgsownv2-footer-divider {
+  margin: 14px 0 10px;
+  padding: 0;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  pointer-events: none;
+}
 .bdgsownv2-footer-bottom {
   margin-top: 48px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.08);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
@@ -1726,10 +1740,11 @@ body.bdgs-mob-noscroll {
               <p class="bdgsownv2-dropdown-col-heading">Services</p>
               <div class="bdgsownv2-dropdown-grid">
             <a href="/setup" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Setup &amp; Launch</div><div class="bdgsownv2-dropdown-item-desc">Concierge directory launch. Business-first approach.</div></a>
-            <a href="/hire-developer" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Dedicated Developers</div><div class="bdgsownv2-dropdown-item-desc">AI-savvy directory devs. Long-term. Your permanent team.</div></a>
+            <a href="/hire-developer" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Hire a Developer</div><div class="bdgsownv2-dropdown-item-desc">AI-savvy directory devs. Long-term permanent team.</div></a>
+            <a href="/customization" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Custom Projects</div><div class="bdgsownv2-dropdown-item-desc">One-off scoped builds. Integrations and widgets.</div></a>
             <a href="/maintenance" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Maintenance Plans</div><div class="bdgsownv2-dropdown-item-desc">Ongoing support, backups, updates, optimization.</div></a>
             <a href="/consultation" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Consultation</div><div class="bdgsownv2-dropdown-item-desc">Talk to Yakin's team. 18+ years directory expertise.</div></a>
-            <a href="/growth-plans" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Growth Plans</div><div class="bdgsownv2-dropdown-item-desc">Co-founder level strategy + dev + AI. Apply to join.</div></a>
+            <a href="/founders-track" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Founder's Track</div><div class="bdgsownv2-dropdown-item-desc">Co-founder level strategy + dev + AI. Apply to join.</div></a>
               </div>
             </div>
             <div class="bdgsownv2-dropdown-mega-divider" aria-hidden="true"></div>
@@ -2455,48 +2470,60 @@ Chatbots. Agents. Smart search.<br>
         <h4>Services</h4>
         <ul>
           <li><a href="/setup">Setup &amp; Launch</a></li>
-          <li><a href="/solutions">Solutions (Done-For-You)</a></li>
-          <li><a href="/hire-developer">Dedicated Developers</a></li>
+          <li><a href="/hire-developer">Hire a Developer</a></li>
+          <li><a href="/customization">Custom Projects</a></li>
           <li><a href="/maintenance">Maintenance Plans</a></li>
           <li><a href="/consultation">Consultation</a></li>
-          <li><a href="/growth-plans">Growth Plan (Apply)</a></li>
-          <li><a href="/zoom-clinics" style="color:var(--bdgs-coral)">Free Zoom Clinics 🟢</a></li>
+          <li><a href="/founders-track">Founder's Track</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <h4>Grow with AI</h4>
         <ul>
-          <li><a href="/ai-development">AI-Powered Development</a></li>
-          <li><a href="/ai-dev-fleet">AI Dev Fleet</a></li>
+          <li><a href="/ai-development">AI Development</a></li>
           <li><a href="/ai-for-your-site">AI for Your Directory</a></li>
+          <li><a href="/ai-dev-fleet">AI Dev Fleet</a></li>
           <li><a href="/bd-automation">Directory Automation</a></li>
           <li><a href="/seo-growth">SEO &amp; Growth</a></li>
+          <li class="bdgsownv2-footer-gap-start bdgsownv2-footer-emph"><a href="/tools">Tools &amp; Themes</a></li>
+          <li><a href="/tools/brilliantchat">BrilliantChat</a></li>
+          <li><a href="/themes">Directory Themes (6)</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
-        <h4>Resources</h4>
+        <h4>Solutions</h4>
         <ul>
-          <li><a href="/tools">Tools &amp; Themes</a></li>
-          <li><a href="/solutions">Solutions (61+ done-for-you)</a></li>
-          <li><a href="/themes">Directory Themes (6)</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/blabs-review" id="bdgs-footer-reviews-link">Client Reviews</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/webinars">CEO Webinars</a></li>
+          <li><a href="/solutions?category=seo">SEO &amp; Schema</a></li>
+          <li><a href="/solutions?category=lead-gen">Lead Gen &amp; Conversion</a></li>
+          <li><a href="/solutions?category=member-profile">Member Profiles</a></li>
+          <li><a href="/solutions?category=search">Search &amp; Discovery</a></li>
+          <li><a href="/solutions?category=design">Page Design &amp; Development</a></li>
+          <li><a href="/solutions?category=content">Content &amp; Engagement</a></li>
+          <li><a href="/solutions?category=integrations">Integrations</a></li>
+          <li><a href="/solutions/member-management">Member Management &amp; Automation</a></li>
+          <li class="bdgsownv2-footer-gap-start bdgsownv2-footer-emph"><a href="/solutions">Browse All Solutions (61+) &rarr;</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <h4>Get Started</h4>
         <ul>
-          <li><a href="https://wa.me/917799285123">WhatsApp Chat</a></li>
+          <li><a href="/zoom-clinics" style="color:var(--bdgs-coral)">Free Zoom Clinics 🟢</a></li>
           <li><a href="/consultation">Book a Consultation</a></li>
           <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal(); return false;">Contact Us</button></li>
+          <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal(); return false;">Get Started &rarr;</button></li>
+          <li class="bdgsownv2-footer-divider" aria-hidden="true"></li>
           <li><a href="/login">Login</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/partner-program">Partner Program</a></li>
+          <li><a href="/webinars">CEO Webinars</a></li>
+          <li><a href="/blabs-review" id="bdgs-footer-reviews-link">Client Reviews (169+)</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/case-studies">Case Studies</a></li>
         </ul>
       </div>
     </div>
     <div class="bdgsownv2-footer-bottom">
-      <p>&copy; 2026 BD Growth Suite by BusinessLabs. All rights reserved. &nbsp;|&nbsp; <a href="/terms" style="color:rgba(255,255,255,0.4)">Terms</a> &nbsp;|&nbsp; <a href="/privacy" style="color:rgba(255,255,255,0.4)">Privacy</a></p>
+      <p>&copy; 2026 BD Growth Suite by BusinessLabs &nbsp;&middot;&nbsp; <a href="/terms" style="color:rgba(255,255,255,0.4)">Terms</a> &nbsp;&middot;&nbsp; <a href="/privacy" style="color:rgba(255,255,255,0.4)">Privacy</a> &nbsp;&middot;&nbsp; <a href="/license" style="color:rgba(255,255,255,0.4)">License</a></p>
       <div class="bdgsownv2-footer-badges">
         <span class="bdgsownv2-footer-badge">🏅 Gold Certified Brilliant Directories Partner</span>
         <span class="bdgsownv2-footer-badge">🤖 Claude / Anthropic Partner</span>
@@ -2908,10 +2935,7 @@ function bdgsCloseInquiryModal() {
   document.getElementById('bdgsInquiryModal').classList.remove('active');
   document.body.style.overflow = '';
 }
-// Close modal on overlay click
-document.getElementById('bdgsZoomModal').addEventListener('click', function(e) {
-  if (e.target === this) bdgsCloseZoomModal();
-});
+// Close inquiry modal on overlay click (zoom modal: close button / Escape only)
 document.getElementById('bdgsInquiryModal').addEventListener('click', function(e) {
   if (e.target === this) bdgsCloseInquiryModal();
 });
@@ -3318,7 +3342,7 @@ setTimeout(bdgsSyncCardHeights, 2000);
   var KEY = '3d5ca826459ec3a3b47675f7ea0a0cd3';
   var bdgsownv2Track = document.getElementById('bdgsownv2-track');
   var bdgsownv2ProgressFill = document.querySelector('.bdgsownv2-progress-fill');
-  var BDGSOWNV2_INTERVAL_MS = 12000;
+  var BDGSOWNV2_INTERVAL_MS = 9000;
   var bdgsownv2Timer = null;
   var bdgsownv2Paused = false;
   var bdgsownv2CurrentIndex = Math.floor(50 / 2);
@@ -3694,10 +3718,11 @@ document.addEventListener('click', function(e) {
         <div class="bdgs-mob-section">
           <p class="bdgs-mob-section-heading">Services</p>
           <a href="/setup" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Setup &amp; Launch</span><span class="bdgs-mob-subitem-desc">Concierge directory launch. Business-first approach.</span></a>
-          <a href="/hire-developer" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Dedicated Developers</span><span class="bdgs-mob-subitem-desc">AI-savvy directory devs. Long-term. Your permanent team.</span></a>
+          <a href="/hire-developer" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Hire a Developer</span><span class="bdgs-mob-subitem-desc">AI-savvy directory devs. Long-term permanent team.</span></a>
+          <a href="/customization" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Custom Projects</span><span class="bdgs-mob-subitem-desc">One-off scoped builds. Integrations and widgets.</span></a>
           <a href="/maintenance" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Maintenance Plans</span><span class="bdgs-mob-subitem-desc">Ongoing support, backups, updates, optimization.</span></a>
           <a href="/consultation" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Consultation</span><span class="bdgs-mob-subitem-desc">Talk to Yakin's team. 18+ years directory expertise.</span></a>
-          <a href="/growth-plans" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Growth Plans</span><span class="bdgs-mob-subitem-desc">Co-founder level strategy + dev + AI. Apply to join.</span></a>
+          <a href="/founders-track" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Founder's Track</span><span class="bdgs-mob-subitem-desc">Co-founder level strategy + dev + AI. Apply to join.</span></a>
         </div>
         <div class="bdgs-mob-divider"></div>
         <div class="bdgs-mob-section">
