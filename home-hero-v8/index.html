@@ -1,29 +1,17 @@
-<!--
-  ⚠️ PRODUCTION NOTE (v8 Draft — 2026-06-24)
-  ============================================
-  This is a GitHub Pages draft preview. All inter-page links currently point to:
-    https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/
-  Before deploying to production, replace ALL GitHub Pages URLs with the
-  production domain URLs (e.g. services-v1.html → /services or the live path).
-  Files in this draft:
-    - index-v1.html   (this file — homepage)
-    - services-v1.html (services page)
-    - reviews-v1.html  (reviews page)
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brilliant Directories Developers—BD Growth Suite (v8 draft)</title>
+<title>Brilliant Directories Developers—BD Growth Suite (home-hero-v7 draft)</title>
 <meta name="description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
 <!-- Google largely ignores meta keywords; client requested for legacy/other engines. -->
 <meta name="keywords" content="brilliant directories developers, business directories developers, dedicated bd developer, bd automation, brilliant directories, directory website expert, BD Growth Suite, BusinessLabs, BusinessLabs HQ, directory software, Brilliant Directories customization">
-<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Brilliant Directories Developers—BD Growth Suite automation">
 <meta property="og:description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
-<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
 <meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Brilliant Directories Developers—BD Growth Suite automation">
@@ -484,7 +472,7 @@ body {
 /* ============================================
    RAZORPAY-STYLE STACKING SERVICES SECTION
    ============================================ */
-.bdgsownv2-services-stack { padding: 70px 0 56px; background: var(--bdgs-bg); }
+.bdgsownv2-services-stack { padding: 70px 0 36px; background: var(--bdgs-bg); }
 .bdgsownv2-services-stack h2 {
   font-size: 34px; font-weight: 700; text-align: center;
   margin-bottom: 12px; letter-spacing: -0.5px; color: var(--bdgs-dark);
@@ -496,8 +484,9 @@ body {
 /* Tabs strip */
 .bdgsownv2-stack-tabs {
   display: flex; justify-content: center; gap: 4px; flex-wrap: wrap;
-  margin-bottom: 32px; position: sticky; top: 68px; z-index: 50;
+  margin-bottom: 32px; position: sticky; top: 68px; z-index: 100;
   background: var(--bdgs-bg); padding: 12px 0;
+  pointer-events: auto;
 }
 .bdgsownv2-stack-tabs::-webkit-scrollbar { display: none; }
 .bdgsownv2-stack-tabs { -ms-overflow-style: none; scrollbar-width: none; }
@@ -513,20 +502,22 @@ body {
   background: var(--bdgs-coral-light); text-decoration: none;
 }
 /* Razorpay-style stack: sticky on direct children of .bdgsownv2-stack-cards (viewport scrollport). Min-height + margin-bottom supply scroll runway; consecutive `top` deltas set how much of the card behind peeks above the front layer. */
-/* Runway after last card: enough to unstick without uncapped vh dead zone on tall screens */
-.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; padding-bottom: clamp(400px, 40vh, 500px); }
+/* Runway after last card: keep card 6 margin on the inverse stagger; trim only container padding */
+.bdgsownv2-stack-cards { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; padding-bottom: clamp(140px, 14vh, 200px); }
 .bdgsownv2-stack-cards > .bdgsownv2-stack-card {
   background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
   border-radius: 16px; padding: 28px 36px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.06);
   position: sticky;
-  margin-bottom: var(--base-mb, clamp(48px, 11vh, 140px));
+  margin-bottom: clamp(48px, 11vh, 140px);
   transform-origin: top center;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
 .bdgsownv2-stack-cards > .bdgsownv2-stack-card:last-child { /* Removed margin-bottom: 0 to maintain consistent sticky unstacking */ }
 @media (min-width: 992px) {
   .bdgsownv2-stack-cards > .bdgsownv2-stack-card { min-height: clamp(320px, 44vh, 540px); }
+  /* Last card: content-driven height so tab jump does not show a tall empty shell */
+  .bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(6) { min-height: 0; }
 }
 /* z-index: later cards stack ON TOP of earlier ones. Tighter 42px offsets for 50% title reveal. */
 /* To prevent cards from overtaking each other when unsticking at the bottom of the container, 
@@ -565,6 +556,8 @@ body {
   position: absolute; top: 0; left: 0; width: 4px; height: 100%;
   border-radius: 16px 0 0 16px;
 }
+.bdgsownv2-stack-card-index { display: none; }
+.bdgsownv2-stack-card-head { display: contents; }
 
 /* Tier sub-cards inside Setup stacking card */
 .bdgsownv2-tier-grid {
@@ -666,10 +659,6 @@ body {
   background: #16A34A; color: #fff;
 }
 .bdgsownv2-tier-cta button.free-cta:hover { background: #15803D; }
-@media (max-width: 768px) {
-  .bdgsownv2-tier-grid { grid-template-columns: 1fr; }
-  .bdgsownv2-services-stack { padding: 50px 16px 40px; }
-}
 .bdgsownv2-clinic-time {
   margin: 12px 0 14px;
   font-size: 12px;
@@ -1277,6 +1266,20 @@ body {
 }
 .bdgsownv2-footer ul li a:hover,
 .bdgsownv2-footer ul li button.bdgsownv2-footer-link:hover { color: var(--bdgs-coral); }
+.bdgsownv2-footer ul li.bdgsownv2-footer-gap-start { margin-top: 18px; }
+.bdgsownv2-footer ul li.bdgsownv2-footer-emph a,
+.bdgsownv2-footer ul li.bdgsownv2-footer-emph button.bdgsownv2-footer-link {
+  font-weight: 600;
+  color: rgba(255,255,255,0.62);
+}
+.bdgsownv2-footer ul li.bdgsownv2-footer-divider {
+  margin: 14px 0 10px;
+  padding: 0;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  pointer-events: none;
+}
 .bdgsownv2-footer-bottom {
   margin-top: 48px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.08);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
@@ -1621,11 +1624,128 @@ body.bdgs-mob-noscroll {
 @media (max-width: 991px) {
   h1, h2 { font-size: 28px !important; }
   .bdgsownv2-stat-grid { grid-template-columns: repeat(2, 1fr); }
-  .bdgsownv2-stack-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding: 12px 16px; }
+
+  /* Mobile chapter panels — #svc stacking services */
+  .bdgsownv2-stack-tabs { display: none; }
+  .bdgsownv2-stack-cards { padding-bottom: 0; }
   .bdgsownv2-stack-cards > .bdgsownv2-stack-card {
-    position: relative !important; top: auto !important; z-index: auto !important;
-    min-height: 0 !important; margin-bottom: 20px !important; scroll-margin-top: 100px;
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+    min-height: 0 !important;
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+    border: 1px solid var(--bdgs-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none;
+    background: var(--bdgs-white);
+    transition: all 0.25s;
+    scroll-margin-top: 80px;
   }
+  .bdgsownv2-stack-card-head {
+    display: block;
+    position: relative;
+    padding: 18px 24px 20px;
+    background: linear-gradient(135deg, var(--bdgs-coral-dark) 0%, var(--bdgs-purple-dark) 100%);
+  }
+  .bdgsownv2-stack-card-head::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .bdgsownv2-stack-card-accent {
+    position: relative !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 11px !important;
+    background: none !important;
+    z-index: 1;
+  }
+  .bdgsownv2-stack-card-index {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .bdgsownv2-stack-card-index::before {
+    content: '';
+    width: 2px;
+    height: 10px;
+    background: rgba(255,255,255,0.78);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .bdgsownv2-stack-card-index .cur {
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+  }
+  .bdgsownv2-stack-card-index .tot {
+    color: rgba(255,255,255,0.46);
+    font-weight: 500;
+  }
+  .bdgsownv2-stack-card-title {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+  }
+  .bdgsownv2-stack-card-desc {
+    padding: 18px 24px 0;
+    font-size: 14px;
+  }
+  .bdgsownv2-stack-card-features {
+    padding: 12px 24px 0;
+  }
+  .bdgsownv2-stack-card-cta {
+    padding: 16px 24px 28px;
+  }
+  .bdgsownv2-stack-cards > .bdgsownv2-stack-card > div:not([class]) {
+    margin: 14px 24px 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--bdgs-border);
+    font-size: 12px;
+    color: var(--bdgs-text-muted);
+    text-align: center;
+  }
+  .bdgsownv2-tier-grid {
+    display: flex !important;
+    flex-direction: column;
+    grid-template-columns: unset !important;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    gap: 12px;
+    padding: 16px 24px 28px;
+    margin-top: 0;
+  }
+  .bdgsownv2-tier-grid > .bdgsownv2-tier-card {
+    flex: none;
+    min-width: 0;
+    padding: 16px 14px;
+  }
+  .bdgsownv2-tier-title { font-size: 14px; }
+  .bdgsownv2-tier-price { font-size: 16px; margin-bottom: 4px; }
+  .bdgsownv2-tier-desc { font-size: 11px; margin-bottom: 8px; }
+  .bdgsownv2-tier-features li { font-size: 11px; padding: 2px 0 2px 14px; }
+  .bdgsownv2-tier-cta a, .bdgsownv2-tier-cta button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
   .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn a {
     display: flex;
     justify-content: center;
@@ -1714,22 +1834,23 @@ body.bdgs-mob-noscroll {
      ============================================ -->
 <header class="bdgsownv2-header" id="bdgsHeader">
   <nav class="bdgsownv2-nav">
-    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html" class="bdgsownv2-logo">
+    <a href="/" class="bdgsownv2-logo">
       <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
     </a>
     <ul class="bdgsownv2-nav-links">
       <li class="bdgsownv2-nav-item bdgsownv2-nav-item-mega">
-        <a class="bdgsownv2-nav-link" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a class="bdgsownv2-nav-link" href="services.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
           <div class="bdgsownv2-dropdown-mega-layout">
             <div class="bdgsownv2-dropdown-mega-services">
               <p class="bdgsownv2-dropdown-col-heading">Services</p>
               <div class="bdgsownv2-dropdown-grid">
             <a href="/setup" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Setup &amp; Launch</div><div class="bdgsownv2-dropdown-item-desc">Concierge directory launch. Business-first approach.</div></a>
-            <a href="/hire-developer" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Dedicated Developers</div><div class="bdgsownv2-dropdown-item-desc">AI-savvy directory devs. Long-term. Your permanent team.</div></a>
+            <a href="/hire-developer" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Hire a Developer</div><div class="bdgsownv2-dropdown-item-desc">AI-savvy directory devs. Long-term permanent team.</div></a>
+            <a href="/customization" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Custom Projects</div><div class="bdgsownv2-dropdown-item-desc">One-off scoped builds. Integrations and widgets.</div></a>
             <a href="/maintenance" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Maintenance Plans</div><div class="bdgsownv2-dropdown-item-desc">Ongoing support, backups, updates, optimization.</div></a>
             <a href="/consultation" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Consultation</div><div class="bdgsownv2-dropdown-item-desc">Talk to Yakin's team. 18+ years directory expertise.</div></a>
-            <a href="/growth-plans" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Growth Plans</div><div class="bdgsownv2-dropdown-item-desc">Co-founder level strategy + dev + AI. Apply to join.</div></a>
+            <a href="/founders-track" class="bdgsownv2-dropdown-item"><div class="bdgsownv2-dropdown-item-title">Founder's Track</div><div class="bdgsownv2-dropdown-item-desc">Co-founder level strategy + dev + AI. Apply to join.</div></a>
               </div>
             </div>
             <div class="bdgsownv2-dropdown-mega-divider" aria-hidden="true"></div>
@@ -1818,7 +1939,7 @@ body.bdgs-mob-noscroll {
       </div>
     </div>
     <div class="bdgsownv2-hero-ctas">
-      <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html" class="bdgsownv2-btn-primary">Explore Services</a>
+      <a href="services.html" class="bdgsownv2-btn-primary">Explore Services</a>
       <button type="button" class="bdgsownv2-btn-secondary bdgsownv2-btn-zoom-cta" onclick="bdgsOpenZoomModal(); return false;">Join Free Zoom Clinic</button>
     </div>
   </div>
@@ -1836,7 +1957,7 @@ body.bdgs-mob-noscroll {
         <h2 style="font-size:34px;font-weight:700;color:var(--bdgs-dark);margin-bottom:16px;letter-spacing:-0.5px">Don't take our word for it.<br><span style="color:var(--bdgs-coral)">Hear from the source.</span></h2>
         <p style="font-size:16px;color:var(--bdgs-text-muted);line-height:1.65;margin-bottom:24px">Jason, CEO of Brilliant Directories, personally endorsed BD Growth Suite across 3 official webinars. When the platform's own CEO recommends a team — that says everything.</p>
         <div class="bdgsownv2-hero-ctas" style="justify-content:flex-start">
-          <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html" class="bdgsownv2-btn-primary">Explore Services</a>
+          <a href="services.html" class="bdgsownv2-btn-primary">Explore Services</a>
           <a href="/blabs-review" class="bdgsownv2-btn-secondary bdgsownv2-btn-light" id="bdgs-hero-reviews-btn">Read Reviews</a>
         </div>
       </div>
@@ -1877,7 +1998,7 @@ We take you from:<br>
           <div class="pain-answer">Our team handles the technical parts.<br>
           You handle the vision.<br>
           <strong>We handle everything else.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="#svc-dev">Get a dedicated developer →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="/hire-developer">Get a dedicated developer →</a></div>
         </div>
       </div>
       <div class="col-md-4">
@@ -1895,7 +2016,7 @@ Every dev on your account trained under that playbook.<br>
           <div class="pain-quote">"I don't want to explain my business to every new dev."</div>
           <div class="pain-answer">Hire a dedicated Brilliant Directories developer who knows your codebase, your vision, your niche.<br>
 <strong>One team. Forever.</strong></div>
-          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="#svc-dev">Hire for the long term →</a></div>
+          <div class="pain-cta bdgsownv2-pain-cta--btn bdgsownv2-pain-cta--shine"><a href="/hire-developer">Hire for the long term →</a></div>
         </div>
       </div>
       <div class="col-md-4">
@@ -2138,8 +2259,10 @@ Chatbots. Agents. Smart search.<br>
     <div class="bdgsownv2-stack-cards">
 
       <div class="bdgsownv2-stack-card" id="svc-setup">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="01" style="background:var(--bdgs-coral)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">01</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Launch Your Brilliant Directories Site</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Budget-tight? Ready to launch fast? Aiming for a million-dollar directory? There's a path for you.</div>
 
         <div class="bdgsownv2-tier-grid">
@@ -2197,8 +2320,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-dev">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-purple)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="02" style="background:var(--bdgs-purple)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">02</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Dedicated Developers</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Your directory is a technology business. Get a developer who knows your codebase, your vision, your niche — permanently. AI-savvy. Brilliant Directories-native.</div>
 
         <div class="bdgsownv2-tier-grid">
@@ -2256,8 +2381,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-ai">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-purple)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="03" style="background:var(--bdgs-purple)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">03</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">AI Development</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">We don't just use AI — we build it for your directory. Chatbots, AI agents, smart search, automated follow-ups, content generation, custom AI employees, and bd automation where it removes real busywork. The only directory team that's a Claude / Anthropic service partner.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>AI chatbots</span>
@@ -2269,8 +2396,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-solutions">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="04" style="background:var(--bdgs-coral)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">04</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Solutions (Done-For-You)</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Pre-defined services where our team implements specific outcomes on your directory. Custom homepage design, schema markup, SEO audits, lead gen widgets, profile customizations — each with expert execution and warranty. Not plugins. We do the work.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>Homepage design</span>
@@ -2283,8 +2412,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-tools">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="05" style="background:var(--bdgs-coral)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">05</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Tools &amp; Themes</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Productized software and design assets you install or subscribe to—built by brilliant directories developers who still ship weekly on the platform. BrilliantChat (our AI chatbot), 6 premium industry-specific themes, and a growing list of AI-powered tools coming under our automation suite. Self-serve or have us set them up.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>BrilliantChat AI</span>
@@ -2297,8 +2428,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-founders-track">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-gradient)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="06" style="background:var(--bdgs-gradient)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">06</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Founder's Track — Apply to Join</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Co-founder level strategy from Yakin Shah + dedicated Brilliant Directories developer + AI dev fleet access + SEO (technical + content + on-page) + everything—execution from business directories developers who understand how directories actually monetize. This isn't a service — it's a partnership. By application only.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>Yakin's strategy hours</span>
@@ -2455,48 +2588,60 @@ Chatbots. Agents. Smart search.<br>
         <h4>Services</h4>
         <ul>
           <li><a href="/setup">Setup &amp; Launch</a></li>
-          <li><a href="/solutions">Solutions (Done-For-You)</a></li>
-          <li><a href="/hire-developer">Dedicated Developers</a></li>
+          <li><a href="/hire-developer">Hire a Developer</a></li>
+          <li><a href="/customization">Custom Projects</a></li>
           <li><a href="/maintenance">Maintenance Plans</a></li>
           <li><a href="/consultation">Consultation</a></li>
-          <li><a href="/growth-plans">Growth Plan (Apply)</a></li>
-          <li><a href="/zoom-clinics" style="color:var(--bdgs-coral)">Free Zoom Clinics 🟢</a></li>
+          <li><a href="/founders-track">Founder's Track</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <h4>Grow with AI</h4>
         <ul>
-          <li><a href="/ai-development">AI-Powered Development</a></li>
-          <li><a href="/ai-dev-fleet">AI Dev Fleet</a></li>
+          <li><a href="/ai-development">AI Development</a></li>
           <li><a href="/ai-for-your-site">AI for Your Directory</a></li>
+          <li><a href="/ai-dev-fleet">AI Dev Fleet</a></li>
           <li><a href="/bd-automation">Directory Automation</a></li>
           <li><a href="/seo-growth">SEO &amp; Growth</a></li>
+          <li class="bdgsownv2-footer-gap-start bdgsownv2-footer-emph"><a href="/tools">Tools &amp; Themes</a></li>
+          <li><a href="/tools/brilliantchat">BrilliantChat</a></li>
+          <li><a href="/themes">Directory Themes (6)</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
-        <h4>Resources</h4>
+        <h4>Solutions</h4>
         <ul>
-          <li><a href="/tools">Tools &amp; Themes</a></li>
-          <li><a href="/solutions">Solutions (61+ done-for-you)</a></li>
-          <li><a href="/themes">Directory Themes (6)</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/blabs-review" id="bdgs-footer-reviews-link">Client Reviews</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/webinars">CEO Webinars</a></li>
+          <li><a href="/solutions?category=seo">SEO &amp; Schema</a></li>
+          <li><a href="/solutions?category=lead-gen">Lead Gen &amp; Conversion</a></li>
+          <li><a href="/solutions?category=member-profile">Member Profiles</a></li>
+          <li><a href="/solutions?category=search">Search &amp; Discovery</a></li>
+          <li><a href="/solutions?category=design">Page Design &amp; Development</a></li>
+          <li><a href="/solutions?category=content">Content &amp; Engagement</a></li>
+          <li><a href="/solutions?category=integrations">Integrations</a></li>
+          <li><a href="/solutions/member-management">Member Management &amp; Automation</a></li>
+          <li class="bdgsownv2-footer-gap-start bdgsownv2-footer-emph"><a href="/solutions">Browse All Solutions (61+) &rarr;</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <h4>Get Started</h4>
         <ul>
-          <li><a href="https://wa.me/917799285123">WhatsApp Chat</a></li>
+          <li><a href="/zoom-clinics" style="color:var(--bdgs-coral)">Free Zoom Clinics 🟢</a></li>
           <li><a href="/consultation">Book a Consultation</a></li>
           <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal(); return false;">Contact Us</button></li>
+          <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal(); return false;">Get Started &rarr;</button></li>
+          <li class="bdgsownv2-footer-divider" aria-hidden="true"></li>
           <li><a href="/login">Login</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/partner-program">Partner Program</a></li>
+          <li><a href="/webinars">CEO Webinars</a></li>
+          <li><a href="/blabs-review" id="bdgs-footer-reviews-link">Client Reviews (169+)</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/case-studies">Case Studies</a></li>
         </ul>
       </div>
     </div>
     <div class="bdgsownv2-footer-bottom">
-      <p>&copy; 2026 BD Growth Suite by BusinessLabs. All rights reserved. &nbsp;|&nbsp; <a href="/terms" style="color:rgba(255,255,255,0.4)">Terms</a> &nbsp;|&nbsp; <a href="/privacy" style="color:rgba(255,255,255,0.4)">Privacy</a></p>
+      <p>&copy; 2026 BD Growth Suite by BusinessLabs &nbsp;&middot;&nbsp; <a href="/terms" style="color:rgba(255,255,255,0.4)">Terms</a> &nbsp;&middot;&nbsp; <a href="/privacy" style="color:rgba(255,255,255,0.4)">Privacy</a> &nbsp;&middot;&nbsp; <a href="/license" style="color:rgba(255,255,255,0.4)">License</a></p>
       <div class="bdgsownv2-footer-badges">
         <span class="bdgsownv2-footer-badge">🏅 Gold Certified Brilliant Directories Partner</span>
         <span class="bdgsownv2-footer-badge">🤖 Claude / Anthropic Partner</span>
@@ -2908,10 +3053,7 @@ function bdgsCloseInquiryModal() {
   document.getElementById('bdgsInquiryModal').classList.remove('active');
   document.body.style.overflow = '';
 }
-// Close modal on overlay click
-document.getElementById('bdgsZoomModal').addEventListener('click', function(e) {
-  if (e.target === this) bdgsCloseZoomModal();
-});
+// Close inquiry modal on overlay click (zoom modal: close button / Escape only)
 document.getElementById('bdgsInquiryModal').addEventListener('click', function(e) {
   if (e.target === this) bdgsCloseInquiryModal();
 });
@@ -3004,8 +3146,49 @@ var bdgsTabs = document.querySelectorAll('.bdgsownv2-stack-tab');
 var bdgsStackCards = document.querySelectorAll('.bdgsownv2-stack-card');
 var bdgsStackSectionEl = document.querySelector('.bdgsownv2-services-stack');
 
+/** Must stay in sync with `.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(n){ top: … }` */
+var bdgsStackStickyTopsPx = [140, 182, 224, 266, 308, 350];
+var bdgsStackScrollTargetsPx = [];
+var bdgsStackTabScrolling = false;
+
 function bdgsStackScrollOffsetPx() {
   return window.matchMedia('(min-width: 992px)').matches ? 168 : 112;
+}
+
+function bdgsDocTopFromViewport(el) {
+  var rect = el.getBoundingClientRect();
+  return rect.top + window.scrollY;
+}
+
+/** Flow-layout scroll targets (sticky getBoundingClientRect lies while stacked). */
+function bdgsCacheStackScrollTargets() {
+  if (!bdgsStackCards.length) return;
+  var stackDesktop = window.matchMedia('(min-width: 992px)').matches;
+  var container = document.querySelector('.bdgsownv2-stack-cards');
+  if (!container) return;
+
+  var saved = [];
+  var i;
+  for (i = 0; i < bdgsStackCards.length; i++) {
+    saved.push({
+      position: bdgsStackCards[i].style.position,
+      transform: bdgsStackCards[i].style.transform
+    });
+    bdgsStackCards[i].style.position = 'static';
+    bdgsStackCards[i].style.transform = 'none';
+  }
+
+  var containerDoc = container.getBoundingClientRect().top + window.scrollY;
+  bdgsStackScrollTargetsPx = [];
+  for (i = 0; i < bdgsStackCards.length; i++) {
+    var rail = stackDesktop ? bdgsStackStickyTopsPx[i] : bdgsStackScrollOffsetPx();
+    bdgsStackScrollTargetsPx[i] = Math.max(0, containerDoc + bdgsStackCards[i].offsetTop - rail);
+  }
+
+  for (i = 0; i < bdgsStackCards.length; i++) {
+    bdgsStackCards[i].style.position = saved[i].position;
+    bdgsStackCards[i].style.transform = saved[i].transform;
+  }
 }
 
 // 1. Tab click → smooth scroll to card + immediate active
@@ -3014,47 +3197,27 @@ bdgsTabs.forEach(function(tab) {
     e.preventDefault();
     var targetId = this.getAttribute('href').replace('#', '');
     var target = document.getElementById(targetId);
-    if (target) {
-      // Temporarily unstick and un-transform to get the true document Y position
-      var oldPos = target.style.position;
-      var oldTransform = target.style.transform;
-      target.style.position = 'static';
-      target.style.transform = 'none';
-      
-      var targetUnstuckTop = target.getBoundingClientRect().top + window.scrollY;
-      
-      target.style.position = oldPos;
-      target.style.transform = oldTransform;
-      
-      var idx = Array.prototype.indexOf.call(bdgsStackCards, target);
-      var offset = bdgsStackScrollOffsetPx();
-      
-      // On desktop, scroll exactly to the sticky rail offset
-      if (idx >= 0 && window.matchMedia('(min-width: 992px)').matches) {
-        offset = bdgsStackStickyTopsPx[idx];
-      }
-      
-      var top = targetUnstuckTop - offset;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-      
-      if (idx >= 0) {
-        bdgsTabs.forEach(function(t, i) {
-          t.classList.toggle('active', i === idx);
-        });
-      }
-    }
+    if (!target) return;
+    var idx = Array.prototype.indexOf.call(bdgsStackCards, target);
+    if (idx < 0) return;
+
+    if (!bdgsStackScrollTargetsPx.length) bdgsCacheStackScrollTargets();
+    var top = bdgsStackScrollTargetsPx[idx];
+    if (top == null) return;
+
+    bdgsStackTabScrolling = true;
+    bdgsTabs.forEach(function(t, i) {
+      t.classList.toggle('active', i === idx);
+    });
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    window.setTimeout(function() {
+      bdgsStackTabScrolling = false;
+      bdgsUpdateActiveTab();
+    }, 900);
   });
 });
 
 // 2. Auto-activate tab — see bdgsUpdateActiveTab() comment (desktop stack rail + fallbacks).
-
-/** Must stay in sync with `.bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(n){ top: … }` */
-var bdgsStackStickyTopsPx = [140, 182, 224, 266, 308, 350];
-
-function bdgsDocTopFromViewport(el) {
-  var rect = el.getBoundingClientRect();
-  return rect.top + window.scrollY;
-}
 
 /**
  * Desktop stack: several cards can be sticky at their CSS `top` at once (each layer has its own rail).
@@ -3072,6 +3235,7 @@ function bdgsDocTopFromViewport(el) {
  *    so the strip does not snap backward to Setup.
  */
 function bdgsUpdateActiveTab() {
+  if (bdgsStackTabScrolling) return;
   var activeIndex = 0;
   var stackDesktop = window.matchMedia('(min-width: 992px)').matches;
   var n = bdgsStackCards.length;
@@ -3156,6 +3320,21 @@ window.addEventListener('resize', bdgsScheduleActiveTab);
 // Initial state
 bdgsUpdateActiveTab();
 
+// Mobile: IntersectionObserver for active card tracking (tabs hidden; keeps state for anchor jumps)
+if (window.matchMedia('(max-width: 991px)').matches && bdgsStackCards.length) {
+  var mobileObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+        var idx = Array.prototype.indexOf.call(bdgsStackCards, entry.target);
+        bdgsTabs.forEach(function(t, i) {
+          t.classList.toggle('active', i === idx);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  bdgsStackCards.forEach(function(card) { mobileObserver.observe(card); });
+}
+
 // Smooth scroll for Explore Services links to perfectly align with the first card
 var svcLinks = document.querySelectorAll('a[href="#svc"]');
 svcLinks.forEach(function(link) {
@@ -3172,6 +3351,7 @@ svcLinks.forEach(function(link) {
 function bdgsSyncCardHeights() {
   if (!window.matchMedia('(min-width: 992px)').matches) {
     bdgsStackCards.forEach(function(c) { c.style.height = ''; });
+    bdgsCacheStackScrollTargets();
     return;
   }
   var maxH = 0;
@@ -3188,13 +3368,20 @@ function bdgsSyncCardHeights() {
   bdgsStackCards.forEach(function(c) {
     c.style.height = maxH + 'px';
   });
+  bdgsCacheStackScrollTargets();
 }
 window.addEventListener('resize', bdgsSyncCardHeights);
-window.addEventListener('load', bdgsSyncCardHeights);
-// Run aggressively during page load to catch font wrapping changes
-setTimeout(bdgsSyncCardHeights, 50);
-setTimeout(bdgsSyncCardHeights, 500);
-setTimeout(bdgsSyncCardHeights, 2000);
+window.addEventListener('load', function() {
+  bdgsSyncCardHeights();
+  bdgsCacheStackScrollTargets();
+  bdgsUpdateActiveTab();
+});
+// Run aggressively during page load to catch font wrapping changes (desktop only)
+if (window.matchMedia('(min-width: 992px)').matches) {
+  setTimeout(bdgsSyncCardHeights, 50);
+  setTimeout(bdgsSyncCardHeights, 500);
+  setTimeout(bdgsSyncCardHeights, 2000);
+}
 
 // Zoom Clinics — 6:30–7:30 PM Asia/Kolkata (Tue/Thu anchor) → visitor local window
 (function bdgsRenderZoomClinicsLocalTime() {
@@ -3318,7 +3505,7 @@ setTimeout(bdgsSyncCardHeights, 2000);
   var KEY = '3d5ca826459ec3a3b47675f7ea0a0cd3';
   var bdgsownv2Track = document.getElementById('bdgsownv2-track');
   var bdgsownv2ProgressFill = document.querySelector('.bdgsownv2-progress-fill');
-  var BDGSOWNV2_INTERVAL_MS = 12000;
+  var BDGSOWNV2_INTERVAL_MS = 9000;
   var bdgsownv2Timer = null;
   var bdgsownv2Paused = false;
   var bdgsownv2CurrentIndex = Math.floor(50 / 2);
@@ -3647,7 +3834,7 @@ document.addEventListener('click', function(e) {
 
 <div class="bdgs-mob-overlay" id="bdgsMobOverlay" aria-hidden="true">
   <div class="bdgs-mob-header">
-    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html" class="bdgsownv2-logo">
+    <a href="/" class="bdgsownv2-logo">
       <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite" height="32">
     </a>
     <button type="button" class="bdgs-mob-close" id="bdgsMobCloseBtn" aria-label="Close menu">
@@ -3694,10 +3881,11 @@ document.addEventListener('click', function(e) {
         <div class="bdgs-mob-section">
           <p class="bdgs-mob-section-heading">Services</p>
           <a href="/setup" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Setup &amp; Launch</span><span class="bdgs-mob-subitem-desc">Concierge directory launch. Business-first approach.</span></a>
-          <a href="/hire-developer" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Dedicated Developers</span><span class="bdgs-mob-subitem-desc">AI-savvy directory devs. Long-term. Your permanent team.</span></a>
+          <a href="/hire-developer" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Hire a Developer</span><span class="bdgs-mob-subitem-desc">AI-savvy directory devs. Long-term permanent team.</span></a>
+          <a href="/customization" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Custom Projects</span><span class="bdgs-mob-subitem-desc">One-off scoped builds. Integrations and widgets.</span></a>
           <a href="/maintenance" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Maintenance Plans</span><span class="bdgs-mob-subitem-desc">Ongoing support, backups, updates, optimization.</span></a>
           <a href="/consultation" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Consultation</span><span class="bdgs-mob-subitem-desc">Talk to Yakin's team. 18+ years directory expertise.</span></a>
-          <a href="/growth-plans" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Growth Plans</span><span class="bdgs-mob-subitem-desc">Co-founder level strategy + dev + AI. Apply to join.</span></a>
+          <a href="/founders-track" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Founder's Track</span><span class="bdgs-mob-subitem-desc">Co-founder level strategy + dev + AI. Apply to join.</span></a>
         </div>
         <div class="bdgs-mob-divider"></div>
         <div class="bdgs-mob-section">
