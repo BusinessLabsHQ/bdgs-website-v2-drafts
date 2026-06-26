@@ -577,83 +577,6 @@ select:focus-visible {
   text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
 }
 .bdgsownv2-stack-card-cta a:hover { text-decoration: underline; }
-
-/* Sub-item grids inside stack cards (cards 03–06) */
-.bdgs-scard-grid {
-  display: grid;
-  gap: 14px;
-  margin: 20px 0 22px;
-}
-.bdgs-scard-grid--2 { grid-template-columns: repeat(2, 1fr); }
-.bdgs-scard-grid--3 { grid-template-columns: repeat(3, 1fr); }
-.bdgs-scard-grid--4 { grid-template-columns: repeat(4, 1fr); }
-
-.bdgs-scard-item {
-  background: var(--bdgs-bg);
-  border: 1px solid var(--bdgs-border);
-  border-radius: 12px;
-  padding: 18px 16px;
-  transition: all 0.2s;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  color: inherit;
-  position: relative;
-}
-.bdgs-scard-item:hover {
-  border-color: var(--bdgs-coral);
-  box-shadow: 0 4px 16px rgba(231,77,86,0.08);
-  transform: translateY(-2px);
-  text-decoration: none;
-  color: inherit;
-}
-.bdgs-scard-item.featured {
-  background: var(--bdgs-gradient-subtle);
-  border-color: var(--bdgs-coral);
-}
-.bdgs-scard-item.dark {
-  background: var(--bdgs-dark);
-  border-color: var(--bdgs-purple);
-}
-
-.bdgs-scard-item-eyebrow {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--bdgs-coral);
-  margin-bottom: 5px;
-}
-.bdgs-scard-item.purple-accent .bdgs-scard-item-eyebrow { color: var(--bdgs-purple); }
-.bdgs-scard-item.dark .bdgs-scard-item-eyebrow { color: rgba(255,255,255,0.5); }
-
-.bdgs-scard-item-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--bdgs-dark);
-  margin: 0 0 5px;
-  line-height: 1.25;
-}
-.bdgs-scard-item.dark .bdgs-scard-item-title { color: #fff; }
-
-.bdgs-scard-item-desc {
-  font-size: 12px;
-  color: var(--bdgs-text-muted);
-  line-height: 1.45;
-  margin: 0;
-  flex: 1;
-}
-.bdgs-scard-item.dark .bdgs-scard-item-desc { color: rgba(255,255,255,0.55); }
-
-.bdgs-scard-item-arrow {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--bdgs-coral);
-  margin-top: 12px;
-  display: block;
-}
-.bdgs-scard-item.dark .bdgs-scard-item-arrow { color: rgba(255,255,255,0.65); }
-
 .bdgsownv2-stack-card-accent {
   position: absolute; top: 0; left: 0; width: 4px; height: 100%;
   border-radius: 16px 0 0 16px;
@@ -1919,22 +1842,6 @@ body.bdgs-mob-noscroll {
     padding: 10px 16px;
     margin: 0;
   }
-
-  /* Sub-item grids — mobile (≤991px): 4-col→2-col, 3-col→2-col */
-  .bdgs-scard-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px;
-    padding: 0 24px;
-    margin: 14px 0 0;
-  }
-  .bdgs-scard-item { padding: 14px 13px; }
-  .bdgs-scard-item-title { font-size: 13px; }
-  .bdgs-scard-item-desc { font-size: 11px; }
-  .bdgs-scard-item-arrow { font-size: 11px; margin-top: 8px; }
-}
-
-@media (max-width: 480px) {
-  .bdgs-scard-grid { grid-template-columns: 1fr !important; }
 }
 
 /* Skeleton Loading Shimmer Styles */
@@ -2568,43 +2475,11 @@ Chatbots. Agents. Smart search.<br>
         <div class="bdgsownv2-stack-card-title">AI Development</div>
         </div>
         <div class="bdgsownv2-stack-card-desc">We don't just use AI — we build it for your directory. Chatbots, AI agents, smart search, automated follow-ups, content generation, custom AI employees, and bd automation where it removes real busywork. The only directory team that's a Claude / Anthropic service partner.</div>
-        <div class="bdgs-scard-grid bdgs-scard-grid--3">
-          <a href="/ai-development" class="bdgs-scard-item featured">
-            <div class="bdgs-scard-item-eyebrow">Development</div>
-            <div class="bdgs-scard-item-title">AI-Powered Development</div>
-            <div class="bdgs-scard-item-desc">Faster execution. Savings passed directly to you.</div>
-            <span class="bdgs-scard-item-arrow">Explore →</span>
-          </a>
-          <a href="/ai-dev-fleet" class="bdgs-scard-item purple-accent">
-            <div class="bdgs-scard-item-eyebrow">Scale</div>
-            <div class="bdgs-scard-item-title">AI Dev Fleet</div>
-            <div class="bdgs-scard-item-desc">A team of AI works for you. Pay for one developer.</div>
-            <span class="bdgs-scard-item-arrow">Explore →</span>
-          </a>
-          <a href="/ai-for-your-site" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Your Site</div>
-            <div class="bdgs-scard-item-title">AI for Your Directory</div>
-            <div class="bdgs-scard-item-desc">Chatbots, agents, smart search — on your site.</div>
-            <span class="bdgs-scard-item-arrow">Explore →</span>
-          </a>
-          <a href="/bd-automation" class="bdgs-scard-item purple-accent">
-            <div class="bdgs-scard-item-eyebrow">Automation</div>
-            <div class="bdgs-scard-item-title">Directory Automation</div>
-            <div class="bdgs-scard-item-desc">Follow-ups, lead gen, content AI, member engagement.</div>
-            <span class="bdgs-scard-item-arrow">Explore →</span>
-          </a>
-          <a href="/growth-plans" class="bdgs-scard-item dark">
-            <div class="bdgs-scard-item-eyebrow">Apply Only</div>
-            <div class="bdgs-scard-item-title">Growth Plans</div>
-            <div class="bdgs-scard-item-desc">AI-powered strategy. Apply to join.</div>
-            <span class="bdgs-scard-item-arrow">Apply →</span>
-          </a>
-          <a href="/seo-growth" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">SEO</div>
-            <div class="bdgs-scard-item-title">SEO &amp; Growth</div>
-            <div class="bdgs-scard-item-desc">Audits, schema, traffic strategy — directory-specific.</div>
-            <span class="bdgs-scard-item-arrow">Explore →</span>
-          </a>
+        <div class="bdgsownv2-stack-card-features">
+          <span>AI chatbots</span>
+          <span>Smart search</span>
+          <span>Content AI</span>
+          <span>AI agent fleet</span>
         </div>
         <div class="bdgsownv2-stack-card-cta"><a href="/grow-with-ai">Grow with AI →</a></div>
       </div>
@@ -2615,55 +2490,12 @@ Chatbots. Agents. Smart search.<br>
         <div class="bdgsownv2-stack-card-title">Solutions (Done-For-You)</div>
         </div>
         <div class="bdgsownv2-stack-card-desc">Pre-defined services where our team implements specific outcomes on your directory. Custom homepage design, schema markup, SEO audits, lead gen widgets, profile customizations — each with expert execution and warranty. Not plugins. We do the work.</div>
-        <div class="bdgs-scard-grid bdgs-scard-grid--4">
-          <a href="/solutions?category=seo" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">SEO</div>
-            <div class="bdgs-scard-item-title">SEO &amp; Schema</div>
-            <div class="bdgs-scard-item-desc">Advanced markup &amp; technical SEO. Rank higher.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions?category=lead-gen" class="bdgs-scard-item featured">
-            <div class="bdgs-scard-item-eyebrow">Growth</div>
-            <div class="bdgs-scard-item-title">Lead Gen &amp; Conversion</div>
-            <div class="bdgs-scard-item-desc">Capture more leads. Turn visitors into members.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions?category=member-profile" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Members</div>
-            <div class="bdgs-scard-item-title">Member Profile Enhancement</div>
-            <div class="bdgs-scard-item-desc">Custom profile layouts. Make members stand out.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions?category=search" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Discovery</div>
-            <div class="bdgs-scard-item-title">Search &amp; Discovery</div>
-            <div class="bdgs-scard-item-desc">Optimized search flows. Help users find what they need.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions?category=design" class="bdgs-scard-item featured">
-            <div class="bdgs-scard-item-eyebrow">Design</div>
-            <div class="bdgs-scard-item-title">Page Design &amp; Dev</div>
-            <div class="bdgs-scard-item-desc">Stunning layouts. Built for modern directories.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions?category=content" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Content</div>
-            <div class="bdgs-scard-item-title">Content &amp; Engagement</div>
-            <div class="bdgs-scard-item-desc">Keep audiences hooked. Automated content strategies.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions?category=integrations" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Integrations</div>
-            <div class="bdgs-scard-item-title">Integrations</div>
-            <div class="bdgs-scard-item-desc">Connect your favorite tools. Seamless API integrations.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
-          <a href="/solutions/member-management" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Operations</div>
-            <div class="bdgs-scard-item-title">Member Management</div>
-            <div class="bdgs-scard-item-desc">Approval workflows, dashboards, member control.</div>
-            <span class="bdgs-scard-item-arrow">View →</span>
-          </a>
+        <div class="bdgsownv2-stack-card-features">
+          <span>Homepage design</span>
+          <span>Schema implementation</span>
+          <span>SEO audits</span>
+          <span>Profile customizations</span>
+          <span>1-year warranty</span>
         </div>
         <div class="bdgsownv2-stack-card-cta"><a href="/solutions">Browse all solutions →</a></div>
       </div>
@@ -2674,31 +2506,12 @@ Chatbots. Agents. Smart search.<br>
         <div class="bdgsownv2-stack-card-title">Tools &amp; Themes</div>
         </div>
         <div class="bdgsownv2-stack-card-desc">Productized software and design assets you install or subscribe to—built by brilliant directories developers who still ship weekly on the platform. BrilliantChat (our AI chatbot), 6 premium industry-specific themes, and a growing list of AI-powered tools coming under our automation suite. Self-serve or have us set them up.</div>
-        <div class="bdgs-scard-grid bdgs-scard-grid--2">
-          <a href="/tools" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Browse All</div>
-            <div class="bdgs-scard-item-title">All Tools &amp; Themes</div>
-            <div class="bdgs-scard-item-desc">Productized software, AI tools, and premium themes for your directory.</div>
-            <span class="bdgs-scard-item-arrow">Browse →</span>
-          </a>
-          <a href="/tools/brilliantchat" class="bdgs-scard-item featured">
-            <div class="bdgs-scard-item-eyebrow">AI Chatbot</div>
-            <div class="bdgs-scard-item-title">BrilliantChat</div>
-            <div class="bdgs-scard-item-desc">AI chatbot built for directory sites. Answers member questions 24/7.</div>
-            <span class="bdgs-scard-item-arrow">See BrilliantChat →</span>
-          </a>
-          <a href="/tools?category=seo" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">SEO Tools</div>
-            <div class="bdgs-scard-item-title">SEO Solutions</div>
-            <div class="bdgs-scard-item-desc">Schema markup, speed audits, on-page fixes — ready to install.</div>
-            <span class="bdgs-scard-item-arrow">Browse →</span>
-          </a>
-          <a href="/tools?category=conversion" class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Conversion</div>
-            <div class="bdgs-scard-item-title">Conversion Boosters</div>
-            <div class="bdgs-scard-item-desc">Lead gen widgets, CTAs, and member signup flows that convert.</div>
-            <span class="bdgs-scard-item-arrow">Browse →</span>
-          </a>
+        <div class="bdgsownv2-stack-card-features">
+          <span>BrilliantChat AI</span>
+          <span>6 premium themes</span>
+          <span>AI follow-ups</span>
+          <span>Lead gen tools</span>
+          <span>More coming</span>
         </div>
         <div class="bdgsownv2-stack-card-cta"><a href="/tools">Browse tools &amp; themes →</a></div>
       </div>
@@ -2709,38 +2522,12 @@ Chatbots. Agents. Smart search.<br>
         <div class="bdgsownv2-stack-card-title">Founder's Track — Apply to Join</div>
         </div>
         <div class="bdgsownv2-stack-card-desc">Co-founder level strategy from Yakin Shah + dedicated Brilliant Directories developer + AI dev fleet access + SEO (technical + content + on-page) + everything—execution from business directories developers who understand how directories actually monetize. This isn't a service — it's a partnership. By application only.</div>
-        <div class="bdgs-scard-grid bdgs-scard-grid--2">
-          <div class="bdgs-scard-item featured">
-            <div class="bdgs-scard-item-eyebrow">Strategy</div>
-            <div class="bdgs-scard-item-title">Yakin's Strategy Sessions</div>
-            <div class="bdgs-scard-item-desc">Co-founder level thinking on your directory's vision and monetization.</div>
-          </div>
-          <div class="bdgs-scard-item featured">
-            <div class="bdgs-scard-item-eyebrow">Development</div>
-            <div class="bdgs-scard-item-title">Dedicated BD Developer</div>
-            <div class="bdgs-scard-item-desc">Full-time developer embedded in your business. Knows your codebase deeply.</div>
-          </div>
-          <div class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">AI Fleet</div>
-            <div class="bdgs-scard-item-title">AI Dev Fleet Access</div>
-            <div class="bdgs-scard-item-desc">A team of AI agents working on your directory in parallel.</div>
-          </div>
-          <div class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">SEO</div>
-            <div class="bdgs-scard-item-title">Full-Stack SEO</div>
-            <div class="bdgs-scard-item-desc">Technical, content, and on-page SEO — all executed for you.</div>
-          </div>
-          <div class="bdgs-scard-item">
-            <div class="bdgs-scard-item-eyebrow">Early Access</div>
-            <div class="bdgs-scard-item-title">Priority Roadmap Access</div>
-            <div class="bdgs-scard-item-desc">First access to new BDGS tools, automations, and beta features.</div>
-          </div>
-          <div class="bdgs-scard-item dark">
-            <div class="bdgs-scard-item-eyebrow">Invite Only</div>
-            <div class="bdgs-scard-item-title">Application Only</div>
-            <div class="bdgs-scard-item-desc">Limited seats. Screened for capital, vision, and commitment to grow.</div>
-            <span class="bdgs-scard-item-arrow">Apply →</span>
-          </div>
+        <div class="bdgsownv2-stack-card-features">
+          <span>Yakin's strategy hours</span>
+          <span>Dedicated dev</span>
+          <span>AI fleet access</span>
+          <span>Full SEO</span>
+          <span>Invite only</span>
         </div>
         <div class="bdgsownv2-stack-card-cta"><a href="/founders-track">Apply for Founder's Track →</a></div>
       </div>
