@@ -556,6 +556,8 @@ body {
   position: absolute; top: 0; left: 0; width: 4px; height: 100%;
   border-radius: 16px 0 0 16px;
 }
+.bdgsownv2-stack-card-index { display: none; }
+.bdgsownv2-stack-card-head { display: contents; }
 
 /* Tier sub-cards inside Setup stacking card */
 .bdgsownv2-tier-grid {
@@ -657,10 +659,6 @@ body {
   background: #16A34A; color: #fff;
 }
 .bdgsownv2-tier-cta button.free-cta:hover { background: #15803D; }
-@media (max-width: 768px) {
-  .bdgsownv2-tier-grid { grid-template-columns: 1fr; }
-  .bdgsownv2-services-stack { padding: 50px 16px 40px; }
-}
 .bdgsownv2-clinic-time {
   margin: 12px 0 14px;
   font-size: 12px;
@@ -1626,12 +1624,128 @@ body.bdgs-mob-noscroll {
 @media (max-width: 991px) {
   h1, h2 { font-size: 28px !important; }
   .bdgsownv2-stat-grid { grid-template-columns: repeat(2, 1fr); }
-  .bdgsownv2-stack-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding: 12px 16px; }
-  .bdgsownv2-stack-cards { padding-bottom: 16px; }
-    .bdgsownv2-stack-cards > .bdgsownv2-stack-card {
-      position: relative !important; top: auto !important; z-index: auto !important;
-      min-height: 0 !important; margin-bottom: 20px !important; scroll-margin-top: 100px;
-    }
+
+  /* Mobile chapter panels — #svc stacking services */
+  .bdgsownv2-stack-tabs { display: none; }
+  .bdgsownv2-stack-cards { padding-bottom: 0; }
+  .bdgsownv2-stack-cards > .bdgsownv2-stack-card {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+    min-height: 0 !important;
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+    border: 1px solid var(--bdgs-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none;
+    background: var(--bdgs-white);
+    transition: all 0.25s;
+    scroll-margin-top: 80px;
+  }
+  .bdgsownv2-stack-card-head {
+    display: block;
+    position: relative;
+    padding: 18px 24px 20px;
+    background: linear-gradient(135deg, var(--bdgs-coral-dark) 0%, var(--bdgs-purple-dark) 100%);
+  }
+  .bdgsownv2-stack-card-head::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .bdgsownv2-stack-card-accent {
+    position: relative !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 11px !important;
+    background: none !important;
+    z-index: 1;
+  }
+  .bdgsownv2-stack-card-index {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .bdgsownv2-stack-card-index::before {
+    content: '';
+    width: 2px;
+    height: 10px;
+    background: rgba(255,255,255,0.78);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .bdgsownv2-stack-card-index .cur {
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+  }
+  .bdgsownv2-stack-card-index .tot {
+    color: rgba(255,255,255,0.46);
+    font-weight: 500;
+  }
+  .bdgsownv2-stack-card-title {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+  }
+  .bdgsownv2-stack-card-desc {
+    padding: 18px 24px 0;
+    font-size: 14px;
+  }
+  .bdgsownv2-stack-card-features {
+    padding: 12px 24px 0;
+  }
+  .bdgsownv2-stack-card-cta {
+    padding: 16px 24px 28px;
+  }
+  .bdgsownv2-stack-cards > .bdgsownv2-stack-card > div:not([class]) {
+    margin: 14px 24px 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--bdgs-border);
+    font-size: 12px;
+    color: var(--bdgs-text-muted);
+    text-align: center;
+  }
+  .bdgsownv2-tier-grid {
+    display: flex !important;
+    flex-direction: column;
+    grid-template-columns: unset !important;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    gap: 12px;
+    padding: 16px 24px 28px;
+    margin-top: 0;
+  }
+  .bdgsownv2-tier-grid > .bdgsownv2-tier-card {
+    flex: none;
+    min-width: 0;
+    padding: 16px 14px;
+  }
+  .bdgsownv2-tier-title { font-size: 14px; }
+  .bdgsownv2-tier-price { font-size: 16px; margin-bottom: 4px; }
+  .bdgsownv2-tier-desc { font-size: 11px; margin-bottom: 8px; }
+  .bdgsownv2-tier-features li { font-size: 11px; padding: 2px 0 2px 14px; }
+  .bdgsownv2-tier-cta a, .bdgsownv2-tier-cta button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
   .bdgsownv2-pain-card .pain-cta.bdgsownv2-pain-cta--btn a {
     display: flex;
     justify-content: center;
@@ -2145,8 +2259,10 @@ Chatbots. Agents. Smart search.<br>
     <div class="bdgsownv2-stack-cards">
 
       <div class="bdgsownv2-stack-card" id="svc-setup">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="01" style="background:var(--bdgs-coral)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">01</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Launch Your Brilliant Directories Site</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Budget-tight? Ready to launch fast? Aiming for a million-dollar directory? There's a path for you.</div>
 
         <div class="bdgsownv2-tier-grid">
@@ -2204,8 +2320,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-dev">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-purple)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="02" style="background:var(--bdgs-purple)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">02</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Dedicated Developers</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Your directory is a technology business. Get a developer who knows your codebase, your vision, your niche — permanently. AI-savvy. Brilliant Directories-native.</div>
 
         <div class="bdgsownv2-tier-grid">
@@ -2263,8 +2381,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-ai">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-purple)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="03" style="background:var(--bdgs-purple)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">03</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">AI Development</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">We don't just use AI — we build it for your directory. Chatbots, AI agents, smart search, automated follow-ups, content generation, custom AI employees, and bd automation where it removes real busywork. The only directory team that's a Claude / Anthropic service partner.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>AI chatbots</span>
@@ -2276,8 +2396,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-solutions">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="04" style="background:var(--bdgs-coral)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">04</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Solutions (Done-For-You)</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Pre-defined services where our team implements specific outcomes on your directory. Custom homepage design, schema markup, SEO audits, lead gen widgets, profile customizations — each with expert execution and warranty. Not plugins. We do the work.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>Homepage design</span>
@@ -2290,8 +2412,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-tools">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-coral)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="05" style="background:var(--bdgs-coral)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">05</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Tools &amp; Themes</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Productized software and design assets you install or subscribe to—built by brilliant directories developers who still ship weekly on the platform. BrilliantChat (our AI chatbot), 6 premium industry-specific themes, and a growing list of AI-powered tools coming under our automation suite. Self-serve or have us set them up.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>BrilliantChat AI</span>
@@ -2304,8 +2428,10 @@ Chatbots. Agents. Smart search.<br>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-founders-track">
-        <div class="bdgsownv2-stack-card-accent" style="background:var(--bdgs-gradient)"></div>
+        <div class="bdgsownv2-stack-card-head">
+        <div class="bdgsownv2-stack-card-accent" data-index="06" style="background:var(--bdgs-gradient)"><span class="bdgsownv2-stack-card-index" aria-hidden="true"><span class="cur">06</span><span class="tot"> / 06</span></span></div>
         <div class="bdgsownv2-stack-card-title">Founder's Track — Apply to Join</div>
+        </div>
         <div class="bdgsownv2-stack-card-desc">Co-founder level strategy from Yakin Shah + dedicated Brilliant Directories developer + AI dev fleet access + SEO (technical + content + on-page) + everything—execution from business directories developers who understand how directories actually monetize. This isn't a service — it's a partnership. By application only.</div>
         <div class="bdgsownv2-stack-card-features">
           <span>Yakin's strategy hours</span>
@@ -3194,6 +3320,21 @@ window.addEventListener('resize', bdgsScheduleActiveTab);
 // Initial state
 bdgsUpdateActiveTab();
 
+// Mobile: IntersectionObserver for active card tracking (tabs hidden; keeps state for anchor jumps)
+if (window.matchMedia('(max-width: 991px)').matches && bdgsStackCards.length) {
+  var mobileObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+        var idx = Array.prototype.indexOf.call(bdgsStackCards, entry.target);
+        bdgsTabs.forEach(function(t, i) {
+          t.classList.toggle('active', i === idx);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  bdgsStackCards.forEach(function(card) { mobileObserver.observe(card); });
+}
+
 // Smooth scroll for Explore Services links to perfectly align with the first card
 var svcLinks = document.querySelectorAll('a[href="#svc"]');
 svcLinks.forEach(function(link) {
@@ -3235,10 +3376,12 @@ window.addEventListener('load', function() {
   bdgsCacheStackScrollTargets();
   bdgsUpdateActiveTab();
 });
-// Run aggressively during page load to catch font wrapping changes
-setTimeout(bdgsSyncCardHeights, 50);
-setTimeout(bdgsSyncCardHeights, 500);
-setTimeout(bdgsSyncCardHeights, 2000);
+// Run aggressively during page load to catch font wrapping changes (desktop only)
+if (window.matchMedia('(min-width: 992px)').matches) {
+  setTimeout(bdgsSyncCardHeights, 50);
+  setTimeout(bdgsSyncCardHeights, 500);
+  setTimeout(bdgsSyncCardHeights, 2000);
+}
 
 // Zoom Clinics — 6:30–7:30 PM Asia/Kolkata (Tue/Thu anchor) → visitor local window
 (function bdgsRenderZoomClinicsLocalTime() {
