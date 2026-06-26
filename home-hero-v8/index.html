@@ -299,6 +299,17 @@ body {
 .bdgsownv2-btn-dark:hover { background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; }
 .bdgsownv2-btn-light { color: var(--bdgs-dark); border: 1px solid var(--bdgs-border); }
 .bdgsownv2-btn-light:hover { background: var(--bdgs-bg); color: var(--bdgs-dark); text-decoration: none; }
+/* New variant - matches the green pulse "Zoom Clinics" pill in nav */
+.bdgsownv2-btn-zoom-cta {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1.5px solid #22C55E;
+  color: #16A34A;
+  font-weight: 600;
+}
+.bdgsownv2-btn-zoom-cta:hover {
+  background: #22C55E;
+  color: #fff;
+}
 .bdgsownv2-grad-text { background: var(--bdgs-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .bdgsownv2-hero-visual {
   background: var(--bdgs-gradient-subtle); border-radius: 16px; min-height: 360px;
@@ -1808,7 +1819,7 @@ body.bdgs-mob-noscroll {
     </div>
     <div class="bdgsownv2-hero-ctas">
       <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html" class="bdgsownv2-btn-primary">Explore Services</a>
-      <button type="button" class="bdgsownv2-btn-secondary bdgsownv2-btn-light" onclick="bdgsOpenZoomModal(); return false;">Join Free Zoom Clinic</button>
+      <button type="button" class="bdgsownv2-btn-secondary bdgsownv2-btn-zoom-cta" onclick="bdgsOpenZoomModal(); return false;">Join Free Zoom Clinic</button>
     </div>
   </div>
 </section>
