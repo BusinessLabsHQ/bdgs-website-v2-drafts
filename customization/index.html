@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom Projects & Customizations for Brilliant Directories — BD Growth Suite</title>
+<meta name="description" content="Need a custom build for your Brilliant Directories site? From a small tweak to a full feature — our developers have shipped 1000+ custom projects across 500+ directories. Tell us what you need; we'll scope, quote, and ship it.">
+<meta name="keywords" content="brilliant directories customization, brilliant directories custom development, custom projects brilliant directories, brilliant directories developers custom builds, BD customization, BD custom feature">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/customization/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Custom Projects & Customizations for Brilliant Directories — BD Growth Suite">
+<meta property="og:description" content="Need a custom build for your Brilliant Directories site? Our developers have shipped 1000+ custom projects across 500+ directories.">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/customization/">
+<meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
+<link rel="icon" type="image/png" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
+<link rel="shortcut icon" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/favicon.png">
+<link rel="apple-touch-icon" href="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bdgs-coral: #E74D56;
+  --bdgs-coral-dark: #C93A44;
+  --bdgs-coral-light: #FDF0F0;
+  --bdgs-purple: #95256E;
+  --bdgs-purple-dark: #7A1D5A;
+  --bdgs-purple-light: #F8EDF5;
+  --bdgs-dark: #1A1A2E;
+  --bdgs-dark-mid: #2D2D44;
+  --bdgs-text: #2C2C3A;
+  --bdgs-text-muted: #6B6B80;
+  --bdgs-bg: #FAFAFA;
+  --bdgs-white: #FFFFFF;
+  --bdgs-border: #E8E8EE;
+  --bdgs-gradient: linear-gradient(135deg, #E74D56 0%, #95256E 100%);
+  --bdgs-gradient-subtle: linear-gradient(135deg, #FDF0F0 0%, #F8EDF5 100%);
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--bdgs-text); background: var(--bdgs-white); margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER NAV — reused from V7 (simplified for brevity) */
+.bdgsownv2-header {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--bdgs-white);
+  border-bottom: 1px solid var(--bdgs-border);
+  transition: box-shadow 0.3s;
+}
+.bdgsownv2-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+.bdgsownv2-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 68px; max-width: 1240px; margin: 0 auto;
+}
+.bdgsownv2-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; flex-shrink: 0; }
+.bdgsownv2-logo img { height: 36px; width: auto; display: block; }
+.bdgsownv2-nav-links { display: flex; align-items: center; gap: 2px; list-style: none; margin: 0; padding: 0; }
+.bdgsownv2-nav-item { position: relative; }
+.bdgsownv2-nav-link {
+  display: flex; align-items: center; gap: 4px;
+  padding: 8px 13px; font-size: 14px; font-weight: 500;
+  color: var(--bdgs-text); text-decoration: none !important; border-radius: 6px; transition: all 0.2s;
+  cursor: pointer; background: none; border: none;
+}
+.bdgsownv2-nav-link:hover { background: var(--bdgs-bg); color: var(--bdgs-coral); }
+.bdgsownv2-nav-zoom {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; font-size: 13px; font-weight: 600;
+  color: var(--bdgs-coral); background: var(--bdgs-coral-light);
+  border: 1px solid rgba(231,77,86,0.2); border-radius: 20px;
+  text-decoration: none; transition: all 0.2s;
+}
+.bdgsownv2-nav-zoom:hover { background: var(--bdgs-coral); color: #fff; }
+.bdgsownv2-nav-zoom .pulse {
+  width: 7px; height: 7px; background: #22C55E; border-radius: 50%;
+  display: inline-block; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+.bdgsownv2-cta-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 20px; font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  color: #fff; background: var(--bdgs-gradient);
+  border: none; border-radius: 8px; text-decoration: none;
+  transition: all 0.25s; margin-left: 6px; flex-shrink: 0;
+}
+.bdgsownv2-cta-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(231,77,86,0.3); color: #fff; }
+
+/* SHARED */
+.bdgsownv2-section { position: relative; }
+.bdgsownv2-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+.bdgsownv2-badge-coral { background: var(--bdgs-coral-light); border: 1px solid rgba(231,77,86,0.15); color: var(--bdgs-coral); }
+.bdgsownv2-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.bdgsownv2-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; font-size: 15px; font-weight: 600;
+  color: #fff; background: var(--bdgs-gradient);
+  border: none; border-radius: 10px; text-decoration: none; transition: all 0.25s;
+  cursor: pointer;
+}
+.bdgsownv2-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(231,77,86,0.35); color: #fff; }
+.bdgsownv2-btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; font-size: 15px; font-weight: 600;
+  background: transparent; border-radius: 10px; text-decoration: none; transition: all 0.25s;
+  cursor: pointer;
+}
+.bdgsownv2-btn-light { color: var(--bdgs-dark); border: 1px solid var(--bdgs-border); }
+.bdgsownv2-btn-light:hover { background: var(--bdgs-bg); color: var(--bdgs-dark); }
+
+/* HERO */
+.bdgsownv2-cust-hero {
+  background: var(--bdgs-gradient-subtle);
+  padding: 80px 0 90px; text-align: center;
+}
+.bdgsownv2-cust-hero h1 {
+  font-size: 44px; font-weight: 700; line-height: 1.15;
+  margin: 18px auto 18px; max-width: 820px; letter-spacing: -1px;
+  color: var(--bdgs-dark);
+}
+.bdgsownv2-cust-hero h1 span { color: var(--bdgs-coral); }
+.bdgsownv2-cust-hero p.lead {
+  font-size: 17px; color: var(--bdgs-text-muted);
+  max-width: 660px; margin: 0 auto 32px; line-height: 1.65;
+}
+
+/* CATEGORY CARDS */
+.bdgsownv2-cust-cats { padding: 70px 0 80px; background: var(--bdgs-white); }
+.bdgsownv2-cust-cats h2 {
+  font-size: 32px; font-weight: 700; text-align: center;
+  margin-bottom: 12px; color: var(--bdgs-dark); letter-spacing: -0.5px;
+}
+.bdgsownv2-cust-cats .sub {
+  text-align: center; font-size: 16px; color: var(--bdgs-text-muted);
+  margin-bottom: 40px; max-width: 580px; margin-left: auto; margin-right: auto;
+}
+.bdgsownv2-cat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  max-width: 1100px; margin: 0 auto;
+}
+.bdgsownv2-cat-card {
+  background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
+  border-radius: 14px; padding: 26px 24px; text-decoration: none;
+  transition: all 0.25s; display: flex; flex-direction: column;
+}
+.bdgsownv2-cat-card:hover {
+  border-color: var(--bdgs-coral); text-decoration: none;
+  box-shadow: 0 8px 28px rgba(231,77,86,0.1); transform: translateY(-3px);
+}
+.bdgsownv2-cat-icon { font-size: 28px; margin-bottom: 10px; }
+.bdgsownv2-cat-title { font-size: 17px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 6px; }
+.bdgsownv2-cat-desc { font-size: 13px; color: var(--bdgs-text-muted); line-height: 1.55; margin-bottom: 14px; flex: 1; }
+.bdgsownv2-cat-link { font-size: 13px; font-weight: 600; color: var(--bdgs-coral); }
+@media (max-width: 991px) { .bdgsownv2-cat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .bdgsownv2-cat-grid { grid-template-columns: 1fr; } }
+
+/* MID CTA STRIP */
+.bdgsownv2-mid-cta {
+  padding: 50px 0; background: var(--bdgs-dark); text-align: center; color: #fff;
+}
+.bdgsownv2-mid-cta h3 {
+  font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.bdgsownv2-mid-cta p { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 24px; }
+.bdgsownv2-btn-light-on-dark {
+  background: #fff; color: var(--bdgs-dark); border: none;
+}
+.bdgsownv2-btn-light-on-dark:hover { background: var(--bdgs-bg); color: var(--bdgs-dark); }
+
+/* HOW IT WORKS */
+.bdgsownv2-how { padding: 70px 0 80px; background: var(--bdgs-bg); }
+.bdgsownv2-how h2 {
+  font-size: 32px; font-weight: 700; text-align: center; color: var(--bdgs-dark);
+  margin-bottom: 40px; letter-spacing: -0.5px;
+}
+.bdgsownv2-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  max-width: 1100px; margin: 0 auto;
+}
+.bdgsownv2-step {
+  background: var(--bdgs-white); border: 1px solid var(--bdgs-border);
+  border-radius: 12px; padding: 24px 22px; text-align: center;
+}
+.bdgsownv2-step-num {
+  font-size: 28px; font-weight: 700;
+  background: var(--bdgs-gradient); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 8px; line-height: 1;
+}
+.bdgsownv2-step-title { font-size: 16px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 8px; }
+.bdgsownv2-step-desc { font-size: 13px; color: var(--bdgs-text-muted); line-height: 1.55; }
+@media (max-width: 991px) { .bdgsownv2-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .bdgsownv2-steps { grid-template-columns: 1fr; } }
+
+/* RECENT WORK */
+.bdgsownv2-work { padding: 70px 0 80px; background: var(--bdgs-white); }
+.bdgsownv2-work h2 {
+  font-size: 32px; font-weight: 700; text-align: center;
+  color: var(--bdgs-dark); margin-bottom: 36px; letter-spacing: -0.5px;
+}
+.bdgsownv2-work-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  max-width: 1100px; margin: 0 auto 28px;
+}
+.bdgsownv2-work-tile {
+  background: var(--bdgs-bg); border: 1px solid var(--bdgs-border);
+  border-radius: 12px; padding: 22px 20px;
+}
+.bdgsownv2-work-tile-label {
+  font-size: 11px; font-weight: 600; color: var(--bdgs-coral);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.bdgsownv2-work-tile-title { font-size: 16px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 6px; }
+.bdgsownv2-work-tile-desc { font-size: 13px; color: var(--bdgs-text-muted); line-height: 1.55; }
+.bdgsownv2-work-reviews-link {
+  text-align: center;
+}
+.bdgsownv2-work-reviews-link a {
+  font-size: 15px; font-weight: 600; color: var(--bdgs-coral); text-decoration: none;
+}
+.bdgsownv2-work-reviews-link a:hover { text-decoration: underline; }
+@media (max-width: 991px) { .bdgsownv2-work-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .bdgsownv2-work-grid { grid-template-columns: 1fr; } }
+
+/* CROSS-SELL */
+.bdgsownv2-crosssell {
+  padding: 60px 0 70px; background: var(--bdgs-gradient-subtle);
+  text-align: center;
+}
+.bdgsownv2-crosssell h2 {
+  font-size: 28px; font-weight: 700; color: var(--bdgs-dark);
+  margin-bottom: 14px; letter-spacing: -0.5px; max-width: 720px; margin-left: auto; margin-right: auto;
+}
+.bdgsownv2-crosssell p {
+  font-size: 16px; color: var(--bdgs-text-muted); line-height: 1.65;
+  max-width: 640px; margin: 0 auto 24px;
+}
+
+/* FAQ */
+.bdgsownv2-faq-section { padding: 72px 0 82px; background: var(--bdgs-white); }
+.bdgsownv2-faq-header { max-width: 680px; margin: 0 auto 38px; text-align: center; }
+.bdgsownv2-faq-header h2 {
+  font-size: 32px; font-weight: 700; color: var(--bdgs-dark);
+  margin: 0 0 10px; letter-spacing: -0.5px;
+}
+.bdgsownv2-faq-header p { font-size: 15px; color: var(--bdgs-text-muted); margin: 0; }
+.bdgsownv2-faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+.bdgsownv2-faq-item {
+  background: var(--bdgs-bg); border: 1px solid var(--bdgs-border);
+  border-radius: 12px; padding: 20px 22px;
+}
+.bdgsownv2-faq-item h3 { font-size: 15px; font-weight: 700; color: var(--bdgs-dark); margin: 0 0 8px; line-height: 1.35; }
+.bdgsownv2-faq-item p { font-size: 13px; color: var(--bdgs-text-muted); line-height: 1.6; margin: 0; }
+@media (max-width: 768px) { .bdgsownv2-faq-grid { grid-template-columns: 1fr; } }
+
+/* FINAL CTA */
+.bdgsownv2-final-cta {
+  background: var(--bdgs-gradient); padding: 60px 0; text-align: center;
+}
+.bdgsownv2-final-cta h2 {
+  color: #fff; font-size: 30px; font-weight: 700;
+  margin-bottom: 12px; letter-spacing: -0.5px;
+}
+.bdgsownv2-final-cta p {
+  color: rgba(255,255,255,0.8); font-size: 16px;
+  max-width: 540px; margin: 0 auto 26px; line-height: 1.6;
+}
+.bdgsownv2-final-cta .bdgsownv2-btn-primary {
+  background: #fff; color: var(--bdgs-coral); border: none;
+}
+.bdgsownv2-final-cta .bdgsownv2-btn-secondary {
+  color: #fff; border: 1px solid rgba(255,255,255,0.4);
+}
+.bdgsownv2-final-cta .bdgsownv2-btn-secondary:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+/* STICKY FLOATING CTA (desktop) */
+.bdgsownv2-floating-cta {
+  position: fixed; bottom: 20px; right: 20px; z-index: 900;
+  background: var(--bdgs-gradient); color: #fff;
+  padding: 12px 22px; border-radius: 30px; text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(231,77,86,0.4);
+  display: none; align-items: center; gap: 8px;
+  transition: all 0.25s; border: none; cursor: pointer;
+  font-family: inherit;
+}
+.bdgsownv2-floating-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(231,77,86,0.5); color: #fff; }
+.bdgsownv2-floating-cta.visible { display: inline-flex; }
+@media (max-width: 600px) {
+  .bdgsownv2-floating-cta { bottom: 12px; right: 12px; padding: 10px 18px; font-size: 13px; }
+}
+
+/* MODALS — reused from V7 */
+.bdgsownv2-modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6); z-index: 9999;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px; backdrop-filter: blur(4px);
+}
+.bdgsownv2-modal-overlay.active { display: flex; }
+.bdgsownv2-modal {
+  background: var(--bdgs-white); border-radius: 16px; max-width: 520px; width: 100%;
+  padding: 32px; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  max-height: 90vh; overflow-y: auto;
+}
+.bdgsownv2-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 8px; border: none;
+  background: var(--bdgs-bg); cursor: pointer; font-size: 18px;
+  color: var(--bdgs-text-muted); transition: all 0.2s;
+}
+.bdgsownv2-modal-close:hover { background: var(--bdgs-coral); color: #fff; }
+.bdgsownv2-modal h3 {
+  font-size: 22px; font-weight: 700; color: var(--bdgs-dark);
+  margin: 0 0 8px; letter-spacing: -0.5px;
+}
+.bdgsownv2-modal p { font-size: 14px; color: var(--bdgs-text-muted); line-height: 1.6; margin: 0 0 16px; }
+.bdgsownv2-modal-form { display: grid; gap: 12px; margin-top: 16px; }
+.bdgsownv2-modal-form input,
+.bdgsownv2-modal-form textarea,
+.bdgsownv2-modal-form select {
+  width: 100%; border: 1px solid var(--bdgs-border); border-radius: 9px;
+  padding: 11px 12px; font-size: 14px; color: var(--bdgs-text);
+  font-family: inherit; background: var(--bdgs-white);
+}
+.bdgsownv2-modal-form textarea { min-height: 92px; resize: vertical; }
+.bdgsownv2-modal-form input:focus,
+.bdgsownv2-modal-form textarea:focus,
+.bdgsownv2-modal-form select:focus {
+  outline: none; border-color: var(--bdgs-coral); box-shadow: 0 0 0 3px rgba(231,77,86,0.1);
+}
+.bdgsownv2-modal-note {
+  background: var(--bdgs-bg); border-left: 3px solid var(--bdgs-coral);
+  padding: 10px 12px; border-radius: 8px; font-size: 12px !important;
+}
+.bdgsownv2-modal-thanks { display: none; text-align: center; padding: 14px 0 4px; }
+.bdgsownv2-modal-thanks.active { display: block; }
+.bdgsownv2-modal-thanks .check {
+  width: 52px; height: 52px; border-radius: 50%; margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; background: #16A34A; font-size: 24px; font-weight: 700;
+}
+
+/* FOOTER (revised structure - 4 cols) */
+.bdgsownv2-footer { background: var(--bdgs-dark); color: rgba(255,255,255,0.7); padding: 60px 0 0; }
+.bdgsownv2-footer h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 16px; }
+.bdgsownv2-footer ul { list-style: none; padding: 0; margin: 0; }
+.bdgsownv2-footer ul li { margin-bottom: 8px; }
+.bdgsownv2-footer ul li a,
+.bdgsownv2-footer ul li button.bdgsownv2-footer-link {
+  color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.15s;
+  background: none; border: none; padding: 0; margin: 0; font: inherit; cursor: pointer; text-align: left;
+}
+.bdgsownv2-footer ul li a:hover,
+.bdgsownv2-footer ul li button.bdgsownv2-footer-link:hover { color: var(--bdgs-coral); }
+.bdgsownv2-footer-bottom {
+  margin-top: 48px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.bdgsownv2-footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); margin: 0; }
+.bdgsownv2-footer-badges { display: flex; gap: 16px; flex-wrap: wrap; }
+.bdgsownv2-footer-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: rgba(255,255,255,0.4);
+  padding: 4px 10px; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+}
+.bdgsownv2-footer-subgroup { margin-top: 18px; }
+
+@media (max-width: 991px) {
+  .bdgsownv2-nav-links { display: none; }
+  h1, h2 { font-size: 28px !important; }
+  .bdgsownv2-cust-hero { padding: 60px 0 70px; }
+  .bdgsownv2-cust-hero h1 { font-size: 32px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="bdgsownv2-header" id="bdgsHeader">
+  <nav class="bdgsownv2-nav">
+    <a href="../home-hero-v7/" class="bdgsownv2-logo">
+      <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
+    </a>
+    <ul class="bdgsownv2-nav-links">
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="../home-hero-v7/#services">Services</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/grow-with-ai">Grow with AI</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/hire-developer">Hire a Developer</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/tools">Tools</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-link" href="/themes">Themes</a></li>
+      <li class="bdgsownv2-nav-item"><a class="bdgsownv2-nav-zoom" href="/zoom-clinics"><span class="pulse"></span> Zoom Clinics</a></li>
+    </ul>
+    <button type="button" class="bdgsownv2-cta-btn" onclick="bdgsOpenInquiryModal()">Get Started →</button>
+  </nav>
+</header>
+
+<!-- SECTION 1: HERO -->
+<section class="bdgsownv2-section bdgsownv2-cust-hero">
+  <div class="container">
+    <span class="bdgsownv2-badge bdgsownv2-badge-coral">🏅 Gold-Certified Brilliant Directories Partner</span>
+    <h1>Custom Projects &amp; <span>Customizations</span> for Brilliant Directories</h1>
+    <p class="lead">From a small tweak to a full custom feature. Our Brilliant Directories developers have shipped 1000+ custom builds across 500+ directory sites. Tell us what you need — we'll scope, quote, and ship it.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <button type="button" onclick="bdgsOpenInquiryModal()" class="bdgsownv2-btn-primary">📅 Book a 30-min Discovery Call</button>
+      <button type="button" onclick="bdgsOpenInquiryModal()" class="bdgsownv2-btn-secondary bdgsownv2-btn-light">📝 Describe Your Project</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: CATEGORY CARDS -->
+<section class="bdgsownv2-section bdgsownv2-cust-cats">
+  <div class="container">
+    <h2>What kind of customization do you need?</h2>
+    <p class="sub">Browse by category — each links to detailed solution pages.</p>
+    <div class="bdgsownv2-cat-grid">
+      <a class="bdgsownv2-cat-card" href="/solutions/page-design">
+        <div class="bdgsownv2-cat-icon">📐</div>
+        <div class="bdgsownv2-cat-title">Page Design &amp; Development</div>
+        <div class="bdgsownv2-cat-desc">Homepages, landing pages, checkout flows, signup pages.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/seo">
+        <div class="bdgsownv2-cat-icon">🔍</div>
+        <div class="bdgsownv2-cat-title">SEO &amp; Schema</div>
+        <div class="bdgsownv2-cat-desc">Markup, audits, and traffic-driving structure built for Brilliant Directories.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/member-profiles">
+        <div class="bdgsownv2-cat-icon">👤</div>
+        <div class="bdgsownv2-cat-title">Member Profile Enhancement</div>
+        <div class="bdgsownv2-cat-desc">Custom profile layouts, member data display, profile schemas.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/search">
+        <div class="bdgsownv2-cat-icon">🔎</div>
+        <div class="bdgsownv2-cat-title">Search &amp; Discovery</div>
+        <div class="bdgsownv2-cat-desc">Custom filters, search flows, results page optimization.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/lead-gen">
+        <div class="bdgsownv2-cat-icon">🧲</div>
+        <div class="bdgsownv2-cat-title">Lead Gen &amp; Conversion</div>
+        <div class="bdgsownv2-cat-desc">CTAs, lead capture forms, conversion boosters that actually convert.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/integrations">
+        <div class="bdgsownv2-cat-icon">🔗</div>
+        <div class="bdgsownv2-cat-title">Integrations</div>
+        <div class="bdgsownv2-cat-desc">APIs, CRMs, email tools, payment systems — connected to your directory.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/content">
+        <div class="bdgsownv2-cat-icon">📝</div>
+        <div class="bdgsownv2-cat-title">Content &amp; Engagement</div>
+        <div class="bdgsownv2-cat-desc">FAQ, blog, related content, TOC builders, elevator pitches.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+      <a class="bdgsownv2-cat-card" href="/solutions/member-management">
+        <div class="bdgsownv2-cat-icon">⚙️</div>
+        <div class="bdgsownv2-cat-title">Member Management &amp; Automation</div>
+        <div class="bdgsownv2-cat-desc">Approval workflows, dashboards, automated member lifecycle.</div>
+        <div class="bdgsownv2-cat-link">Browse →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: MID CTA STRIP -->
+<section class="bdgsownv2-section bdgsownv2-mid-cta">
+  <div class="container">
+    <h3>Not sure which category? Or have something one-of-a-kind?</h3>
+    <p>Tell us what you're trying to build. We'll route it to the right team and quote you within 24 hours.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <button type="button" onclick="bdgsOpenInquiryModal()" class="bdgsownv2-btn-primary">📅 Book a 30-min Discovery Call</button>
+      <button type="button" onclick="bdgsOpenInquiryModal()" class="bdgsownv2-btn-secondary bdgsownv2-btn-light bdgsownv2-btn-light-on-dark">📝 Describe Your Project</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: HOW IT WORKS -->
+<section class="bdgsownv2-section bdgsownv2-how">
+  <div class="container">
+    <h2>How a custom project works with us</h2>
+    <div class="bdgsownv2-steps">
+      <div class="bdgsownv2-step">
+        <div class="bdgsownv2-step-num">1</div>
+        <div class="bdgsownv2-step-title">Discovery</div>
+        <div class="bdgsownv2-step-desc">You tell us the goal. 30-min free call — no slides, no sales.</div>
+      </div>
+      <div class="bdgsownv2-step">
+        <div class="bdgsownv2-step-num">2</div>
+        <div class="bdgsownv2-step-title">Scope</div>
+        <div class="bdgsownv2-step-desc">We send a written scope, timeline, and fixed quote.</div>
+      </div>
+      <div class="bdgsownv2-step">
+        <div class="bdgsownv2-step-num">3</div>
+        <div class="bdgsownv2-step-title">Build</div>
+        <div class="bdgsownv2-step-desc">Our Brilliant Directories developers ship it. You review and approve.</div>
+      </div>
+      <div class="bdgsownv2-step">
+        <div class="bdgsownv2-step-num">4</div>
+        <div class="bdgsownv2-step-title">Warranty</div>
+        <div class="bdgsownv2-step-desc">1-year warranty on every line of code we write. Bugs are on us.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: RECENT WORK -->
+<section class="bdgsownv2-section bdgsownv2-work">
+  <div class="container">
+    <h2>Recent custom projects we've shipped</h2>
+    <div class="bdgsownv2-work-grid">
+      <div class="bdgsownv2-work-tile">
+        <div class="bdgsownv2-work-tile-label">Page Design</div>
+        <div class="bdgsownv2-work-tile-title">Custom Homepage Rebuild</div>
+        <div class="bdgsownv2-work-tile-desc">From plain template to high-conversion landing — for a coaching directory targeting $100K MRR.</div>
+      </div>
+      <div class="bdgsownv2-work-tile">
+        <div class="bdgsownv2-work-tile-label">SEO &amp; Schema</div>
+        <div class="bdgsownv2-work-tile-title">Schema Implementation</div>
+        <div class="bdgsownv2-work-tile-desc">Member, listing, and homepage schema rebuilt — search visibility doubled in 90 days.</div>
+      </div>
+      <div class="bdgsownv2-work-tile">
+        <div class="bdgsownv2-work-tile-label">Member Management</div>
+        <div class="bdgsownv2-work-tile-title">Custom Member Dashboard</div>
+        <div class="bdgsownv2-work-tile-desc">Owner-facing dashboard built from scratch with analytics, billing, and onboarding flow.</div>
+      </div>
+      <div class="bdgsownv2-work-tile">
+        <div class="bdgsownv2-work-tile-label">Integrations</div>
+        <div class="bdgsownv2-work-tile-title">CRM + Email Sync</div>
+        <div class="bdgsownv2-work-tile-desc">Two-way sync between Brilliant Directories and HubSpot — leads, members, and renewals.</div>
+      </div>
+      <div class="bdgsownv2-work-tile">
+        <div class="bdgsownv2-work-tile-label">Search &amp; Discovery</div>
+        <div class="bdgsownv2-work-tile-title">Smart Filter System</div>
+        <div class="bdgsownv2-work-tile-desc">Industry-specific filters built for a niche directory — visitor → member conversion up 32%.</div>
+      </div>
+      <div class="bdgsownv2-work-tile">
+        <div class="bdgsownv2-work-tile-label">Lead Gen</div>
+        <div class="bdgsownv2-work-tile-title">High-Converting Signup Flow</div>
+        <div class="bdgsownv2-work-tile-desc">Multi-step signup with conditional logic — checkout completion rate jumped 41%.</div>
+      </div>
+    </div>
+    <div class="bdgsownv2-work-reviews-link">
+      <a href="/blabs-review">See all 169+ verified reviews →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CROSS-SELL TO HIRE A DEVELOPER -->
+<section class="bdgsownv2-section bdgsownv2-crosssell">
+  <div class="container">
+    <h2>Need ongoing development — not just one project?</h2>
+    <p>If you're going to need 5+ custom builds over the next year, hiring a Dedicated Brilliant Directories Developer is usually cheaper than scoping projects one by one. Plus they learn your codebase, vision, and niche — and ship ideas as you have them.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <a href="/hire-developer" class="bdgsownv2-btn-primary">Compare Hire a Developer vs One-Off Projects →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: FAQ -->
+<section class="bdgsownv2-section bdgsownv2-faq-section">
+  <div class="container">
+    <div class="bdgsownv2-faq-header">
+      <h2>Common questions about custom projects</h2>
+      <p>Real answers, no fluff.</p>
+    </div>
+    <div class="bdgsownv2-faq-grid">
+      <div class="bdgsownv2-faq-item">
+        <h3>How long does a typical custom project take?</h3>
+        <p>Most projects scope to 2–6 weeks once we have your inputs. Smaller fixes can ship in 3–7 days. Larger features (custom dashboards, integrations) can run 4–8 weeks depending on complexity.</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>Do you offer fixed quotes or hourly?</h3>
+        <p>Fixed quotes for scoped projects — you know the price before we start. Hourly only for ongoing dedicated developer engagements (separate offering).</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>What does your 1-year warranty cover?</h3>
+        <p>Anything we built breaks because of our code — we fix it free, no questions. Excludes changes to your underlying Brilliant Directories software version or other developer changes.</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>Can you work with our existing developer?</h3>
+        <p>Yes, often. We coordinate scope so we don't overlap. Your developer handles their lane; we handle ours. Status updates kept transparent across both.</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>Do you sign NDAs?</h3>
+        <p>Yes, standard mutual NDA available on request before discovery. We've signed hundreds across founders, agencies, and enterprise clients.</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>What if the project scope changes mid-build?</h3>
+        <p>We send a Change Request with a revised quote and timeline. You approve or scope back to original. No silent scope creep, no surprise invoices.</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>How do payments work?</h3>
+        <p>50% to start, 50% on delivery for most projects. Larger projects can be milestone-based (33/33/33). Payment via wire, Razorpay, or Stripe.</p>
+      </div>
+      <div class="bdgsownv2-faq-item">
+        <h3>Can you also help with strategy — not just execution?</h3>
+        <p>For project work, our team ships what you spec. If you want strategic input on the business itself, look at our <a href="/founders-track" style="color:var(--bdgs-coral)">Founder's Track</a> — apply-only partnership with Yakin Shah.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FINAL CTA -->
+<section class="bdgsownv2-section bdgsownv2-final-cta">
+  <div class="container">
+    <h2>Ready to scope your custom project?</h2>
+    <p>Two ways to start. Both go to the same team. Pick whichever's easier for you.</p>
+    <div class="bdgsownv2-hero-ctas" style="justify-content:center">
+      <button type="button" onclick="bdgsOpenInquiryModal()" class="bdgsownv2-btn-primary">📅 Book Discovery Call</button>
+      <button type="button" onclick="bdgsOpenInquiryModal()" class="bdgsownv2-btn-secondary">📝 Describe Project</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bdgsownv2-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/setup">Setup &amp; Launch</a></li>
+          <li><a href="/hire-developer">Hire a Developer</a></li>
+          <li><a href="/customization">Custom Projects</a></li>
+          <li><a href="/maintenance">Maintenance Plans</a></li>
+          <li><a href="/consultation">Consultation</a></li>
+          <li><a href="/founders-track">Founder's Track</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <h4>Grow with AI</h4>
+        <ul>
+          <li><a href="/ai-development">AI Development</a></li>
+          <li><a href="/ai-for-your-site">AI for Your Directory</a></li>
+          <li><a href="/ai-dev-fleet">AI Dev Fleet</a></li>
+          <li><a href="/bd-automation">Directory Automation</a></li>
+          <li><a href="/seo-growth">SEO &amp; Growth</a></li>
+        </ul>
+        <div class="bdgsownv2-footer-subgroup">
+          <ul>
+            <li><a href="/tools">Tools &amp; Themes</a></li>
+            <li><a href="/tools/brilliantchat">BrilliantChat</a></li>
+            <li><a href="/themes">Directory Themes (6)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="/solutions/seo">SEO &amp; Schema</a></li>
+          <li><a href="/solutions/lead-gen">Lead Gen &amp; Conversion</a></li>
+          <li><a href="/solutions/member-profiles">Member Profiles</a></li>
+          <li><a href="/solutions/search">Search &amp; Discovery</a></li>
+          <li><a href="/solutions/page-design">Page Design &amp; Development</a></li>
+          <li><a href="/solutions/content">Content &amp; Engagement</a></li>
+          <li><a href="/solutions/integrations">Integrations</a></li>
+          <li><a href="/solutions/member-management">Member Management</a></li>
+        </ul>
+        <div class="bdgsownv2-footer-subgroup">
+          <ul><li><a href="/solutions">Browse All Solutions (61+) →</a></li></ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="/zoom-clinics" style="color:var(--bdgs-coral)">Free Zoom Clinics 🟢</a></li>
+          <li><a href="/consultation">Book a Consultation</a></li>
+          <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal()">Contact Us</button></li>
+          <li><button type="button" class="bdgsownv2-footer-link" onclick="bdgsOpenInquiryModal()">Get Started →</button></li>
+        </ul>
+        <div class="bdgsownv2-footer-subgroup">
+          <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/partners">Partner Program</a></li>
+            <li><a href="/webinars">CEO Webinars</a></li>
+            <li><a href="/blabs-review">Client Reviews (169+)</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/case-studies">Case Studies</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bdgsownv2-footer-bottom">
+      <p>&copy; 2026 BD Growth Suite by BusinessLabs. All rights reserved. &nbsp;|&nbsp; <a href="/terms" style="color:rgba(255,255,255,0.4)">Terms</a> &nbsp;|&nbsp; <a href="/privacy" style="color:rgba(255,255,255,0.4)">Privacy</a> &nbsp;|&nbsp; <a href="/license/sdcl-v1" style="color:rgba(255,255,255,0.4)">License</a></p>
+      <div class="bdgsownv2-footer-badges">
+        <span class="bdgsownv2-footer-badge">🏅 Gold Certified Brilliant Directories Partner</span>
+        <span class="bdgsownv2-footer-badge">🤖 Claude / Anthropic Partner</span>
+        <span class="bdgsownv2-footer-badge">🌍 500+ Sites · 7+ Countries</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY FLOATING CTA -->
+<button type="button" class="bdgsownv2-floating-cta" id="bdgsFloatingCta" onclick="bdgsOpenInquiryModal()">
+  📅 Describe Your Project
+</button>
+
+<!-- INQUIRY MODAL (Discovery Call + Describe Project share same form for now) -->
+<div class="bdgsownv2-modal-overlay" id="bdgsInquiryModal">
+  <div class="bdgsownv2-modal">
+    <button class="bdgsownv2-modal-close" onclick="bdgsCloseInquiryModal()">×</button>
+    <div id="bdgsInquiryFormWrap">
+      <h3>Tell us about your project</h3>
+      <p>We'll review and route to the right team. You'll get a quote and timeline within 24 hours.</p>
+      <form class="bdgsownv2-modal-form" id="bdgsInquiryForm">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="url" name="site" placeholder="Directory website URL (if any)">
+        <select name="category" required>
+          <option value="">Project category</option>
+          <option>Page Design &amp; Development</option>
+          <option>SEO &amp; Schema</option>
+          <option>Member Profile Enhancement</option>
+          <option>Search &amp; Discovery</option>
+          <option>Lead Gen &amp; Conversion</option>
+          <option>Integrations</option>
+          <option>Content &amp; Engagement</option>
+          <option>Member Management &amp; Automation</option>
+          <option>Multiple / Not sure</option>
+        </select>
+        <select name="timeline">
+          <option value="">Rough timeline</option>
+          <option>ASAP</option>
+          <option>2–4 weeks</option>
+          <option>1–3 months</option>
+          <option>Flexible</option>
+        </select>
+        <select name="budget">
+          <option value="">Rough budget</option>
+          <option>$500 – $2,000</option>
+          <option>$2,000 – $10,000</option>
+          <option>$10,000 – $25,000</option>
+          <option>$25,000+</option>
+          <option>Not sure yet</option>
+        </select>
+        <textarea name="message" placeholder="What are you trying to build or fix?"></textarea>
+        <p class="bdgsownv2-modal-note">Backend automation (email + CRM routing) to be wired post-design phase.</p>
+        <button type="submit" class="bdgsownv2-btn-primary" style="border:none;cursor:pointer">Submit Inquiry</button>
+      </form>
+    </div>
+    <div class="bdgsownv2-modal-thanks" id="bdgsInquiryThanks">
+      <div class="check">✓</div>
+      <h3>Thanks. We received it.</h3>
+      <p>Our team will review your project and respond within 24 hours via email. Look out for a calendar link if a Discovery Call is the best next step.</p>
+      <button onclick="bdgsCloseInquiryModal()" class="bdgsownv2-btn-primary" style="border:none;cursor:pointer">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function bdgsOpenInquiryModal() {
+  document.getElementById('bdgsInquiryModal').classList.add('active');
+  document.getElementById('bdgsInquiryFormWrap').style.display = 'block';
+  document.getElementById('bdgsInquiryThanks').classList.remove('active');
+  document.body.style.overflow = 'hidden';
+}
+function bdgsCloseInquiryModal() {
+  document.getElementById('bdgsInquiryModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('bdgsInquiryModal').addEventListener('click', function(e) {
+  if (e.target === this) bdgsCloseInquiryModal();
+});
+document.getElementById('bdgsInquiryForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('bdgsInquiryFormWrap').style.display = 'none';
+  document.getElementById('bdgsInquiryThanks').classList.add('active');
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') bdgsCloseInquiryModal();
+});
+
+// Sticky header shadow on scroll
+window.addEventListener('scroll', function() {
+  document.getElementById('bdgsHeader').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Floating CTA appears after user scrolls past hero
+var floatingCta = document.getElementById('bdgsFloatingCta');
+var floatingThreshold = 600;
+window.addEventListener('scroll', function() {
+  if (window.scrollY > floatingThreshold) {
+    floatingCta.classList.add('visible');
+  } else {
+    floatingCta.classList.remove('visible');
+  }
+}, { passive: true });
+</script>
+
+<!-- FAQ Schema markup for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"How long does a typical custom project take?","acceptedAnswer":{"@type":"Answer","text":"Most projects scope to 2-6 weeks once we have your inputs. Smaller fixes can ship in 3-7 days. Larger features (custom dashboards, integrations) can run 4-8 weeks depending on complexity."}},
+    {"@type":"Question","name":"Do you offer fixed quotes or hourly?","acceptedAnswer":{"@type":"Answer","text":"Fixed quotes for scoped projects - you know the price before we start. Hourly only for ongoing dedicated developer engagements."}},
+    {"@type":"Question","name":"What does your 1-year warranty cover?","acceptedAnswer":{"@type":"Answer","text":"Anything we built breaks because of our code - we fix it free, no questions. Excludes changes to your underlying Brilliant Directories software version or other developer changes."}},
+    {"@type":"Question","name":"Can you work with our existing developer?","acceptedAnswer":{"@type":"Answer","text":"Yes, often. We coordinate scope so we don't overlap. Your developer handles their lane; we handle ours."}},
+    {"@type":"Question","name":"Do you sign NDAs?","acceptedAnswer":{"@type":"Answer","text":"Yes, standard mutual NDA available on request before discovery. We've signed hundreds across founders, agencies, and enterprise clients."}},
+    {"@type":"Question","name":"What if the project scope changes mid-build?","acceptedAnswer":{"@type":"Answer","text":"We send a Change Request with a revised quote and timeline. You approve or scope back to original. No silent scope creep, no surprise invoices."}},
+    {"@type":"Question","name":"How do payments work?","acceptedAnswer":{"@type":"Answer","text":"50% to start, 50% on delivery for most projects. Larger projects can be milestone-based. Payment via wire, Razorpay, or Stripe."}}
+  ]
+}
+</script>
+
+</body>
+</html>
