@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brilliant Directories Developers—BD Growth Suite (home-hero-v7 draft)</title>
+<title>Brilliant Directories Developers—BD Growth Suite (home-hero-v8 draft)</title>
 <meta name="description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
 <!-- Google largely ignores meta keywords; client requested for legacy/other engines. -->
 <meta name="keywords" content="brilliant directories developers, business directories developers, dedicated bd developer, bd automation, brilliant directories, directory website expert, BD Growth Suite, BusinessLabs, BusinessLabs HQ, directory software, Brilliant Directories customization">
@@ -49,6 +49,23 @@ body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--bdgs-text); background: var(--bdgs-white); margin: 0;
   -webkit-font-smoothing: antialiased;
+}
+/* Mouse click: no default black focus ring. Keyboard Tab: on-brand coral ring. */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+[tabindex]:focus:not(:focus-visible) {
+  outline: none;
+}
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--bdgs-coral);
+  outline-offset: 2px;
+}
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
 }
 
 /* ============================================
@@ -500,6 +517,14 @@ body {
 .bdgsownv2-stack-tab:hover, .bdgsownv2-stack-tab.active {
   color: var(--bdgs-coral); border-color: var(--bdgs-coral);
   background: var(--bdgs-coral-light); text-decoration: none;
+}
+.bdgsownv2-stack-tab:focus:not(:focus-visible) {
+  outline: none;
+}
+.bdgsownv2-stack-tab:focus-visible {
+  color: var(--bdgs-coral); border-color: var(--bdgs-coral);
+  background: var(--bdgs-coral-light); text-decoration: none;
+  outline: 2px solid var(--bdgs-coral); outline-offset: 2px;
 }
 /* Razorpay-style stack: sticky on direct children of .bdgsownv2-stack-cards (viewport scrollport). Min-height + margin-bottom supply scroll runway; consecutive `top` deltas set how much of the card behind peeks above the front layer. */
 /* Runway after last card: keep card 6 margin on the inverse stagger; trim only container padding */
@@ -1368,9 +1393,9 @@ body {
   transform: translateX(100%);
   opacity: 0;
   transition: transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   pointer-events: none;
   will-change: transform;
 }
@@ -1395,10 +1420,17 @@ body {
   pointer-events: none;
 }
 .bdgs-mob-panel-scroll {
+  flex: 1;
+  min-height: 0;
   padding: 16px 0;
-  min-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
+}
+.bdgs-mob-panel:not([data-panel="main"]) .bdgs-mob-panel-scroll {
+  padding-top: 0;
 }
 .bdgs-mob-list {
   list-style: none;
@@ -1444,14 +1476,71 @@ body {
   font-weight: 600;
   font-family: inherit;
   color: var(--bdgs-coral);
-  background: none;
+  background: var(--bdgs-white);
   border: none;
   border-bottom: 1px solid var(--bdgs-border);
   width: 100%;
+  flex-shrink: 0;
   cursor: pointer;
   text-align: left;
 }
 .bdgs-mob-back:active {
+  background: var(--bdgs-bg);
+}
+/* Match homepage nav: no underlines; bg + coral on interaction (Bootstrap override) */
+.bdgs-mob-overlay a,
+.bdgs-mob-overlay button {
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+.bdgs-mob-overlay a:hover,
+.bdgs-mob-overlay a:focus,
+.bdgs-mob-overlay a:active {
+  text-decoration: none !important;
+}
+.bdgs-mob-item:hover:not(.bdgs-mob-item--pill) {
+  background: var(--bdgs-bg);
+}
+.bdgs-mob-item--drillable:hover .bdgs-mob-item-label {
+  color: var(--bdgs-coral);
+}
+.bdgs-mob-item-link:hover,
+.bdgs-mob-item-link:focus {
+  color: var(--bdgs-coral);
+}
+.bdgs-mob-back:hover,
+.bdgs-mob-back:focus {
+  background: var(--bdgs-bg);
+  color: var(--bdgs-coral);
+  text-decoration: none;
+}
+.bdgs-mob-back span {
+  text-decoration: none;
+}
+.bdgs-mob-subitem:hover,
+.bdgs-mob-subitem:focus {
+  background: var(--bdgs-bg);
+  text-decoration: none !important;
+}
+.bdgs-mob-subitem:hover .bdgs-mob-subitem-title,
+.bdgs-mob-subitem:focus .bdgs-mob-subitem-title {
+  color: var(--bdgs-coral);
+}
+.bdgs-mob-also-pill:hover,
+.bdgs-mob-also-pill:focus {
+  background: var(--bdgs-coral-light);
+  border-color: var(--bdgs-coral);
+  color: var(--bdgs-coral);
+  text-decoration: none !important;
+}
+.bdgs-mob-zoom:hover,
+.bdgs-mob-zoom:focus {
+  background: var(--bdgs-coral);
+  color: #fff;
+  text-decoration: none !important;
+}
+.bdgs-mob-close:hover,
+.bdgs-mob-close:focus {
   background: var(--bdgs-bg);
 }
 .bdgs-mob-section {
@@ -2459,14 +2548,14 @@ Chatbots. Agents. Smart search.<br>
       <div class="col-md-4">
         <div class="bdgsownv2-path-card">
           <h3>🚀 Just Starting</h3>
-          <p>You bought Brilliant Directories and need help launching. You want a team that gets it done right the first time.</p>
+          <p>You bought Brilliant Directories and need help launching. Setup, design, and onboarding still need to come together. You want a team that gets it right the first time.</p>
           <a href="/setup" class="bdgsownv2-btn-primary" style="font-size:13px;padding:10px 20px">Start Setup →</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="bdgsownv2-path-card">
           <h3>⚡ Growing &amp; Need Firepower</h3>
-          <p>You're live but need a dedicated BD developer, custom features, or AI tools. You want speed and a long-term partner.</p>
+          <p>You're live but need a dedicated BD developer, custom features, or AI tools. You're past DIY and ready to ship without hiring in-house. You want speed and a long-term partner.</p>
           <a href="/hire-developer" class="bdgsownv2-btn-primary" style="font-size:13px;padding:10px 20px">Hire a Developer →</a>
         </div>
       </div>
@@ -3873,11 +3962,11 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="bdgs-mob-panel" data-panel="services">
+      <button type="button" class="bdgs-mob-back" data-back="main">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Services</span>
+      </button>
       <div class="bdgs-mob-panel-scroll">
-        <button type="button" class="bdgs-mob-back" data-back="main">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Services</span>
-        </button>
         <div class="bdgs-mob-section">
           <p class="bdgs-mob-section-heading">Services</p>
           <a href="/setup" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">Setup &amp; Launch</span><span class="bdgs-mob-subitem-desc">Concierge directory launch. Business-first approach.</span></a>
@@ -3910,11 +3999,11 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="bdgs-mob-panel" data-panel="grow-ai">
+      <button type="button" class="bdgs-mob-back" data-back="main">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Grow with AI</span>
+      </button>
       <div class="bdgs-mob-panel-scroll">
-        <button type="button" class="bdgs-mob-back" data-back="main">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Grow with AI</span>
-        </button>
         <div class="bdgs-mob-section">
           <a href="/ai-development" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">AI-Powered Development</span><span class="bdgs-mob-subitem-desc">Faster execution. Savings passed directly to you.</span></a>
           <a href="/ai-dev-fleet" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">AI Dev Fleet</span><span class="bdgs-mob-subitem-desc">A team of AI works for you. Pay for one developer.</span></a>
@@ -3924,7 +4013,7 @@ document.addEventListener('click', function(e) {
           <a href="/seo-growth" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">SEO &amp; Growth</span><span class="bdgs-mob-subitem-desc">Audits, schema, traffic strategy — directory-specific.</span></a>
         </div>
         <div class="bdgs-mob-highlight">
-          <span>Claude / Anthropic Service Partner — The only directory team building with AI</span>
+          <span>Claude / Anthropic Service Partner<br>— The only directory team building with AI</span>
         </div>
         <div class="bdgs-mob-also">
           <p class="bdgs-mob-also-label">Also explore</p>
@@ -3937,11 +4026,11 @@ document.addEventListener('click', function(e) {
       </div>
     </div>
     <div class="bdgs-mob-panel" data-panel="tools">
+      <button type="button" class="bdgs-mob-back" data-back="main">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Tools</span>
+      </button>
       <div class="bdgs-mob-panel-scroll">
-        <button type="button" class="bdgs-mob-back" data-back="main">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Tools</span>
-        </button>
         <div class="bdgs-mob-section">
           <a href="/tools" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">All Tools &amp; Themes</span><span class="bdgs-mob-subitem-desc">Productized software, AI tools, and premium themes.</span></a>
           <a href="/tools/brilliantchat" class="bdgs-mob-subitem"><span class="bdgs-mob-subitem-title">BrilliantChat</span><span class="bdgs-mob-subitem-desc">AI chatbot for your directory site.</span></a>
@@ -4020,7 +4109,8 @@ document.addEventListener('click', function(e) {
       }
     }
 
-    target.scrollTop = 0;
+    var scrollEl = target.querySelector('.bdgs-mob-panel-scroll');
+    if (scrollEl) scrollEl.scrollTop = 0;
 
     setTimeout(function() {
       if (current) clearPanelClasses(current);
