@@ -540,9 +540,9 @@ select:focus-visible {
 }
 .bdgsownv2-stack-cards > .bdgsownv2-stack-card:last-child { /* Removed margin-bottom: 0 to maintain consistent sticky unstacking */ }
 @media (min-width: 992px) {
-  .bdgsownv2-stack-cards > .bdgsownv2-stack-card { min-height: clamp(320px, 44vh, 540px); }
-  /* Last card: content-driven height so tab jump does not show a tall empty shell */
+  .bdgsownv2-stack-cards > .bdgsownv2-stack-card { min-height: clamp(320px, 44vh, 540px); display: flex; flex-direction: column; }
   .bdgsownv2-stack-cards > .bdgsownv2-stack-card:nth-child(6) { min-height: 0; }
+  #svc-solutions .bdgsownv2-sol-categories { flex: 1; align-content: stretch; }
 }
 /* z-index: later cards stack ON TOP of earlier ones. Tighter 42px offsets for 50% title reveal. */
 /* To prevent cards from overtaking each other when unsticking at the bottom of the container, 
@@ -560,10 +560,10 @@ select:focus-visible {
   font-size: 22px; font-weight: 700; color: var(--bdgs-dark); margin-bottom: 8px;
 }
 .bdgsownv2-stack-card-desc {
-  font-size: 15px; color: var(--bdgs-text-muted); line-height: 1.6; margin-bottom: 16px;
+  font-size: 15px; color: var(--bdgs-text-muted); line-height: 1.6; margin-bottom: 12px;
 }
 .bdgsownv2-stack-card-features {
-  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;
+  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;
 }
 .bdgsownv2-stack-card-features span {
   display: inline-flex; align-items: center; gap: 5px;
@@ -572,11 +572,88 @@ select:focus-visible {
 .bdgsownv2-stack-card-features span::before {
   content: '✓'; color: var(--bdgs-coral); font-weight: 700; font-size: 14px;
 }
+.bdgsownv2-stack-card-cta {
+  margin-bottom: 0;
+}
 .bdgsownv2-stack-card-cta a {
   font-size: 14px; font-weight: 600; color: var(--bdgs-coral);
   text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
 }
 .bdgsownv2-stack-card-cta a:hover { text-decoration: underline; }
+
+/* Solutions category grid inside stacking card */
+.bdgsownv2-sol-categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--bdgs-border);
+}
+.bdgsownv2-sol-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 18px 12px 14px;
+  background: var(--bdgs-bg);
+  border: 1px solid var(--bdgs-border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.bdgsownv2-sol-cat:hover {
+  border-color: var(--bdgs-coral);
+  box-shadow: 0 4px 16px rgba(231,77,86,0.1);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.bdgsownv2-sol-cat-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.bdgsownv2-sol-cat-icon svg {
+  width: 16px;
+  height: 16px;
+}
+.sol-icon-coral { background: var(--bdgs-coral-light); color: var(--bdgs-coral); }
+.sol-icon-purple { background: var(--bdgs-purple-light); color: var(--bdgs-purple); }
+.bdgsownv2-sol-cat-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  width: 100%;
+}
+.bdgsownv2-sol-cat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bdgs-text);
+  line-height: 1.3;
+}
+.bdgsownv2-sol-cat-desc {
+  font-size: 11.5px;
+  color: var(--bdgs-text-muted);
+  line-height: 1.4;
+}
+.bdgsownv2-sol-cat:hover .bdgsownv2-sol-cat-label { color: var(--bdgs-coral); }
+
+@media (max-width: 991px) {
+  .bdgsownv2-sol-categories { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .bdgsownv2-sol-categories { grid-template-columns: 1fr; gap: 8px; }
+  .bdgsownv2-sol-cat { padding: 12px; }
+}
+
 .bdgsownv2-stack-card-accent {
   position: absolute; top: 0; left: 0; width: 4px; height: 100%;
   border-radius: 16px 0 0 16px;
@@ -1800,6 +1877,12 @@ body.bdgs-mob-noscroll {
   .bdgsownv2-stack-card-features {
     padding: 12px 24px 0;
   }
+  .bdgsownv2-sol-categories {
+    padding: 12px 24px 16px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 0;
+    border-top: none;
+  }
   .bdgsownv2-stack-card-cta {
     padding: 16px 24px 28px;
   }
@@ -2498,6 +2581,81 @@ Chatbots. Agents. Smart search.<br>
           <span>1-year warranty</span>
         </div>
         <div class="bdgsownv2-stack-card-cta"><a href="/solutions">Browse all solutions →</a></div>
+
+        <div class="bdgsownv2-sol-categories">
+          <a href="/solutions?category=seo" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-coral">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><polyline points="4 10 8 6 12 9 20 2"/><polyline points="15 2 20 2 20 7"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">SEO &amp; Schema</span>
+              <span class="bdgsownv2-sol-cat-desc">Advanced markup &amp; technical SEO. Rank higher.</span>
+            </div>
+          </a>
+          <a href="/solutions?category=lead-gen" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Lead Gen &amp; Conversion</span>
+              <span class="bdgsownv2-sol-cat-desc">Capture more leads. Turn visitors into members.</span>
+            </div>
+          </a>
+          <a href="/solutions?category=member-profile" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-coral">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Enhance Profiles</span>
+              <span class="bdgsownv2-sol-cat-desc">Custom profile layouts. Make members stand out.</span>
+            </div>
+          </a>
+          <a href="/solutions?category=search" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Search &amp; Discovery</span>
+              <span class="bdgsownv2-sol-cat-desc">Optimized search flows. Help users find what they need.</span>
+            </div>
+          </a>
+          <a href="/solutions?category=design" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-coral">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Page Design &amp; Dev</span>
+              <span class="bdgsownv2-sol-cat-desc">Stunning layouts. Built for modern directories.</span>
+            </div>
+          </a>
+          <a href="/solutions?category=content" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Content &amp; Engagement</span>
+              <span class="bdgsownv2-sol-cat-desc">Keep audiences hooked. Automated content strategies.</span>
+            </div>
+          </a>
+          <a href="/solutions?category=integrations" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-coral">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Integrations</span>
+              <span class="bdgsownv2-sol-cat-desc">Connect your favorite tools. Seamless API integrations.</span>
+            </div>
+          </a>
+          <a href="/solutions/member-management" class="bdgsownv2-sol-cat">
+            <div class="bdgsownv2-sol-cat-icon sol-icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            </div>
+            <div class="bdgsownv2-sol-cat-text">
+              <span class="bdgsownv2-sol-cat-label">Member Management</span>
+              <span class="bdgsownv2-sol-cat-desc">Approval workflows, dashboards, member control.</span>
+            </div>
+          </a>
+        </div>
       </div>
 
       <div class="bdgsownv2-stack-card" id="svc-tools">
@@ -3692,7 +3850,7 @@ if (window.matchMedia('(min-width: 992px)').matches) {
           'Verified Client Review' +
         '</span>' +
         '<a class="bdgsownv2-verify-link" href="' + verifyLink + '" target="_blank" rel="noopener">' +
-          'View on Marketplace ' +
+          'Verified on Marketplace ' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
         '</a>' +
       '</div>' +
