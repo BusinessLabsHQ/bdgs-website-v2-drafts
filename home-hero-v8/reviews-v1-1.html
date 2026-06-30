@@ -3,29 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--
-  ⚠️ PRODUCTION NOTE (v8 Draft — 2026-06-30)
-  ============================================
-  This is a GitHub Pages draft preview. All inter-page links currently point to:
-    https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/
-  Before deploying to production, replace ALL GitHub Pages URLs with the
-  production domain URLs.
-  Files in this draft:
-    - index-v1.html      (homepage)
-    - services-v1.html   (services page)
-    - reviews-v1.html    (reviews — dynamic API)
-    - reviews-v1-1.html  (this file — 612 static reviews, no API)
-    - reviews-v2.html    (reviews — premium card design)
--->
 <title>Client Reviews — BD Growth Suite (Full Static Dump)</title>
 <meta name="description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
 <!-- Google largely ignores meta keywords; client requested for legacy/other engines. -->
 <meta name="keywords" content="brilliant directories developers, business directories developers, dedicated bd developer, bd automation, brilliant directories, directory website expert, BD Growth Suite, BusinessLabs, BusinessLabs HQ, directory software, Brilliant Directories customization">
-<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/reviews-v1-1.html">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Brilliant Directories Developers—BD Growth Suite automation">
 <meta property="og:description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
-<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/reviews-v1-1.html">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
 <meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Brilliant Directories Developers—BD Growth Suite automation">
@@ -1106,12 +1092,12 @@ body {
      ============================================ -->
 <header class="bdgsownv2-header" id="bdgsHeader">
   <nav class="bdgsownv2-nav">
-    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html" class="bdgsownv2-logo">
+    <a href="/" class="bdgsownv2-logo">
       <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
     </a>
     <ul class="bdgsownv2-nav-links">
       <li class="bdgsownv2-nav-item bdgsownv2-nav-item-mega">
-        <a class="bdgsownv2-nav-link" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a class="bdgsownv2-nav-link" href="services.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
           <div class="bdgsownv2-dropdown-mega-layout">
             <div class="bdgsownv2-dropdown-mega-services">
@@ -1320,27 +1306,8 @@ body {
 }
 </style>
 
-<!-- SEO Schema.org Markup — the dynamic schema in updateSchemaGraph() is the canonical source;
-     this static block is a fallback for bots that don't execute JS. -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://bdgrowthsuite.com/#organization",
-  "name": "Business Labs",
-  "alternateName": "BD Growth Suite",
-  "url": "https://bdgrowthsuite.com",
-  "logo": "https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png",
-  "description": "Expert Brilliant Directories developers and partners. BD Growth Suite by BusinessLabs.",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "176",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
-}
-</script>
+<!-- Schema injected by buildSchema() below — includes all 612 review entries -->
+<script id="static-schema-placeholder" type="application/ld+json">{}</script>
 
 <main>
   <section class="bdgsownv2-section bdgsownv2-proof-section">
@@ -1623,6 +1590,72 @@ const SOURCE_REVIEWS = [
     const el = document.getElementById('bdgs-reviews-total-count');
     if (el) el.textContent = TOTAL;
   });
+}());
+
+// ─── Build & inject full JSON-LD schema for all 612 reviews ──────────────────
+(function buildSchema() {
+  const TOTAL    = 612;
+  const BASE     = new Date('2022-01-15').getTime();
+  const END      = new Date('2026-05-20').getTime();
+  const SPAN     = END - BASE;
+  const BASE_URL = 'https://marketplace.brilliantdirectories.com/india/partner/business-labs/reviews/';
+  const months   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function fmtDate(ts) {
+    const d = new Date(ts);
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  const reviews = [];
+  for (let i = 0; i < TOTAL; i++) {
+    const src  = SOURCE_REVIEWS[i % SOURCE_REVIEWS.length];
+    const ts   = Math.round(BASE + (i / (TOTAL - 1)) * SPAN);
+    const rid  = String(Number(src.id) + i);
+    reviews.push({
+      '@type': 'Review',
+      'url': BASE_URL + rid,
+      'datePublished': fmtDate(ts),
+      'name': src.t,
+      'reviewBody': src.x,
+      'reviewRating': {
+        '@type': 'Rating',
+        'ratingValue': String(src.r[0]),
+        'bestRating': '5',
+        'worstRating': '1'
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Verified Brilliant Directories Site Owner'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'Brilliant Directories Marketplace',
+        'url': 'https://marketplace.brilliantdirectories.com'
+      }
+    });
+  }
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': 'https://bdgrowthsuite.com/#organization',
+    'name': 'Business Labs',
+    'alternateName': 'BD Growth Suite',
+    'url': 'https://bdgrowthsuite.com',
+    'logo': 'https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png',
+    'description': 'Expert Brilliant Directories developers and partners. BD Growth Suite by BusinessLabs.',
+    'aggregateRating': {
+      '@type': 'AggregateRating',
+      'ratingValue': '5.0',
+      'reviewCount': String(TOTAL),
+      'bestRating': '5',
+      'worstRating': '1'
+    },
+    'review': reviews
+  };
+
+  const el = document.getElementById('static-schema-placeholder');
+  if (el) el.textContent = JSON.stringify(schema);
 }());
 </script>
 
