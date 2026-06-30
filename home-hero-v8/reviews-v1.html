@@ -795,7 +795,7 @@ body {
 }
 
 /* Client Proof Section */
-.bdgsownv2-proof-section { padding: 80px 0; background: var(--bdgs-white); }
+.bdgsownv2-proof-section { padding: 80px 0 48px; background: var(--bdgs-bg); }
 .bdgsownv2-proof-section h2 {
   font-size: 36px; font-weight: 700; text-align: center;
   color: var(--bdgs-dark); margin: 0 0 14px; letter-spacing: -0.5px;
@@ -829,6 +829,80 @@ body {
 .bdgsownv2-client-logo img {
   max-width: 100%; max-height: 100%; object-fit: contain;
 }
+
+/* Infinite Dual Marquee Logos (from homepage proof section) */
+@keyframes bdgsownv1-marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 20px)); }
+}
+@keyframes bdgsownv1-marqueeRight {
+  0% { transform: translateX(calc(-50% - 20px)); }
+  100% { transform: translateX(0); }
+}
+.bdgsownv1-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 12px;
+}
+.bdgsownv1-marquee-container::before,
+.bdgsownv1-marquee-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.bdgsownv1-marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bdgs-bg), transparent);
+}
+.bdgsownv1-marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bdgs-bg), transparent);
+}
+.bdgsownv1-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: bdgsownv1-marqueeLeft 40s linear infinite;
+  width: max-content;
+}
+.bdgsownv1-marquee-track.reverse {
+  animation: bdgsownv1-marqueeRight 40s linear infinite;
+}
+.bdgsownv1-marquee-track:hover {
+  animation-play-state: paused;
+}
+.bdgsownv1-marquee-content {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 40px;
+  padding-right: 40px;
+}
+.bdgsownv1-logo-item {
+  width: 160px;
+  height: 70px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+  filter: grayscale(100%) opacity(0.55);
+}
+.bdgsownv1-logo-item:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+.bdgsownv1-logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 /* Review screenshots */
 .bdgsownv2-reviews-grid {
   display: grid;
@@ -1101,24 +1175,8 @@ body {
 </header>
 <style>
 .bdgsownv2-reviews-page {
-  padding: 60px 24px;
+  padding: 0 24px 60px;
   background: var(--bdgs-bg);
-  min-height: 100vh;
-}
-.bdgsownv2-reviews-header {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 40px;
-}
-.bdgsownv2-reviews-header h1 {
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--bdgs-dark);
-  margin: 0 0 12px;
-}
-.bdgsownv2-reviews-header p {
-  font-size: 16px;
-  color: var(--bdgs-text-muted);
 }
 .bdgsownv2-reviews-grid {
   display: grid;
@@ -1172,8 +1230,42 @@ body {
   font-size: 15px;
   color: var(--bdgs-text);
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   flex-grow: 1;
+}
+.bdgsownv2-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--bdgs-border);
+}
+.bdgsownv2-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #16A34A;
+}
+.bdgsownv2-verified-badge svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.bdgsownv2-verify-link {
+  font-size: 12px;
+  color: var(--bdgs-text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+.bdgsownv2-verify-link:hover {
+  color: var(--bdgs-coral);
 }
 .bdgsownv2-review-details {
   display: grid;
@@ -1248,20 +1340,75 @@ body {
 }
 </script>
 
-<main class="bdgsownv2-reviews-page">
-  <div class="bdgsownv2-reviews-header">
-    <h1>Client Reviews</h1>
-    <p>Read what our clients have to say about working with Business Labs. Based on <span id="bdgs-reviews-total-count">176</span> verified reviews.</p>
-  </div>
+<main>
+  <section class="bdgsownv2-section bdgsownv2-proof-section">
+    <div class="container">
+      <h2>We Made These Directories <span style="text-decoration:line-through;color:var(--bdgs-text-muted);font-weight:600;text-decoration-thickness:3px">Happy</span> <em>VERY HAPPY</em></h2>
+      <p class="proof-sub">Clients say we feel like in-house Brilliant Directories experts—not a ticket queue. We delivered beyond expectations — and we'll do the same for you.</p>
 
-  
-  
+      <!-- Client Logos Grid (16 logos in 2 rows of 8) -->
+      <!-- First Row (Scroll Left) -->
+      <div class="bdgsownv1-marquee-container">
+        <div class="bdgsownv1-marquee-track">
+          <div class="bdgsownv1-marquee-content">
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/1.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/8.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/3.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/CCRG-LOGO-edit1.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/supplyseys.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/4.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/hotelsjuction.png" alt="Logo"></div>
+          </div>
+          <div class="bdgsownv1-marquee-content">
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/1.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/8.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/3.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/CCRG-LOGO-edit1.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/supplyseys.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/4.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/hotelsjuction.png" alt="Logo"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row (Scroll Right) -->
+      <div class="bdgsownv1-marquee-container" style="margin-bottom: 0;">
+        <div class="bdgsownv1-marquee-track reverse">
+          <div class="bdgsownv1-marquee-content">
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/yep.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/7.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/isostylist.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9_1.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/5.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/localbulls.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/insureblack.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/2.png" alt="Logo"></div>
+          </div>
+          <div class="bdgsownv1-marquee-content">
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/yep.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/7.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/isostylist.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/9_1.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/5.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/localbulls.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP2/insureblack.png" alt="Logo"></div>
+            <div class="bdgsownv1-logo-item"><img width="160" height="64" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/LogoP1/2.png" alt="Logo"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bdgsownv2-reviews-page">
   <div class="bdgsownv2-reviews-grid" id="reviewsGrid">
     <!-- Reviews will be injected here -->
   </div>
   
   <div class="bdgsownv2-load-more-container">
     <button id="loadMoreBtn" class="bdgsownv2-load-more-btn" onclick="loadMoreReviews()">Load More Reviews</button>
+  </div>
   </div>
 </main>
 
@@ -1347,10 +1494,14 @@ function renderReviewCard(review) {
       <div class="bdgsownv2-review-body">
         ${cleanText}
       </div>
-      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--bdgs-border); text-align: right;">
-        <a href="${verifyLink}" target="_blank" rel="noopener noreferrer" style="font-size: 13px; font-weight: 600; color: var(--bdgs-coral); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-          Verify review
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      <div class="bdgsownv2-card-footer">
+        <span class="bdgsownv2-verified-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Verified Client Review
+        </span>
+        <a class="bdgsownv2-verify-link" href="${verifyLink}" target="_blank" rel="noopener noreferrer">
+          View on Marketplace
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
       </div>
     </article>
