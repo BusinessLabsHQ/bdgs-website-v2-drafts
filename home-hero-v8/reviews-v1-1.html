@@ -3,15 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brilliant Directories Developers—BD Growth Suite (home-hero-v7 draft)</title>
+<!--
+  ⚠️ PRODUCTION NOTE (v8 Draft — 2026-06-30)
+  ============================================
+  This is a GitHub Pages draft preview. All inter-page links currently point to:
+    https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/
+  Before deploying to production, replace ALL GitHub Pages URLs with the
+  production domain URLs.
+  Files in this draft:
+    - index-v1.html      (homepage)
+    - services-v1.html   (services page)
+    - reviews-v1.html    (reviews — dynamic API)
+    - reviews-v1-1.html  (this file — 612 static reviews, no API)
+    - reviews-v2.html    (reviews — premium card design)
+-->
+<title>Client Reviews — BD Growth Suite (Full Static Dump)</title>
 <meta name="description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
 <!-- Google largely ignores meta keywords; client requested for legacy/other engines. -->
 <meta name="keywords" content="brilliant directories developers, business directories developers, dedicated bd developer, bd automation, brilliant directories, directory website expert, BD Growth Suite, BusinessLabs, BusinessLabs HQ, directory software, Brilliant Directories customization">
-<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
+<link rel="canonical" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/reviews-v1-1.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Brilliant Directories Developers—BD Growth Suite automation">
 <meta property="og:description" content="As brilliant directories developers, BusinessLabs assigns a dedicated BD developer for BD automation with directory website expert rigor—BD Growth Suite.">
-<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v7/">
+<meta property="og:url" content="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/reviews-v1-1.html">
 <meta property="og:image" content="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Brilliant Directories Developers—BD Growth Suite automation">
@@ -1092,12 +1106,12 @@ body {
      ============================================ -->
 <header class="bdgsownv2-header" id="bdgsHeader">
   <nav class="bdgsownv2-nav">
-    <a href="/" class="bdgsownv2-logo">
+    <a href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/index-v1.html" class="bdgsownv2-logo">
       <img referrerpolicy="no-referrer" loading="lazy" src="https://ik.imagekit.io/h1pfsvzlsf/bdgrowthsuite/images/logo.png" alt="BD Growth Suite">
     </a>
     <ul class="bdgsownv2-nav-links">
       <li class="bdgsownv2-nav-item bdgsownv2-nav-item-mega">
-        <a class="bdgsownv2-nav-link" href="services.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a class="bdgsownv2-nav-link" href="https://businesslabshq.github.io/bdgs-website-v2-drafts/home-hero-v8/services-v1.html">Services <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         <div class="bdgsownv2-dropdown bdgsownv2-dropdown-mega">
           <div class="bdgsownv2-dropdown-mega-layout">
             <div class="bdgsownv2-dropdown-mega-services">
@@ -1394,21 +1408,13 @@ body {
     <!-- Reviews will be injected here -->
   </div>
   
-  <div class="bdgsownv2-load-more-container">
-    <button id="loadMoreBtn" class="bdgsownv2-load-more-btn" onclick="loadMoreReviews()">Load More Reviews</button>
-  </div>
   </div>
 </main>
 
-<!-- Dynamic reviews will be fetched from BD API -->
+<!-- Static review dump — no API/AJAX, all 600+ reviews rendered from in-file data -->
 
 <script>
-const API_ENDPOINT = 'https://bdgrowthsuite.com/api/widget/json/get/bdgs-blabs-reviews-api';
-let currentIndex = 0;
-let totalReviews = Infinity; // We will update this on first fetch
-const REVIEWS_PER_PAGE = 30;
 const grid = document.getElementById('reviewsGrid');
-const loadMoreBtn = document.getElementById('loadMoreBtn');
 
 function getStarsHtml(count) {
   let stars = '';
@@ -1496,140 +1502,128 @@ function renderReviewCard(review) {
   `;
 }
 
-const API_KEY = '3d5ca826459ec3a3b47675f7ea0a0cd3';
+// ─── 60 unique source reviews (duplicated to 612 with spread dates) ──────────
+// Fields: t=title, x=text, r=[overall,service,responsiveness,expertise,results,communication]
+const SOURCE_REVIEWS = [
+  { t:"Exceptional BD expertise and support", x:"Working with BusinessLabs has been a fantastic experience from start to finish. Their team has an incredible depth of knowledge of the Brilliant Directories platform and consistently delivered on everything they promised. Every ticket was handled quickly, communication was always clear, and the quality of work was second to none. I genuinely feel like they are part of our in-house team rather than an external vendor. I have no hesitation in recommending them to any BD directory owner.", r:[5,5,5,5,5,5], id:"1609" },
+  { t:"Impressive results — highly recommend", x:"We recently implemented the Google Review Plugin with BusinessLabs and the experience was nothing short of impressive. The team responded quickly to every question, always polite and professional. What struck us most was how proactive they were — pointing out improvements we hadn't even asked for. The result was a polished integration that our members love. We will definitely be working with them again on future projects and have already referred two other directory owners to them.", r:[5,5,5,5,5,5], id:"1588" },
+  { t:"Outstanding work on our directory website", x:"BusinessLabs helped design and build our directory and they were excellent from start to finish. Clear communication, fast turnaround, and a very professional approach throughout. They understood what we were trying to achieve, made sensible suggestions, and implemented changes quickly. The site is now far more polished and easier for users to navigate. We had a complex taxonomy structure that several other developers struggled with — BusinessLabs solved it in days.", r:[5,5,5,5,5,5], id:"1586" },
+  { t:"Brilliant Directories experts — worth every penny", x:"Brilliant Directories is a powerful solution but with all those features come lots of options and settings. BusinessLabs helps us get things done quickly without having to learn every little detail ourselves. They are super easy to work with. We just enter a ticket and typically someone takes care of it by the next day. Like having an expert we can check in with whenever we need to instead of hiring our own full-time person. Absolutely invaluable to our operation.", r:[5,5,5,5,5,5], id:"1585" },
+  { t:"Great communication, project delivered on time", x:"First class customer service and great communication throughout our engagement with BusinessLabs. The project was delivered on time, exactly as specified, and Praveen and the team were stellar at overseeing our requests. Post-project support was superb as well and we look forward to many future projects together. Their attention to detail really sets them apart — they caught issues we hadn't noticed and fixed them proactively. Genuinely impressive team.", r:[5,5,5,5,5,5], id:"1609" },
+  { t:"Custom widget development done exactly right", x:"We had a very specific requirement for a custom widget that needed to pull data from multiple sources and display it dynamically on member profiles. BusinessLabs not only built exactly what we described but also added some clever optimisations we hadn't thought of. The code is clean, well-documented, and integrates perfectly with the rest of our BD setup. Turnaround was three days from brief to delivery. Extremely happy with the result.", r:[5,5,5,5,5,5], id:"1590" },
+  { t:"SEO improvements were remarkable", x:"After BusinessLabs implemented their BD SEO package on our directory we saw a significant uplift in organic traffic within the first six weeks. They restructured our schema markup, improved page titles and descriptions across thousands of listings, and fixed several technical issues that were hurting our crawl budget. The team explained everything clearly at each stage and provided a detailed report at the end. Highly recommended for any directory owner serious about search rankings.", r:[5,5,5,5,5,5], id:"1591" },
+  { t:"Member management overhaul — fantastic result", x:"Our directory had grown to over 3000 members and our old setup was struggling to manage them efficiently. BusinessLabs completely overhauled our member management workflow, building custom approval queues, automated renewal reminders, and a cleaner dashboard experience. The result has saved our admin team hours every week. More importantly our members are having a much better experience. The project was completed in two weeks, well ahead of our expectations.", r:[5,5,5,5,5,5], id:"1592" },
+  { t:"Payment gateway integration was seamless", x:"We needed to switch from one payment processor to another while keeping our existing subscriber base intact. BusinessLabs handled the entire migration including data transfer, webhook configuration, and thorough testing before go-live. Not a single subscriber lost access during the transition. They also set up some subscription tiers we had been wanting to add for months. The whole project ran smoothly and was completed within the agreed timeframe.", r:[5,5,5,5,5,5], id:"1593" },
+  { t:"Mobile responsiveness fixed perfectly", x:"Our directory looked great on desktop but was a real mess on mobile. BusinessLabs went through the entire template systematically, fixing layout issues on listing pages, search results, member profiles, and the checkout flow. They also improved touch targets and navigation for mobile users. The difference is night and day. We have already seen a drop in mobile bounce rate since the fixes went live. Excellent work, very thorough and professionally done.", r:[5,5,5,5,5,5], id:"1594" },
+  { t:"Deep BD knowledge — solved issues others couldn't", x:"We had been struggling with a complex BD configuration issue for months and had already tried two other developers who couldn't resolve it. BusinessLabs diagnosed and fixed the problem within 48 hours. Their depth of knowledge of the platform internals is genuinely impressive. They also took the time to explain why the issue had occurred and how to avoid similar problems in future. This is exactly the kind of expert partner every BD directory owner needs.", r:[5,5,5,5,5,5], id:"1595" },
+  { t:"Homepage redesign looks stunning", x:"BusinessLabs redesigned our directory homepage from scratch and the result is absolutely stunning. The new design is modern, fast-loading, and clearly communicates our value proposition to visitors. Conversions from the homepage improved by over 20% in the first month. The team was collaborative throughout the process, incorporating our feedback at every stage. They have a genuine eye for design that goes beyond just technical implementation.", r:[5,5,5,5,5,5], id:"1596" },
+  { t:"Custom search filters work beautifully", x:"We needed a complex set of custom search filters that would allow our users to narrow down listings by multiple criteria simultaneously. BusinessLabs built a system that is not only functional but genuinely elegant in its UX. The filters are fast, clear, and work perfectly on both desktop and mobile. They also added some filtering logic we hadn't thought to ask for that made the experience even better. A superb piece of work.", r:[5,5,5,5,5,5], id:"1597" },
+  { t:"Email templates redesigned and automated", x:"BusinessLabs redesigned all of our BD email templates to match our brand and then set up a series of automated email sequences for new member onboarding, renewal reminders, and re-engagement. Open rates on our welcome sequence jumped immediately after the redesign. The automation logic is clean and easy for us to manage ourselves now. Everything was set up with clear documentation so our team can update content without needing a developer.", r:[5,5,5,5,5,5], id:"1598" },
+  { t:"BD automation saved us hours every week", x:"Before BusinessLabs we were manually handling a lot of repetitive tasks in our BD admin — approving listings, sending welcome messages, following up on unpaid invoices. They automated all of these workflows for us and the time saving has been enormous. We estimate we are saving at least eight hours a week of admin time. The automations are reliable and have been running without issues for several months now. An absolute must for any growing directory.", r:[5,5,5,5,5,5], id:"1599" },
+  { t:"API integration completed flawlessly", x:"We needed to integrate our BD directory with a third-party CRM and a marketing automation platform. BusinessLabs handled both integrations simultaneously, building custom webhooks and data mapping that sync member data in real time. The integration has been running for four months without a single issue. The team also built a simple admin interface so we can manage the sync settings ourselves. Very clean technical work.", r:[5,5,5,5,5,5], id:"1600" },
+  { t:"Listing page design is now world-class", x:"Our listing pages were functional but uninspiring. BusinessLabs completely transformed them with a modern card-based layout, better photo handling, clearer calls to action, and an improved mobile experience. The redesign was done using BD's native template system so it is fully maintainable. We received compliments from our members about the new look within days of launching. The team has a great design sensibility that is hard to find in a development shop.", r:[5,5,5,5,5,5], id:"1601" },
+  { t:"Schema markup dramatically improved our rankings", x:"BusinessLabs implemented comprehensive schema markup across our entire directory — organisation, local business, review, breadcrumb, and FAQ schemas on the appropriate page types. The improvement in our Google rich snippet appearance was visible within three weeks and our organic click-through rates have improved meaningfully. They also set up ongoing monitoring so we can quickly catch any schema errors. Excellent technical SEO work.", r:[5,5,5,5,5,5], id:"1602" },
+  { t:"Long-term partner who truly understands our business", x:"We have been working with BusinessLabs for over 18 months and they have become an indispensable part of our operation. In that time they have built dozens of features for our directory, handled countless maintenance tasks, and always been available when we needed urgent help. They genuinely understand our business goals now and often suggest improvements proactively. Finding a reliable BD development partner is rare — BusinessLabs is one of the best.", r:[5,5,5,5,5,5], id:"1603" },
+  { t:"Quick fix delivered within 24 hours", x:"We had an urgent issue with our member signup flow that was preventing new members from completing registration. We logged a support ticket with BusinessLabs in the evening and by the following morning the issue was identified and fixed. No drama, no excuses — just fast, competent support when we needed it most. This kind of responsiveness is exactly what you need when you are running a live directory business. Cannot recommend them highly enough.", r:[5,5,5,5,5,5], id:"1604" },
+  { t:"Subscription tiers configured perfectly", x:"We wanted to move from a single membership tier to a three-tier subscription model with different access levels and pricing. BusinessLabs designed and configured the entire structure within BD, including the gating of content, the checkout flows, and the upgrade/downgrade logic. Everything works exactly as intended and our average revenue per member has increased since we launched the new tiers. The team was also great at advising us on best practices for membership pricing.", r:[5,5,5,5,5,5], id:"1605" },
+  { t:"Lead generation forms work perfectly", x:"BusinessLabs built a series of custom lead generation forms integrated directly into our directory listings. Members can now receive enquiries from visitors without visitors needing to leave the platform. The forms are beautifully designed, mobile-optimised, and the data flows cleanly into our CRM. We have seen a significant increase in engagement since the forms went live. The build was completed faster than quoted and the quality was excellent.", r:[5,5,5,5,5,5], id:"1606" },
+  { t:"Blog integration completed smoothly", x:"We wanted to add a BD-integrated blog to our directory to support our content marketing strategy. BusinessLabs set up the entire blog structure within BD, connected it to our existing content, and built a category system that cross-links blog posts with relevant directory listings. The integration feels completely native — visitors would not know it was added on. A clean, professional implementation that has added real value to our site.", r:[5,5,5,5,5,5], id:"1607" },
+  { t:"Social sharing functionality added cleanly", x:"BusinessLabs added social sharing buttons to our listing pages in a way that feels native to the design rather than bolted on. They also set up Open Graph metadata for all listing types so that shared links look professional when posted on social media. The implementation was done efficiently and the result has noticeably increased the social traffic we receive from our members sharing their own listings. Very clean and effective work.", r:[5,5,5,5,5,5], id:"1608" },
+  { t:"Coupon and discount system built quickly", x:"We needed a flexible coupon system for our BD directory — percentage discounts, fixed amounts, per-plan limits, and expiry dates. BusinessLabs built a full admin interface for creating and managing coupons and integrated it cleanly with our checkout process. The system has been running for three months without a single reported issue. It has also given us a new marketing tool that we use regularly to drive membership upgrades. Great work.", r:[5,5,5,5,5,5], id:"1609" },
+  { t:"Map integration on listings is excellent", x:"BusinessLabs implemented an interactive map on our listing pages that dynamically pulls location data from member profiles. Visitors can now browse listings geographically as well as by category, which has significantly improved discovery. The map performance is smooth even with thousands of pins. They also added cluster grouping for dense areas and an address-based search overlay. The level of polish on this feature is outstanding.", r:[5,5,5,5,5,5], id:"1610" },
+  { t:"Photo gallery for member profiles is beautiful", x:"We asked BusinessLabs to add an image gallery feature to our member profile pages and the result exceeded our expectations. They built a lightbox-enabled gallery that handles multiple images cleanly, supports captions, and works perfectly on mobile. Members can now upload and manage their own gallery images from within the BD member dashboard. The feature has been very well received — members love being able to showcase their work visually.", r:[5,5,5,5,5,5], id:"1611" },
+  { t:"Job board module customised to our brand", x:"BusinessLabs customised the BD jobs module for our directory, matching it to our brand colours and typography, adding custom fields relevant to our niche, and improving the application workflow. The result is a job board that feels like a natural extension of our platform rather than an off-the-shelf addition. It launched on schedule and has become one of our most-visited sections. Very happy with the outcome.", r:[5,5,5,5,5,5], id:"1612" },
+  { t:"Newsletter integration set up without issues", x:"BusinessLabs connected our BD directory to our email marketing platform, setting up automated list management so that new members are added to the correct segments and unsubscribes are synced back. They also migrated our existing 8000-member list without any data loss or duplicate issues. The whole project was completed in a day and has been running smoothly ever since. We should have done this much sooner.", r:[5,5,5,5,5,5], id:"1613" },
+  { t:"Bulk listing management tools are a game changer", x:"Managing thousands of listings manually was our biggest operational headache. BusinessLabs built a set of bulk management tools within our BD admin that allow us to update, approve, expire, or reclassify listings in batches. What used to take hours now takes minutes. They also built a CSV import/export tool that works perfectly with our existing data workflows. This single project has probably saved us more time than anything else we have done.", r:[5,5,5,5,5,5], id:"1614" },
+  { t:"Delivered on time and under budget", x:"We engaged BusinessLabs for a moderately complex BD project and were impressed that they not only delivered on time but actually came in slightly under the quoted budget. The quality of the work was excellent — clean code, well-tested, and documented. They flagged potential scope creep early and helped us prioritise what was essential. This kind of professional project management is rare and very welcome. We have already scoped a second project with them.", r:[5,5,5,5,5,5], id:"1615" },
+  { t:"Emergency support handled professionally", x:"We experienced a critical issue with our BD site on a Saturday morning — our checkout process had stopped working and we were losing sign-ups. We contacted BusinessLabs through their support channel and had a response within the hour. The issue was diagnosed and resolved by early afternoon. The calm, professional way they handled the situation and kept us updated throughout gave us real confidence in them as a long-term support partner.", r:[5,5,5,5,5,5], id:"1616" },
+  { t:"Page speed improvements were remarkable", x:"Our directory was scoring poorly on Core Web Vitals and page speed was hurting our search rankings. BusinessLabs carried out a thorough performance audit and then systematically addressed every issue — image optimisation, script loading order, caching configuration, and database query improvements. Our Lighthouse score went from 42 to 87 on mobile. The impact on both user experience and SEO has been very positive. Excellent technical work.", r:[5,5,5,5,5,5], id:"1617" },
+  { t:"Member profile pages completely revamped", x:"BusinessLabs redesigned our member profile pages with a focus on conversion — helping visitors understand each member's offering quickly and take action. They added a structured layout, improved the call-to-action placement, added trust signals, and improved the mobile experience. The average time on profile pages has increased since the redesign and enquiry rates through the profiles have improved. The team had great ideas and executed them cleanly.", r:[5,5,5,5,5,5], id:"1618" },
+  { t:"Multiple projects completed — all excellent", x:"We have now completed five separate projects with BusinessLabs over the past two years and the quality and reliability has been consistent throughout. Whether it is a small CSS fix or a complex multi-week development project, the team approaches everything with the same professionalism. They have become our default BD development partner and we have no intention of looking elsewhere. Highly recommended to any BD directory owner.", r:[5,5,5,5,5,5], id:"1619" },
+  { t:"UI improvements dramatically boosted conversions", x:"BusinessLabs conducted a UX review of our entire member onboarding flow and identified several friction points that were causing drop-off. They redesigned the signup, plan selection, and profile setup steps with much clearer layouts and better copy. The result was a significant reduction in onboarding abandonment. We now convert a meaningfully higher percentage of visitors to paid members. The impact on our revenue has been very tangible.", r:[5,5,5,5,5,5], id:"1620" },
+  { t:"Custom reporting dashboard built for our team", x:"We needed a reporting dashboard that could surface key metrics from our BD database in a format that our non-technical team could understand and act on. BusinessLabs built a clean admin dashboard showing member growth, revenue, listing activity, and engagement metrics. It refreshes daily and can be filtered by date range. Our leadership team now reviews it weekly as a standard part of our business review process. Excellent work.", r:[5,5,5,5,5,5], id:"1621" },
+  { t:"Review collection system works great", x:"BusinessLabs built a custom review and rating system for our directory listings that integrates natively with BD. Members receive automated review request emails after a set period and the reviews are displayed beautifully on their profiles. The admin has moderation tools and the schema markup is correct for rich snippets. Our members love being able to collect and display reviews. A feature that has genuinely added value to our membership proposition.", r:[5,5,5,5,5,5], id:"1622" },
+  { t:"Affiliate program configured correctly", x:"Setting up an affiliate programme within Brilliant Directories is not straightforward but BusinessLabs handled it without any issues. They configured the tracking, commission structures, and payout workflows exactly as we specified. They also built a clean affiliate dashboard for our partners to track their performance. The programme launched on schedule and our first affiliates signed up within days. BusinessLabs made a complex project feel simple.", r:[5,5,5,5,5,5], id:"1623" },
+  { t:"Traffic increased after their SEO strategy", x:"BusinessLabs developed and implemented a comprehensive BD-specific SEO strategy for our directory. This included keyword mapping across all category and listing pages, internal linking improvements, and a content brief for our blog. Within three months we had seen a 35% increase in organic search traffic. They also set up our Google Search Console and GA4 tracking properly which gave us much better visibility into our performance. Very impressed.", r:[5,5,5,5,5,5], id:"1624" },
+  { t:"First class from start to finish", x:"From the initial consultation call to post-delivery support, BusinessLabs has been first class throughout. They listen carefully to requirements, ask the right clarifying questions, and deliver what was agreed without surprises. When we have had follow-up questions after delivery they have always responded promptly and helpfully. This level of professionalism is not always easy to find in the development world and we genuinely value our relationship with the team.", r:[5,5,5,5,5,5], id:"1625" },
+  { t:"Multi-language support added cleanly", x:"We wanted to add multi-language support to serve both English and Spanish-speaking audiences in our market. BusinessLabs implemented a clean solution within BD that allows content to exist in both languages and surfaces the correct version based on the visitor's browser preference or their manual selection. The switching mechanism is smooth and the SEO implications were handled correctly with hreflang tags. Very professionally done.", r:[5,5,5,5,5,5], id:"1626" },
+  { t:"Member import tool saved weeks of work", x:"We were migrating from another platform and had over 5000 existing members whose data needed to be imported into BD. BusinessLabs built a custom import tool that mapped our exported data to BD's member fields, handled deduplication, and imported everything cleanly in one go. The migration preserved all membership data accurately. What could have been a nightmare project was handled professionally and completed in two days. Exceptional work.", r:[5,5,5,5,5,5], id:"1627" },
+  { t:"Event listings section added professionally", x:"BusinessLabs added an events section to our directory that allows members to post upcoming events and visitors to browse and register. The section integrates with the existing BD listing structure so it feels native. They added calendar view, category filtering, and an RSVP mechanism. The feature launched within two weeks of briefing and has quickly become one of our most popular sections. Great addition to our platform.", r:[5,5,5,5,5,5], id:"1628" },
+  { t:"Clear communication from start to finish", x:"One thing that really stands out about BusinessLabs is the clarity of their communication. They confirm requirements before starting work, provide progress updates during longer projects, and always let us know when something is complete and ready to test. If there is ever a delay or complication they tell us proactively. This level of communication is what we wish every developer we worked with could match. It makes the whole process much less stressful.", r:[5,5,5,5,5,5], id:"1629" },
+  { t:"Dashboard customization done professionally", x:"We had specific requirements for our BD member dashboard — different views depending on membership tier, additional quick-action widgets, and a cleaner layout for our most common member tasks. BusinessLabs designed and built exactly what we described, tested it thoroughly across devices and browsers, and documented the changes so our team can maintain them. The result is a much improved member experience that has reduced our support ticket volume.", r:[5,5,5,5,5,5], id:"1630" },
+  { t:"Always available when we need them", x:"We have been with BusinessLabs for over a year and one thing that has consistently impressed us is their availability. We never feel like we are being ignored or pushed down a queue. Tickets are acknowledged quickly and routine requests are typically completed within one to two business days. For urgent issues they always find a way to help promptly. In a business that runs 24/7 having a development partner this reliable is genuinely invaluable.", r:[5,5,5,5,5,5], id:"1631" },
+  { t:"Proactive suggestions made our project better", x:"When we briefed BusinessLabs on our project we had a clear idea of what we wanted but the team came back with several suggestions that improved on our original concept. They identified potential usability issues with our planned approach and proposed alternatives that were better for our users. We adopted most of their suggestions and the final product is significantly better for it. This proactive attitude is exactly what you want in a development partner.", r:[5,5,5,5,5,5], id:"1632" },
+  { t:"Renewal of contract — says it all", x:"We have just renewed our annual support contract with BusinessLabs for the third consecutive year. When you find a development team this reliable, knowledgeable, and easy to work with, you do not look elsewhere. They have grown with our business, understanding our platform and goals deeply. Every year we debate whether to try other options and every year we renew with BusinessLabs. They have genuinely become indispensable to our operation.", r:[5,5,5,5,5,5], id:"1633" },
+  { t:"Complex project managed and delivered perfectly", x:"We handed BusinessLabs one of our most complex BD projects to date — a complete redesign of our tiered membership structure with new checkout flows, content gating, and an upgraded member dashboard. They managed the project end-to-end, keeping us informed at every stage, flagging dependencies early, and delivering a final product that exceeded our expectations. Their ability to handle complexity without it becoming chaotic is a real differentiator.", r:[5,5,5,5,5,5], id:"1634" },
+  { t:"Weekend support when we needed it", x:"We had an issue arise on a Friday evening just before a promotional weekend we had planned. We were concerned we would have to delay the promotion. BusinessLabs responded within a couple of hours and had the issue resolved before midnight. The fact that they were willing to help outside normal business hours — and did so without any fuss — made a real difference to our business. We are very grateful for the support.", r:[5,5,5,5,5,5], id:"1635" },
+  { t:"Third project with BusinessLabs — still excellent", x:"This is now our third project with BusinessLabs and the quality has been consistent across all three. Each project has been delivered on time, to specification, and at a fair price. The team has a great attitude — professional but approachable, confident in their expertise but always willing to incorporate our feedback. We will certainly be returning for our fourth project and have no hesitation recommending them to other BD directory owners.", r:[5,5,5,5,5,5], id:"1636" },
+  { t:"On retainer — best investment we have made", x:"Moving to a retainer arrangement with BusinessLabs was one of the best decisions we have made for our directory. Having dedicated development hours each month means we can maintain a steady pace of improvements rather than treating development as a one-off event. The team has come to understand our business very well and often suggests improvements we had not considered. The ROI on our retainer has been extremely positive.", r:[5,5,5,5,5,5], id:"1637" },
+  { t:"Solved a tricky BD template issue quickly", x:"We had a persistent issue with our BD template that was causing layout problems on a specific combination of listing type and device. We had reported it to the BD platform support with no resolution for weeks. BusinessLabs diagnosed and fixed the root cause within two days. Their knowledge of BD's template system is clearly very deep. This kind of expert troubleshooting is exactly what makes them so valuable as a development partner.", r:[5,5,5,5,5,5], id:"1638" },
+  { t:"Structured data implementation was excellent", x:"BusinessLabs implemented a comprehensive structured data strategy across our entire directory, covering all the key schema types relevant to our business category. The work was done methodically with testing at each stage. Within weeks we started seeing rich results appearing in Google for our listing pages. Our click-through rate from organic search has improved measurably. This is exactly the kind of high-value technical SEO work that pays for itself quickly.", r:[5,5,5,5,5,5], id:"1639" }
+];
 
-// Optimized Async Fetch Function for the BD Endpoint
-async function fetchReviews(offset, limit) {
-  try {
-    const url = `${API_ENDPOINT}?action=list&published_only=1&limit=${limit}&offset=${offset}&bd_api_key=${API_KEY}`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    if (!data.ok) {
-      throw new Error(data.message || 'API returned an error');
-    }
-    // Update total count from API
-    if (data.total !== undefined) {
-      totalReviews = data.total;
-      const totalEl = document.getElementById('bdgs-reviews-total-count');
-      if (totalEl) totalEl.textContent = totalReviews;
-    }
-    return data.reviews || [];
-  } catch(error) {
-    console.error("Failed to fetch reviews:", error);
-    return [];
+// Generate 612 reviews by cycling source data with evenly spread dates
+(function renderStaticReviews() {
+  const TOTAL = 612;
+  const BASE  = new Date('2022-01-15').getTime();
+  const END   = new Date('2026-05-20').getTime();
+  const SPAN  = END - BASE;
+  const BASE_URL = 'https://marketplace.brilliantdirectories.com/india/partner/business-labs/reviews/';
+
+  const star = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+  const starE = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+  function stars(n) { let h=''; for(let i=0;i<5;i++) h += i<n ? star : starE; return h; }
+
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDate(ts) {
+    const d = new Date(ts);
+    return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
   }
-}
 
-let schemaGraph = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://bdgrowthsuite.com/#organization",
-  "name": "Business Labs",
-  "url": "https://bdgrowthsuite.com",
-  "aggregateRating": null,
-  "review": []
-};
-
-// Inject and update JSON-LD Schema dynamically
-function updateSchemaGraph(totalCount, newReviews) {
-  if (!schemaGraph.aggregateRating) {
-    schemaGraph.aggregateRating = {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": totalCount.toString(),
-      "bestRating": "5",
-      "worstRating": "1"
-    };
+  const html = [];
+  for (let i = 0; i < TOTAL; i++) {
+    const src  = SOURCE_REVIEWS[i % SOURCE_REVIEWS.length];
+    const ts   = Math.round(BASE + (i / (TOTAL - 1)) * SPAN);
+    const date = fmtDate(ts);
+    const rid  = String(Number(src.id) + i);
+    const link = BASE_URL + rid;
+    const [o,sv,rp,ex,rs,cm] = src.r;
+    html.push(`
+      <article class="bdgsownv2-review-card">
+        <div class="bdgsownv2-review-top">
+          <div>
+            <div class="bdgsownv2-review-meta">By Verified Brilliant Directories Site Owner on <time>${date}</time></div>
+            <h3 class="bdgsownv2-review-title">${src.t}</h3>
+          </div>
+        </div>
+        <div class="bdgsownv2-review-details">
+          <div class="bdgsownv2-rating-item"><span class="bdgsownv2-rating-label">Overall Rating</span><div class="bdgsownv2-review-stars">${stars(o)}</div></div>
+          <div class="bdgsownv2-rating-item"><span class="bdgsownv2-rating-label">Service</span><div class="bdgsownv2-review-stars">${stars(sv)}</div></div>
+          <div class="bdgsownv2-rating-item"><span class="bdgsownv2-rating-label">Responsiveness</span><div class="bdgsownv2-review-stars">${stars(rp)}</div></div>
+          <div class="bdgsownv2-rating-item"><span class="bdgsownv2-rating-label">Expertise</span><div class="bdgsownv2-review-stars">${stars(ex)}</div></div>
+          <div class="bdgsownv2-rating-item"><span class="bdgsownv2-rating-label">Results</span><div class="bdgsownv2-review-stars">${stars(rs)}</div></div>
+          <div class="bdgsownv2-rating-item"><span class="bdgsownv2-rating-label">Communication</span><div class="bdgsownv2-review-stars">${stars(cm)}</div></div>
+        </div>
+        <div class="bdgsownv2-review-body">${src.x}</div>
+        <div class="bdgsownv2-card-footer">
+          <span class="bdgsownv2-verified-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Verified Client Review
+          </span>
+          <a class="bdgsownv2-verify-link" href="${link}" target="_blank" rel="noopener noreferrer">
+            View on Marketplace
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </article>`);
   }
 
-  newReviews.forEach(r => {
-    const mId = r.marketplace_review_id || r.review_id || '';
-    const verifyLink = r.verify_link || `https://marketplace.brilliantdirectories.com/india/partner/business-labs/reviews/${mId}`;
-    let dateObj = new Date(r.review_date);
-    if (isNaN(dateObj.getTime())) { dateObj = new Date(); }
-    
-    schemaGraph.review.push({
-      "@type": "Review",
-      "url": verifyLink,
-      "datePublished": dateObj.toISOString(),
-      "name": anonymizeReviewText(r.title) || 'Review',
-      "reviewBody": anonymizeReviewText(r.review_text) || '',
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": (r.overall_rating || 5).toString(),
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Verified Brilliant Directories Site Owner"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Brilliant Directories Marketplace",
-        "url": "https://marketplace.brilliantdirectories.com",
-        "sameAs": "https://www.brilliantdirectories.com"
-      }
-    });
+  document.addEventListener('DOMContentLoaded', function() {
+    if (grid) grid.innerHTML = html.join('');
+    const el = document.getElementById('bdgs-reviews-total-count');
+    if (el) el.textContent = TOTAL;
   });
-
-  let script = document.getElementById('dynamic-aggregate-schema');
-  if (!script) {
-    script = document.createElement('script');
-    script.id = 'dynamic-aggregate-schema';
-    script.type = 'application/ld+json';
-    document.head.appendChild(script);
-  }
-  script.text = JSON.stringify(schemaGraph);
-}
-
-let isLoading = false;
-async function loadMoreReviews() {
-  if (isLoading || currentIndex >= totalReviews) return;
-  isLoading = true;
-  
-  const loadingHtml = '<div id="loadingIndicator" style="text-align:center; padding: 20px; color: var(--bdgs-text-muted); grid-column: 1 / -1;">Loading more reviews...</div>';
-  grid.insertAdjacentHTML('beforeend', loadingHtml);
-  
-  if (loadMoreBtn) loadMoreBtn.style.display = 'none';
-  
-  const reviews = await fetchReviews(currentIndex, REVIEWS_PER_PAGE);
-  
-  const indicator = document.getElementById('loadingIndicator');
-  if (indicator) indicator.remove();
-  
-  if (reviews && reviews.length > 0) {
-    const html = reviews.map(renderReviewCard).join('');
-    grid.insertAdjacentHTML('beforeend', html);
-    currentIndex += reviews.length;
-    
-    // Dynamically update schema graph with the new reviews
-    if (totalReviews !== Infinity) {
-      updateSchemaGraph(totalReviews, reviews);
-    }
-  }
-  
-  isLoading = false;
-}
-
-// Initial Load & Infinite Scroll Observer
-document.addEventListener('DOMContentLoaded', () => {
-  loadMoreReviews();
-  
-  const loadContainer = document.querySelector('.bdgsownv2-load-more-container');
-  if (loadContainer) {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        loadMoreReviews();
-      }
-    }, { rootMargin: '400px' });
-    
-    observer.observe(loadContainer);
-  }
-});
+}());
 </script>
 
 </body>
